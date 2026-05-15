@@ -14,9 +14,9 @@ export default function SchemaMarkup({ type }: SchemaMarkupProps) {
           "name": "Battles Budz LLC",
           "alternateName": "Battles Budz",
           "description": "Veteran-owned cannabis microbusiness offering premium cannabis cultivation, processing, and consumption experiences in Gloversville, New York.",
-          "url": "https://battlesbudz.replit.app",
-          "logo": "https://battlesbudz.replit.app/logo.png",
-          "image": "https://battlesbudz.replit.app/og-image.jpg",
+          "url": "https://battles-budz-site-production.up.railway.app",
+          "logo": "https://battles-budz-site-production.up.railway.app/logo.png",
+          "image": "https://battles-budz-site-production.up.railway.app/og-image.jpg",
           "address": {
             "@type": "PostalAddress",
             "addressLocality": "Gloversville",

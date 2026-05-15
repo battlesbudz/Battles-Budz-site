@@ -11,7 +11,7 @@ This file helps search engines verify and index:
 Business: Battles Budz LLC
 Owner: Justin Battles (U.S. Military Veteran)
 Location: Gloversville, New York 12078
-Website: https://battlesbudz.replit.app
+Website: https://battles-budz-site-production.up.railway.app
 Email: battlesbudz@gmail.com
 
 Status: Pre-launch Cannabis Microbusiness

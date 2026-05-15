@@ -4,7 +4,7 @@
   
   <!-- Homepage -->
   <url>
-    <loc>https://battlesbudz.replit.app/</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -12,7 +12,7 @@
 
   <!-- Shop -->
   <url>
-    <loc>https://battlesbudz.replit.app/shop</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/shop</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -20,7 +20,7 @@
 
   <!-- Education -->
   <url>
-    <loc>https://battlesbudz.replit.app/education</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/education</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
@@ -28,7 +28,7 @@
 
   <!-- Community -->
   <url>
-    <loc>https://battlesbudz.replit.app/community</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/community</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
@@ -36,7 +36,7 @@
 
   <!-- Investor Portal -->
   <url>
-    <loc>https://battlesbudz.replit.app/investor-portal</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/investor-portal</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -44,19 +44,19 @@
 
   <!-- SEO Landing Pages - HIGH PRIORITY -->
   <url>
-    <loc>https://battlesbudz.replit.app/battles-buds-cannabis-gloversville</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/battles-buds-cannabis-gloversville</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/veteran-gloversville-cannabis</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/veteran-gloversville-cannabis</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/justin-battles-cannabis</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/justin-battles-cannabis</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
@@ -64,31 +64,31 @@
 
   <!-- Location-Specific Pages -->
   <url>
-    <loc>https://battlesbudz.replit.app/location/gloversville</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/location/gloversville</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/location/johnstown</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/location/johnstown</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/location/amsterdam</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/location/amsterdam</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/location/schenectady</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/location/schenectady</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/location/albany</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/location/albany</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -96,25 +96,25 @@
 
   <!-- Products -->
   <url>
-    <loc>https://battlesbudz.replit.app/products/battle-brew</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/products/battle-brew</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/products/cosmic-chewz</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/products/cosmic-chewz</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/products/freedom-fog-vapes</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/products/freedom-fog-vapes</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/products/heirloom-flower</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/products/heirloom-flower</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -122,13 +122,13 @@
 
   <!-- Legal Pages -->
   <url>
-    <loc>https://battlesbudz.replit.app/privacy-policy</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/privacy-policy</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://battlesbudz.replit.app/terms-of-service</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/terms-of-service</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
@@ -136,7 +136,7 @@
 
   <!-- SEO Boost Files -->
   <url>
-    <loc>https://battlesbudz.replit.app/battles-budz-seo-boost.html</loc>
+    <loc>https://battles-budz-site-production.up.railway.app/battles-budz-seo-boost.html</loc>
     <lastmod>2025-01-07</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
