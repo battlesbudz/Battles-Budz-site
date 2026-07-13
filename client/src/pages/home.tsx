@@ -11,6 +11,7 @@ const scrollTo = (id: string) => {
 };
 
 const wholesaleEmailHref = "mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Dual%20Cart%20Battery%20Wholesale%20Inquiry";
+const shopUrl = "https://shop.battlesbudz.com";
 
 export default function Home() {
   return (
@@ -72,8 +73,8 @@ export default function Home() {
             <article className="rounded-3xl border border-white/10 bg-zinc-900 p-7 transition hover:border-yellow-300/50">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-300">Merchandise</p>
               <h3 className="mt-4 text-3xl font-bold">The first drop</h3>
-              <p className="mt-3 max-w-lg leading-7 text-zinc-400">Black Battles Budz tees are on the way for online ordering, with future hoodie drops in the works. Join the list to catch the release.</p>
-              <button onClick={() => scrollTo("newsletter")} className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-300 hover:text-yellow-200">Get launch updates <ArrowUpRight className="h-4 w-4" /></button>
+              <p className="mt-3 max-w-lg leading-7 text-zinc-400">Black Battles Budz USA tees are available for online ordering now. Future hoodie drops are in the works.</p>
+              <a href={shopUrl} className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-300 hover:text-yellow-200">Shop tees now <ArrowUpRight className="h-4 w-4" /></a>
             </article>
             <article className="rounded-3xl border border-yellow-300/25 bg-gradient-to-br from-yellow-300/15 to-zinc-950 p-7">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-200">Accessories</p>
