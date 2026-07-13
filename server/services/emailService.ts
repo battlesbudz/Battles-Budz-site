@@ -87,27 +87,27 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
   try {
     await mailService.send({
       to: subscriberEmail,
-      from: 'Battlesbudz@gmail.com', // Use your verified email
-      subject: 'Welcome to Battles Budz Newsletter! 🌿',
+      from: 'battlesbudz@gmail.com', // Use your verified email
+      subject: 'Welcome to Battles Budz',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #FFD700; background-color: #000; padding: 15px; text-align: center;">
-            Welcome to Battles Budz! 🌿
+            Welcome to Battles Budz
           </h2>
           <div style="padding: 20px; background-color: #f9f9f9;">
             <p>Thank you for subscribing to our newsletter!</p>
+            <p>Thanks for joining us as we prepare to open in Buffalo, New York.</p>
             <p>You'll receive updates about:</p>
             <ul>
-              <li>New premium cannabis products</li>
-              <li>Exclusive lounge events and tastings</li>
-              <li>Educational content and industry news</li>
-              <li>Company updates and community news</li>
+              <li>Our Buffalo opening</li>
+              <li>Current merchandise and accessory drops</li>
+              <li>Company news and community updates</li>
             </ul>
           </div>
           <div style="padding: 20px; background-color: #000; color: #FFD700; text-align: center;">
             <p><strong>Battles Budz</strong></p>
-            <p>Premium Cannabis Tourism Experience</p>
-            <p>📞 904-415-7635 | 📧 Battlesbudz@gmail.com</p>
+            <p>Opening soon in Buffalo, New York</p>
+            <p>battlesbudz@gmail.com</p>
             <p>Instagram: @Battles_budz</p>
           </div>
         </div>
@@ -388,7 +388,7 @@ export async function sendInvestorReplyNotification(message: InvestorMessage) {
             
             <div style="background-color: #e8f5e8; padding: 15px; border-radius: 5px; margin: 20px 0;">
               <p><strong>💡 Need to continue the conversation?</strong></p>
-              <p>Log into the <a href="${process.env.APP_BASE_URL || 'https://battles-budz-site-production.up.railway.app'}/investor-portal" style="color: #FFD700; text-decoration: none;"><strong>Investor Portal</strong></a> to send a follow-up message or contact us directly.</p>
+              <p>Visit the <a href="${process.env.APP_BASE_URL || 'https://battlesbudz.com'}" style="color: #FFD700; text-decoration: none;"><strong>Battles Budz website</strong></a> for current updates, or contact us directly.</p>
             </div>
           </div>
           <div style="padding: 20px; background-color: #000; color: #FFD700; text-align: center;">

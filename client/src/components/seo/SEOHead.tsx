@@ -16,9 +16,9 @@ interface SEOHeadProps extends SEOProps {
 }
 
 export default function SEOHead({
-  title = "Battles Budz - Premium Cannabis Experience | Gloversville, NY",
-  description = "Premium cannabis cultivation, processing, and consumption experiences in Gloversville, NY. Veteran-owned microbusiness offering retail cannabis, consumption lounge, and educational events.",
-  keywords = ["cannabis", "dispensary", "Gloversville NY", "veteran owned", "premium cannabis", "consumption lounge", "cannabis education"],
+  title = "Battles Budz | Opening Soon in Buffalo, NY",
+  description = "Battles Budz is a veteran-owned cannabis microbusiness opening soon in Buffalo, New York.",
+  keywords = ["Battles Budz", "Buffalo", "veteran owned", "opening soon", "cannabis accessories"],
   ogImage = "/og-image.jpg",
   ogType = "website",
   canonicalUrl,

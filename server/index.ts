@@ -41,6 +41,25 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
+  const retiredPublicPaths = [
+    /^\/shop\/?$/,
+    /^\/products\/(battle-brew|cosmic-chewz|freedom-fog-vapes|heirloom-flower)\/?$/,
+    /^\/(battles-buds-cannabis-gloversville|veteran-gloversville-cannabis|justin-battles-cannabis)\/?$/,
+    /^\/location(?:\/.*)?$/,
+    /^\/community(?:\/.*)?$/,
+    /^\/enhanced-community\/?$/,
+    /^\/(investors|investor-portal)\/?$/,
+    /^\/(login|dashboard|investor-admin)\/?$/,
+  ];
+
+  app.use((req, res, next) => {
+    if (["GET", "HEAD"].includes(req.method) && retiredPublicPaths.some((pattern) => pattern.test(req.path))) {
+      return res.redirect(301, "/");
+    }
+
+    next();
+  });
+
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
