@@ -71,7 +71,7 @@ export default function TermsOfService() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Contact Information</h2>
             <p className="text-gray-300">
-              Questions about the Terms of Service should be sent to us at battlesbuds@gmail.com
+              Questions about the Terms of Service should be sent to us at battlesbudz@gmail.com
             </p>
           </section>
         </div>

@@ -1641,9 +1641,9 @@ export default function InvestorPortal() {
                     <div className="p-4 bg-gray-800 rounded-lg">
                       <p className="text-sm text-gray-300 mb-2">For urgent matters, contact the team directly:</p>
                       <div className="flex flex-col sm:flex-row gap-4">
-                        <a href="mailto:battlesbuds@gmail.com" className="flex items-center text-battles-gold hover:underline">
+                        <a href="mailto:battlesbudz@gmail.com" className="flex items-center text-battles-gold hover:underline">
                           <MessageCircle className="h-4 w-4 mr-2" />
-                          battlesbuds@gmail.com
+                          battlesbudz@gmail.com
                         </a>
                         <a href="tel:904-415-7635" className="flex items-center text-battles-gold hover:underline">
                           <Calendar className="h-4 w-4 mr-2" />
@@ -1687,8 +1687,8 @@ export default function InvestorPortal() {
             <div className="mt-4 p-4 bg-gray-800 rounded-lg">
               <p className="text-sm text-gray-300">
                 For urgent matters, contact Justin Battles directly at{" "}
-                <a href="mailto:battlesbuds@gmail.com" className="text-battles-gold hover:underline">
-                  battlesbuds@gmail.com
+                <a href="mailto:battlesbudz@gmail.com" className="text-battles-gold hover:underline">
+                  battlesbudz@gmail.com
                 </a>{" "}
                 or call{" "}
                 <a href="tel:904-415-7635" className="text-battles-gold hover:underline">

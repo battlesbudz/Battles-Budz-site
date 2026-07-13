@@ -68,7 +68,7 @@ export default function PrivacyPolicy() {
               If you have any questions about this Privacy Policy, please contact us at:
             </p>
             <div className="text-gray-300">
-              <p>Email: battlesbuds@gmail.com</p>
+              <p>Email: battlesbudz@gmail.com</p>
               <p>We do not publish our retail address before opening.</p>
             </div>
           </section>

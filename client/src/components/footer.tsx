@@ -11,7 +11,7 @@ export default function Footer() {
         </div>
         <div>
           <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-300">Contact</p>
-          <a href="mailto:battlesbuds@gmail.com" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-white hover:text-yellow-200"><Mail className="h-5 w-5 text-yellow-300" /> battlesbuds@gmail.com</a>
+          <a href="mailto:battlesbudz@gmail.com" className="mt-4 inline-flex items-center gap-2 text-lg font-semibold text-white hover:text-yellow-200"><Mail className="h-5 w-5 text-yellow-300" /> battlesbudz@gmail.com</a>
           <div className="mt-6 flex gap-5 text-sm text-zinc-400"><a href="/privacy-policy" className="hover:text-yellow-300">Privacy</a><a href="/terms-of-service" className="hover:text-yellow-300">Terms</a><a href="/age-verification" className="hover:text-yellow-300">21+ information</a></div>
         </div>
       </div>

@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   url: import.meta.env.VITE_SITE_URL || "https://battlesbudz.com",
   businessName: "Battles Budz LLC",
   location: { city: "Buffalo", state: "NY" },
-  contact: { email: "battlesbuds@gmail.com" },
+  contact: { email: "battlesbudz@gmail.com" },
   social: { instagram: "https://instagram.com/battles_budz" },
 };
 

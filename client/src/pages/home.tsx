@@ -77,7 +77,7 @@ export default function Home() {
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-200">Accessories</p>
               <h3 className="mt-4 text-3xl font-bold">Built for the rotation</h3>
               <p className="mt-3 max-w-lg leading-7 text-zinc-300">Our accessories collection is part of the opening-era release. Watch for product details, drops, and wholesale availability.</p>
-              <a href="mailto:battlesbuds@gmail.com?subject=Battles%20Budz%20Wholesale%20Inquiry" className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-200 hover:text-white">Wholesale inquiry <ArrowUpRight className="h-4 w-4" /></a>
+              <a href="mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Wholesale%20Inquiry" className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-200 hover:text-white">Wholesale inquiry <ArrowUpRight className="h-4 w-4" /></a>
             </article>
           </div>
         </section>
