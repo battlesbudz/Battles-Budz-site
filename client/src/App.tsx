@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Redirect, Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -20,6 +20,17 @@ function Router() {
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/age-verification" component={AgeVerification} />
+        <Route path="/shop"><Redirect to="/" /></Route>
+        <Route path="/products/:product"><Redirect to="/" /></Route>
+        <Route path="/battles-buds-cannabis-gloversville"><Redirect to="/" /></Route>
+        <Route path="/veteran-gloversville-cannabis"><Redirect to="/" /></Route>
+        <Route path="/justin-battles-cannabis"><Redirect to="/" /></Route>
+        <Route path="/location/:location"><Redirect to="/" /></Route>
+        <Route path="/community"><Redirect to="/" /></Route>
+        <Route path="/community/posts/:id"><Redirect to="/" /></Route>
+        <Route path="/enhanced-community"><Redirect to="/" /></Route>
+        <Route path="/investors"><Redirect to="/" /></Route>
+        <Route path="/investor-portal"><Redirect to="/" /></Route>
         <Route component={NotFound} />
       </Switch>
     </>
