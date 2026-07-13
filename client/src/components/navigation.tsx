@@ -21,15 +21,15 @@ export default function Navigation() {
           <img src={logoPath} alt="" className="h-10 w-10 rounded-full object-cover" />
           <span className="text-base font-black uppercase tracking-[-0.03em] text-yellow-300 sm:text-lg">Battles Budz</span>
         </Link>
-        <div className="hidden items-center gap-7 md:flex">
+        <div className="hidden items-center gap-7 lg:flex">
           {links.map((link) => <a key={link.href} href={link.href} className="text-sm font-semibold text-zinc-200 transition hover:text-yellow-300">{link.label}</a>)}
           <a href="#newsletter" className="rounded-full bg-yellow-300 px-4 py-2 text-sm font-bold text-black transition hover:bg-yellow-200">Stay in the loop</a>
         </div>
-        <button onClick={() => setOpen(!open)} className="rounded-lg border border-yellow-300/40 p-2 text-yellow-300 md:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+        <button onClick={() => setOpen(!open)} className="rounded-lg border border-yellow-300/40 p-2 text-yellow-300 lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-      {open && <div className="border-t border-white/10 bg-[#090909] px-6 py-4 md:hidden">{links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="block py-3 font-semibold text-zinc-200 hover:text-yellow-300">{link.label}</a>)}</div>}
+      {open && <div className="border-t border-white/10 bg-[#090909] px-6 py-4 lg:hidden">{links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="block py-3 font-semibold text-zinc-200 hover:text-yellow-300">{link.label}</a>)}</div>}
     </nav>
   );
 }
