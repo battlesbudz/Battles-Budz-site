@@ -1,10 +1,18 @@
 
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import SEOHead from "@/components/seo/SEOHead";
+import { getCanonicalUrl } from "@/utils/seo";
 
 export default function AgeVerification() {
   return (
     <div className="min-h-screen bg-battles-black text-white">
+      <SEOHead
+        title="Age Verification | Battles Budz"
+        description="Age-verification information for the Battles Budz website."
+        canonicalUrl={getCanonicalUrl("/age-verification")}
+        noIndex
+      />
       <div className="max-w-4xl mx-auto px-4 py-12">
         <Link href="/">
           <button className="flex items-center text-battles-gold hover:text-yellow-400 mb-8 transition-colors">
