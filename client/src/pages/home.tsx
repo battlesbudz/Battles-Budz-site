@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowUpRight, Mail, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowDown, ArrowUpRight, BatteryCharging, Mail, ShieldCheck, Sparkles, Store } from "lucide-react";
 import Navigation from "@/components/navigation";
 import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
@@ -9,6 +9,8 @@ import logoPath from "@assets/BattlesBudz_Logo_1752301078028.png";
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
+
+const wholesaleEmailHref = "mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Dual%20Cart%20Battery%20Wholesale%20Inquiry";
 
 export default function Home() {
   return (
@@ -70,15 +72,51 @@ export default function Home() {
             <article className="rounded-3xl border border-white/10 bg-zinc-900 p-7 transition hover:border-yellow-300/50">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-300">Merchandise</p>
               <h3 className="mt-4 text-3xl font-bold">The first drop</h3>
-              <p className="mt-3 max-w-lg leading-7 text-zinc-400">Black Battles Budz tees and future hoodie drops are being prepared for online ordering. Join the list to catch the release.</p>
+              <p className="mt-3 max-w-lg leading-7 text-zinc-400">Black Battles Budz tees are on the way for online ordering, with future hoodie drops in the works. Join the list to catch the release.</p>
               <button onClick={() => scrollTo("newsletter")} className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-300 hover:text-yellow-200">Get launch updates <ArrowUpRight className="h-4 w-4" /></button>
             </article>
             <article className="rounded-3xl border border-yellow-300/25 bg-gradient-to-br from-yellow-300/15 to-zinc-950 p-7">
               <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-200">Accessories</p>
-              <h3 className="mt-4 text-3xl font-bold">Built for the rotation</h3>
-              <p className="mt-3 max-w-lg leading-7 text-zinc-300">Our accessories collection is part of the opening-era release. Watch for product details, drops, and wholesale availability.</p>
-              <a href="mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Wholesale%20Inquiry" className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-200 hover:text-white">Wholesale inquiry <ArrowUpRight className="h-4 w-4" /></a>
+              <h3 className="mt-4 text-3xl font-bold">Dual Cart Battery · $60</h3>
+              <p className="mt-3 max-w-lg leading-7 text-zinc-300">A Battles Budz branded dual cart battery with no customer-facing purchase cap. Online checkout will open only after our payment provider has approved the actual product and business arrangement.</p>
+              <button onClick={() => scrollTo("dual-cart-battery")} className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-200 hover:text-white">See the battery <ArrowDown className="h-4 w-4" /></button>
             </article>
+          </div>
+        </section>
+
+        <section id="dual-cart-battery" className="border-y border-yellow-300/15 bg-zinc-950">
+          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:px-8">
+            <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2rem] border border-yellow-300/30 bg-black shadow-2xl shadow-yellow-300/10">
+              <video
+                className="aspect-[9/16] w-full object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+                controls
+                preload="metadata"
+                poster="/media/battles-budz-dual-cart-battery-poster.jpg"
+                aria-describedby="battery-video-description"
+              >
+                <source src="/media/battles-budz-dual-cart-battery-loop.mp4" type="video/mp4" />
+                Your browser does not support the product video.
+              </video>
+              <p id="battery-video-description" className="sr-only">A looping product video showing the Battles Budz Dual Cart Battery opening and closing.</p>
+            </div>
+            <div>
+              <p className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-yellow-300"><BatteryCharging className="h-4 w-4" /> Built for the rotation</p>
+              <h2 className="mt-4 max-w-2xl text-4xl font-black uppercase tracking-[-0.04em] sm:text-6xl">Battles Budz<br /><span className="text-yellow-300">Dual Cart Battery.</span></h2>
+              <p className="mt-6 max-w-xl text-xl font-bold text-white">$60 · No purchase cap</p>
+              <p className="mt-4 max-w-xl leading-8 text-zinc-300">The first Battles Budz accessory drop is in final checkout setup. Watch it open, see the details, and get on the list for the moment online purchasing is approved and live.</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <button onClick={() => scrollTo("newsletter")} className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow-300 px-6 py-3.5 font-bold text-black transition hover:bg-yellow-200">Get purchase updates <Mail className="h-4 w-4" /></button>
+                <a href={wholesaleEmailHref} className="inline-flex items-center justify-center gap-2 rounded-full border border-yellow-300/50 px-6 py-3.5 font-bold text-yellow-200 transition hover:bg-yellow-300 hover:text-black"><Store className="h-4 w-4" /> Wholesale pricing</a>
+              </div>
+              <div className="mt-8 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="font-bold text-white">Are you a dispensary or retailer?</p>
+                <p className="mt-2 leading-7 text-zinc-400">Carry the Battles Budz Dual Cart Battery in your store. Email <a className="font-semibold text-yellow-300 hover:text-yellow-200" href={wholesaleEmailHref}>battlesbudz@gmail.com</a> for professional wholesale pricing. Wholesale fulfillment may take up to one month.</p>
+              </div>
+            </div>
           </div>
         </section>
 
