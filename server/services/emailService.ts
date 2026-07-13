@@ -87,27 +87,27 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
   try {
     await mailService.send({
       to: subscriberEmail,
-      from: 'Battlesbudz@gmail.com', // Use your verified email
-      subject: 'Welcome to Battles Budz Newsletter! 🌿',
+      from: 'battlesbudz@gmail.com', // Use your verified email
+      subject: 'Welcome to Battles Budz',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #FFD700; background-color: #000; padding: 15px; text-align: center;">
-            Welcome to Battles Budz! 🌿
+            Welcome to Battles Budz
           </h2>
           <div style="padding: 20px; background-color: #f9f9f9;">
             <p>Thank you for subscribing to our newsletter!</p>
+            <p>Thanks for joining us as we prepare to open in Buffalo, New York.</p>
             <p>You'll receive updates about:</p>
             <ul>
-              <li>New premium cannabis products</li>
-              <li>Exclusive lounge events and tastings</li>
-              <li>Educational content and industry news</li>
-              <li>Company updates and community news</li>
+              <li>Our Buffalo opening</li>
+              <li>Current merchandise and accessory drops</li>
+              <li>Company news and community updates</li>
             </ul>
           </div>
           <div style="padding: 20px; background-color: #000; color: #FFD700; text-align: center;">
             <p><strong>Battles Budz</strong></p>
-            <p>Premium Cannabis Tourism Experience</p>
-            <p>📞 904-415-7635 | 📧 Battlesbudz@gmail.com</p>
+            <p>Opening soon in Buffalo, New York</p>
+            <p>battlesbudz@gmail.com</p>
             <p>Instagram: @Battles_budz</p>
           </div>
         </div>

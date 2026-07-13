@@ -53,7 +53,7 @@ app.use((req, res, next) => {
   ];
 
   app.use((req, res, next) => {
-    if (req.method === "GET" && retiredPublicPaths.some((pattern) => pattern.test(req.path))) {
+    if (["GET", "HEAD"].includes(req.method) && retiredPublicPaths.some((pattern) => pattern.test(req.path))) {
       return res.redirect(301, "/");
     }
 
