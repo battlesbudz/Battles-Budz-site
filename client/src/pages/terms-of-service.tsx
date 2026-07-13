@@ -30,21 +30,21 @@ export default function TermsOfService() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Age Verification</h2>
             <p className="text-gray-300">
-              You must be 21 years of age or older to access this website and purchase cannabis products. By using this site, you certify that you are of legal age to purchase cannabis products in New York State.
+              You must be 21 years of age or older to access this website. Retail cannabis sales will begin only after final regulatory authorization.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Legal Compliance</h2>
             <p className="text-gray-300">
-              Battles Budz LLC operates under New York State Adult-Use Microbusiness License OCMMICR-2023-000258. All cannabis products are produced and sold in compliance with New York State regulations.
+              Battles Budz LLC is preparing to open a cannabis microbusiness in Buffalo, New York. We follow applicable law and will communicate when retail operations are authorized to begin.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Product Information</h2>
             <p className="text-gray-300">
-              Cannabis products have not been analyzed or approved by the FDA. Please consume responsibly. Effects may vary by individual. Do not operate vehicles or machinery after consumption.
+              Product availability changes as we prepare to open. Please review product-specific information and applicable terms before making a purchase.
             </p>
           </section>
 
