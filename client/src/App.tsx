@@ -31,6 +31,9 @@ function Router() {
         <Route path="/enhanced-community"><Redirect to="/" /></Route>
         <Route path="/investors"><Redirect to="/" /></Route>
         <Route path="/investor-portal"><Redirect to="/" /></Route>
+        <Route path="/login"><Redirect to="/" /></Route>
+        <Route path="/dashboard"><Redirect to="/" /></Route>
+        <Route path="/investor-admin"><Redirect to="/" /></Route>
         <Route component={NotFound} />
       </Switch>
     </>

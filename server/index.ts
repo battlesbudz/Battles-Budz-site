@@ -49,6 +49,7 @@ app.use((req, res, next) => {
     /^\/community(?:\/.*)?$/,
     /^\/enhanced-community\/?$/,
     /^\/(investors|investor-portal)\/?$/,
+    /^\/(login|dashboard|investor-admin)\/?$/,
   ];
 
   app.use((req, res, next) => {
