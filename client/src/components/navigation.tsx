@@ -5,6 +5,7 @@ import logoPath from "@assets/BattlesBudz_Logo_1752301078028.png";
 
 const links = [
   { label: "Available now", href: "#available-now" },
+  { label: "Dual Cart Battery", href: "#dual-cart-battery" },
   { label: "Our story", href: "#about" },
   { label: "Updates", href: "#newsletter" },
   { label: "Contact", href: "#contact" },
