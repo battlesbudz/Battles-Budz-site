@@ -74,7 +74,7 @@ export default function AgeVerification() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Contact Us</h2>
             <p className="text-gray-300">
-              If you have questions about our age verification policy, please contact us at battlesbudz@gmail.com
+              If you have questions about our age verification policy, please contact us at battlesbuds@gmail.com
             </p>
           </section>
         </div>
