@@ -9,6 +9,7 @@ import NotFound from "./pages/not-found";
 import PrivacyPolicy from "./pages/privacy-policy";
 import TermsOfService from "./pages/terms-of-service";
 import AgeVerification from "./pages/age-verification";
+import ShippingReturns from "./pages/shipping-returns";
 import { AgeVerificationModal } from "@/components/user-guide/age-verification-modal";
 import { useUserGuide } from "@/hooks/useUserGuide";
 
@@ -19,6 +20,7 @@ function Router() {
         <Route path="/" component={Home} />
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
+        <Route path="/shipping-returns" component={ShippingReturns} />
         <Route path="/age-verification" component={AgeVerification} />
         <Route path="/shop"><Redirect to="/" /></Route>
         <Route path="/products/:product"><Redirect to="/" /></Route>
