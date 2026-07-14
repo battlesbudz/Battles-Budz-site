@@ -63,7 +63,7 @@ export default function JobApplicationForm() {
 
   const mutation = useMutation({
     mutationFn: async (data: JobApplicationFormData) => {
-      const response = await apiRequest("POST", "/api/job-applications", data);
+      const response = await apiRequest("POST", "/api/job/apply", data);
       return response.json();
     },
     onSuccess: () => {
@@ -74,7 +74,7 @@ export default function JobApplicationForm() {
       reset();
       setResumeFile(null);
       setIsFormOpen(false);
-      queryClient.invalidateQueries({ queryKey: ["/api/job-applications"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/job/applications"] });
     },
     onError: (error: any) => {
       toast({
