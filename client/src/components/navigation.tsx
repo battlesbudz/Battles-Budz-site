@@ -34,11 +34,11 @@ export default function Navigation() {
 
         <a
           href={shopUrl}
-          aria-label="Open Battles Budz Shopify store"
+          aria-label="Open Battles Budz online store"
           className="hidden items-center gap-2 text-yellow-300 transition hover:text-yellow-100 lg:inline-flex"
         >
           <ShoppingBag className="h-6 w-6" />
-          <span className="sr-only">Shopify store</span>
+          <span className="sr-only">Online store</span>
         </a>
 
         <button

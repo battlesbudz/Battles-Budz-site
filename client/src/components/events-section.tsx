@@ -9,12 +9,12 @@ export default function EventsSection() {
     },
     {
       name: "Community Sessions",
-      description: "Small, local gatherings built around Buffalo culture, veterans, art, music, and cannabis education.",
+      description: "Small local gatherings built around Buffalo culture, veterans, art, music, and cannabis education.",
       icon: Users,
     },
     {
       name: "Creative Events",
-      description: "Ideas like paint sessions, live music, glass demos, and brand pop-ups will be announced after launch.",
+      description: "The future calendar may include paint sessions, live music, glass demos, and brand pop-ups.",
       icon: Palette,
     },
   ];
@@ -24,14 +24,14 @@ export default function EventsSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <p className="inline-flex items-center gap-2 border border-yellow-500/30 bg-yellow-100 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-battles-black">
-            <Calendar className="h-4 w-4" /> Events after launch
+            <Calendar className="h-4 w-4" /> Community events
           </p>
           <h2 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] text-battles-black sm:text-6xl">
-            The lounge energy is still part of the plan.
+            Education, culture, and community.
           </h2>
           <p className="mt-5 text-lg leading-8 text-battles-gray">
-            The original site had events because that is still the long-term vision. We are keeping that story, but not
-            taking bookings before the Buffalo retail experience is legally open and ready.
+            Battles Budz plans to host age-gated education and community programming as the Buffalo retail experience
+            grows. Join the update list for announcements.
           </p>
         </div>
 
@@ -58,12 +58,9 @@ export default function EventsSection() {
                 <Music className="h-6 w-6" />
                 <Palette className="h-6 w-6" />
               </div>
-              <h3 className="mt-5 text-3xl font-black uppercase tracking-[-0.05em]">
-                Want to know when events become real?
-              </h3>
+              <h3 className="mt-5 text-3xl font-black uppercase tracking-[-0.05em]">Stay close to the calendar.</h3>
               <p className="mt-4 max-w-2xl leading-8 text-zinc-300">
-                Join the update list or reach out directly. We will announce events only when the venue, timing, and
-                compliance path are actually ready.
+                Join the update list for event announcements, apparel drops, and Buffalo launch news.
               </p>
             </div>
             <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
@@ -71,7 +68,7 @@ export default function EventsSection() {
                 onClick={() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" })}
                 className="inline-flex items-center justify-center rounded-lg bg-battles-gold px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-300"
               >
-                Get updates
+                Get event updates
               </button>
               <a
                 href="mailto:battlesbudz@gmail.com"

@@ -30,28 +30,31 @@ export default function TermsOfService() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Acceptance of Terms</h2>
             <p className="text-gray-300">
-              By accessing and using the Battles Budz LLC website, you accept and agree to be bound by the terms and provision of this agreement.
+              By accessing and using the Battles Budz LLC website, you accept and agree to be bound by these terms.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Age Verification</h2>
             <p className="text-gray-300">
-              You must be 21 years of age or older to access this website. Retail cannabis sales will begin only after final regulatory authorization.
+              You must be 21 years of age or older to access cannabis-related content on this website. Licensed cannabis
+              sales begin only when permitted under applicable New York regulations.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Legal Compliance</h2>
             <p className="text-gray-300">
-              Battles Budz LLC is preparing to open a cannabis microbusiness in Buffalo, New York. We follow applicable law and will communicate when retail operations are authorized to begin.
+              Battles Budz LLC is preparing to open a cannabis microbusiness in Buffalo, New York. We follow applicable
+              laws and share retail updates only through official Battles Budz channels.
             </p>
           </section>
 
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Product Information</h2>
             <p className="text-gray-300">
-              Product availability changes as we prepare to open. Please review product-specific information and applicable terms before making a purchase.
+              Product availability, pricing, and fulfillment details may change. Please review product-specific
+              information and applicable terms before making a purchase.
             </p>
           </section>
 
@@ -78,7 +81,7 @@ export default function TermsOfService() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Contact Information</h2>
             <p className="text-gray-300">
-              Questions about the Terms of Service should be sent to us at battlesbudz@gmail.com
+              Questions about the Terms of Service should be sent to us at battlesbudz@gmail.com.
             </p>
           </section>
         </div>

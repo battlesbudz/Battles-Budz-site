@@ -48,10 +48,10 @@ export default function NewsletterSection() {
             <Mail className="h-4 w-4" /> Buffalo updates
           </p>
           <h2 className="mt-5 max-w-2xl text-5xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
-            Know before the doors open.
+            Join the Buffalo update list.
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-300">
-            Get launch updates, apparel drops, battery availability, and the first notice when the Buffalo retail experience is ready.
+            Be first to hear about apparel drops, battery availability, community events, and retail launch announcements.
           </p>
         </div>
 
@@ -81,11 +81,11 @@ export default function NewsletterSection() {
                 )}
               </Button>
             </div>
-            <p className="mt-4 text-sm text-zinc-500">No spam. Just launch updates and drop notices.</p>
+            <p className="mt-4 text-sm text-zinc-500">Only Battles Budz updates. Unsubscribe anytime.</p>
           </form>
 
           <div className="mt-8 border-t border-white/10 pt-6">
-            <p className="text-sm font-black uppercase tracking-[0.18em] text-yellow-300">Follow the build</p>
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-yellow-300">Follow Battles Budz</p>
             <div className="mt-5 flex gap-5">
               <a
                 href="https://instagram.com/battles_budz"
