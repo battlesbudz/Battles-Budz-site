@@ -1,4 +1,5 @@
-import { ArrowDown, ChevronDown, Clock3, MapPin, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Clock3, MapPin, ShieldCheck, ShoppingBag } from "lucide-react";
+import { Link } from "wouter";
 
 const shopUrl = "https://shop.battlesbudz.com/";
 
@@ -45,12 +46,12 @@ export default function HeroSection() {
             >
               Shop merch now <ShoppingBag className="h-5 w-5" />
             </a>
-            <button
-              onClick={() => scrollToSection("about")}
+            <Link
+              href="/our-story"
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-battles-gold px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-battles-gold transition hover:bg-battles-gold hover:text-black sm:w-auto"
             >
-              Our story <ArrowDown className="h-5 w-5" />
-            </button>
+              Our story <ArrowUpRight className="h-5 w-5" />
+            </Link>
           </div>
 
           <div className="mx-auto mt-9 grid max-w-4xl gap-4 sm:grid-cols-3">

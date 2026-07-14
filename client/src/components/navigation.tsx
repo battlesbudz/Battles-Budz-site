@@ -5,13 +5,12 @@ import { Menu, ShoppingBag, X } from "lucide-react";
 const shopUrl = "https://shop.battlesbudz.com/";
 
 const links = [
-  { label: "Products", href: "#retail" },
-  { label: "Services", href: "#services" },
-  { label: "Story", href: "#about" },
-  { label: "Team", href: "#team" },
-  { label: "Events", href: "#events" },
-  { label: "Updates", href: "#newsletter" },
-  { label: "Contact", href: "#contact" },
+  { label: "Shop", href: shopUrl, external: true },
+  { label: "Battery", href: "/battery" },
+  { label: "Coming Soon", href: "/coming-soon" },
+  { label: "Our Story", href: "/our-story" },
+  { label: "Updates", href: "/#newsletter", external: true },
+  { label: "Contact", href: "/#contact", external: true },
 ];
 
 export default function Navigation() {
@@ -25,11 +24,17 @@ export default function Navigation() {
         </Link>
 
         <div className="hidden items-center gap-6 lg:flex xl:gap-8">
-          {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition hover:text-yellow-300 xl:text-sm">
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) =>
+            link.external ? (
+              <a key={link.href} href={link.href} className="text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition hover:text-yellow-300 xl:text-sm">
+                {link.label}
+              </a>
+            ) : (
+              <Link key={link.href} href={link.href} className="text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition hover:text-yellow-300 xl:text-sm">
+                {link.label}
+              </Link>
+            ),
+          )}
         </div>
 
         <a
@@ -53,16 +58,27 @@ export default function Navigation() {
 
       {open ? (
         <div className="border-t border-white/10 bg-black px-5 py-4 lg:hidden">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="block border-b border-white/10 py-4 text-sm font-black uppercase tracking-[0.16em] text-zinc-200 hover:text-yellow-300"
-            >
-              {link.label}
-            </a>
-          ))}
+          {links.map((link) =>
+            link.external ? (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block border-b border-white/10 py-4 text-sm font-black uppercase tracking-[0.16em] text-zinc-200 hover:text-yellow-300"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block border-b border-white/10 py-4 text-sm font-black uppercase tracking-[0.16em] text-zinc-200 hover:text-yellow-300"
+              >
+                {link.label}
+              </Link>
+            ),
+          )}
           <a
             href={shopUrl}
             onClick={() => setOpen(false)}

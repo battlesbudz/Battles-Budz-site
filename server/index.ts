@@ -28,7 +28,7 @@ app.use((req, res, next) => {
       }
 
       if (logLine.length > 80) {
-        logLine = logLine.slice(0, 79) + "…";
+        logLine = logLine.slice(0, 79) + "...";
       }
 
       log(logLine);
@@ -41,20 +41,26 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
-  const retiredPublicPaths = [
-    /^\/shop\/?$/,
-    /^\/products\/(battle-brew|cosmic-chewz|freedom-fog-vapes|heirloom-flower)\/?$/,
-    /^\/justin-battles-cannabis\/?$/,
-    /^\/location(?:\/.*)?$/,
-    /^\/community(?:\/.*)?$/,
-    /^\/enhanced-community\/?$/,
-    /^\/(investors|investor-portal)\/?$/,
-    /^\/(login|dashboard|investor-admin)\/?$/,
+  const publicRedirects = [
+    { pattern: /^\/shop\/?$/, destination: "https://shop.battlesbudz.com/" },
+    { pattern: /^\/(batteries|dual-cart-battery)\/?$/, destination: "/battery" },
+    { pattern: /^\/products\/dual-cart-battery\/?$/, destination: "/battery" },
+    { pattern: /^\/products\/(battle-brew|cosmic-chewz|freedom-fog-vapes|heirloom-flower)\/?$/, destination: "/coming-soon" },
+    { pattern: /^\/justin-battles-cannabis\/?$/, destination: "/" },
+    { pattern: /^\/location(?:\/.*)?$/, destination: "/" },
+    { pattern: /^\/community(?:\/.*)?$/, destination: "/" },
+    { pattern: /^\/enhanced-community\/?$/, destination: "/" },
+    { pattern: /^\/(investors|investor-portal)\/?$/, destination: "/" },
+    { pattern: /^\/(login|dashboard|investor-admin)\/?$/, destination: "/" },
   ];
 
   app.use((req, res, next) => {
-    if (["GET", "HEAD"].includes(req.method) && retiredPublicPaths.some((pattern) => pattern.test(req.path))) {
-      return res.redirect(301, "/");
+    if (["GET", "HEAD"].includes(req.method)) {
+      const redirect = publicRedirects.find(({ pattern }) => pattern.test(req.path));
+
+      if (redirect) {
+        return res.redirect(301, redirect.destination);
+      }
     }
 
     next();
@@ -81,7 +87,7 @@ app.use((req, res, next) => {
   // Other ports are firewalled. Default to 5000 if not specified.
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
+  const port = parseInt(process.env.PORT || "5000", 10);
   server.listen({
     port,
     host: "0.0.0.0",

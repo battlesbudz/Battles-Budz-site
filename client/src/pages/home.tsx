@@ -1,10 +1,6 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import RetailSection from "@/components/retail-section";
-import ServicesSection from "@/components/services-section";
-import AboutSection from "@/components/about-section";
-import TeamSection from "@/components/team-section";
-import EventsSection from "@/components/events-section";
 import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
@@ -38,10 +34,6 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <RetailSection />
-      <ServicesSection />
-      <AboutSection />
-      <TeamSection />
-      <EventsSection />
       <NewsletterSection />
       <Footer />
     </div>
