@@ -69,8 +69,8 @@ export default function VideoHeroSection({
         </h1>
 
         <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto font-light">
-          Veteran-owned premium cannabis cultivation, processing, and consumption
-          experiences in the heart of New York's Mohawk Valley.
+          Veteran-owned cannabis brand preparing to open in Buffalo, New York.
+          Apparel is live now while retail launch updates continue.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">

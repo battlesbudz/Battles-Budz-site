@@ -13,7 +13,7 @@ export default function Footer() {
           </p>
           <a
             href={shopUrl}
-            className="mt-6 inline-flex items-center gap-2 bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-200"
+            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-200"
           >
             Shop Battles Budz <ShoppingBag className="h-4 w-4" />
           </a>
@@ -25,8 +25,10 @@ export default function Footer() {
             <Mail className="h-5 w-5 text-yellow-300" /> battlesbudz@gmail.com
           </a>
           <div className="mt-7 grid gap-3 text-sm text-zinc-400">
-            <a href="#shop" className="hover:text-yellow-300">Shop current drops</a>
+            <a href="#retail" className="hover:text-yellow-300">Current drops</a>
             <a href="#dual-cart-battery" className="hover:text-yellow-300">Dual-cart battery</a>
+            <a href="#about" className="hover:text-yellow-300">Our story</a>
+            <a href="#events" className="hover:text-yellow-300">Events after launch</a>
             <a href="/shipping-returns" className="hover:text-yellow-300">Shipping and returns</a>
             <a href="/privacy-policy" className="hover:text-yellow-300">Privacy policy</a>
             <a href="/terms-of-service" className="hover:text-yellow-300">Terms of service</a>

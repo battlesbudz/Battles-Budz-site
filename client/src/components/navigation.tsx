@@ -5,9 +5,11 @@ import { Menu, ShoppingBag, X } from "lucide-react";
 const shopUrl = "https://shop.battlesbudz.com/";
 
 const links = [
-  { label: "Shop", href: "#shop" },
-  { label: "Batteries", href: "#dual-cart-battery" },
-  { label: "Our story", href: "#about" },
+  { label: "Products", href: "#retail" },
+  { label: "Services", href: "#services" },
+  { label: "Story", href: "#about" },
+  { label: "Team", href: "#team" },
+  { label: "Events", href: "#events" },
   { label: "Updates", href: "#newsletter" },
   { label: "Contact", href: "#contact" },
 ];
@@ -22,9 +24,9 @@ export default function Navigation() {
           <img src="/media/battles-budz-logo-cropped.png" alt="Battles Budz USA" className="h-12 w-auto object-contain sm:h-14" />
         </Link>
 
-        <div className="hidden items-center gap-9 lg:flex">
+        <div className="hidden items-center gap-6 lg:flex xl:gap-8">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-black uppercase tracking-[0.18em] text-zinc-100 transition hover:text-yellow-300">
+            <a key={link.href} href={link.href} className="text-xs font-black uppercase tracking-[0.16em] text-zinc-100 transition hover:text-yellow-300 xl:text-sm">
               {link.label}
             </a>
           ))}
@@ -66,7 +68,7 @@ export default function Navigation() {
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex w-full items-center justify-center gap-2 bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-black"
           >
-            Shop the drop <ShoppingBag className="h-4 w-4" />
+            Shop merch <ShoppingBag className="h-4 w-4" />
           </a>
         </div>
       ) : null}
