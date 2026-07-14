@@ -1,71 +1,102 @@
-import { Sprout, FlaskConical, Store, Truck, Sofa, Calendar } from "lucide-react";
+import { Calendar, FlaskConical, PackageCheck, Shirt, Sofa, Sprout, Store, Truck } from "lucide-react";
 
 export default function ServicesSection() {
-  const services = [
+  const current = [
+    {
+      icon: Shirt,
+      title: "Merchandise",
+      description: "Battles Budz apparel is available now through Shopify, including tees, hoodies, long sleeves, and tanks.",
+    },
+    {
+      icon: PackageCheck,
+      title: "Accessories",
+      description: "The dual-cart battery is real inventory and will be handled through the cleanest payment path for that category.",
+    },
+    {
+      icon: Truck,
+      title: "Shipping",
+      description: "Current drops are shipping-only while the Buffalo retail location is not yet open to the public.",
+    },
+  ];
+
+  const future = [
     {
       icon: Sprout,
       title: "Cultivation",
-      description: "State-of-the-art indoor cultivation using sustainable practices and premium genetics for consistent, high-quality flower.",
+      description: "Indoor cultivation remains part of the Battles Budz plan once retail operations are cleared.",
     },
     {
       icon: FlaskConical,
       title: "Processing",
-      description: "Expert extraction and infusion capabilities for edibles, beverages, and concentrates using cutting-edge technology.",
+      description: "Infused products, beverages, and concentrates belong to the future cannabis menu, not the current checkout.",
     },
     {
       icon: Store,
       title: "Retail",
-      description: "Premium cannabis retail experience featuring our signature products including Cosmic Chewz, Freedom Fog Vapes, and BattleBrew.",
-    },
-    {
-      icon: Truck,
-      title: "Delivery",
-      description: "Fast, reliable delivery service bringing premium Battles Budz products directly to your door with professional service.",
+      description: "The Buffalo retail experience will launch after the final state go-ahead is in place.",
     },
     {
       icon: Sofa,
-      title: "On-Site Consumption Lounge",
-      description: "Premium consumption experience with comfortable seating, entertainment, and guided tastings in a welcoming environment.",
+      title: "Consumption Lounge",
+      description: "The lounge concept is still part of the long-term vision and will be announced when it is real and ready.",
     },
     {
       icon: Calendar,
       title: "Events",
-      description: "Educational workshops, cultivation classes, and entertaining events like smoke and paint, laugh and smoke sessions, live bands, and glass blowing demonstrations.",
+      description: "Educational and community events will be built around the retail launch instead of being booked early.",
     },
   ];
 
   return (
-    <section id="services" className="py-20 bg-battles-black text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6">
-            <span className="text-battles-gold">Vertically Integrated</span>{" "}
-            Excellence
+    <section id="services" className="bg-battles-black py-20 text-white">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
+            What we do now / what comes next
+          </p>
+          <h2 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
+            Built as a <span className="text-battles-gold">microbusiness</span>.
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            From seed to sale, we control every aspect of the cannabis
-            experience to ensure uncompromising quality.
+          <p className="mt-5 text-lg leading-8 text-zinc-300">
+            Battles Budz is being built as a vertically integrated cannabis brand, but the website should be honest:
+            today is merch, accessories, and launch updates. Cannabis retail comes after final clearance.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const IconComponent = service.icon;
-            return (
-              <div
-                key={index}
-                className="bg-gray-900 rounded-xl p-8 text-center hover:bg-gray-800 transition-colors duration-300"
-              >
-                <div className="bg-battles-gold rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                  <IconComponent className="text-battles-black h-8 w-8" />
-                </div>
-                <h3 className="text-2xl font-bold mb-4 text-battles-gold">
-                  {service.title}
-                </h3>
-                <p className="text-gray-300">{service.description}</p>
-              </div>
-            );
-          })}
+        <div className="mt-14">
+          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-yellow-300">Available now</h3>
+          <div className="mt-5 grid gap-6 md:grid-cols-3">
+            {current.map((service) => {
+              const IconComponent = service.icon;
+              return (
+                <article key={service.title} className="rounded-2xl border border-yellow-300/25 bg-zinc-950 p-7">
+                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-battles-gold">
+                    <IconComponent className="h-7 w-7 text-black" />
+                  </div>
+                  <h4 className="mt-5 text-2xl font-black uppercase tracking-[-0.04em] text-white">{service.title}</h4>
+                  <p className="mt-3 leading-7 text-zinc-400">{service.description}</p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-14">
+          <h3 className="text-sm font-black uppercase tracking-[0.2em] text-yellow-300">Opening soon in Buffalo</h3>
+          <div className="mt-5 grid gap-6 md:grid-cols-2 lg:grid-cols-5">
+            {future.map((service) => {
+              const IconComponent = service.icon;
+              return (
+                <article key={service.title} className="rounded-2xl border border-white/10 bg-black p-6">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-yellow-300/40 text-battles-gold">
+                    <IconComponent className="h-6 w-6" />
+                  </div>
+                  <h4 className="mt-5 text-xl font-black uppercase tracking-[-0.04em] text-white">{service.title}</h4>
+                  <p className="mt-3 text-sm leading-6 text-zinc-400">{service.description}</p>
+                </article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>

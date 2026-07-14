@@ -1,285 +1,86 @@
-import { useState } from "react";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { apiRequest } from "@/lib/queryClient";
-import { useToast } from "@/hooks/use-toast";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Loader2, Calendar, Users, GraduationCap, Coffee } from "lucide-react";
-import { insertEventBookingSchema, type InsertEventBooking } from "@shared/schema";
+import { Calendar, Coffee, GraduationCap, Mail, Music, Palette, Users } from "lucide-react";
 
 export default function EventsSection() {
-  const { toast } = useToast();
-  const queryClient = useQueryClient();
-
-  const eventBookingMutation = useMutation({
-    mutationFn: async (data: InsertEventBooking) => {
-      return apiRequest("POST", "/api/events/book", data);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Booking Request Submitted!",
-        description: "We'll contact you within 24 hours to confirm your event details.",
-      });
-      form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/events/bookings"] });
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Booking Error",
-        description: error.message || "Failed to submit booking. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const form = useForm<InsertEventBooking>({
-    resolver: zodResolver(insertEventBookingSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      phone: "",
-      eventType: "",
-      preferredDate: "",
-      guestCount: "",
-      message: "",
-    },
-  });
-
-  const onSubmit = (data: InsertEventBooking) => {
-    eventBookingMutation.mutate(data);
-  };
-
   const eventTypes = [
     {
-      id: "private-tasting",
-      name: "Private Tasting",
-      description: "Exclusive guided cannabis tasting experience",
-      icon: Coffee,
-      duration: "2-3 hours",
-      capacity: "2-8 guests",
-    },
-    {
-      id: "educational-workshop",
-      name: "Educational Workshop",
-      description: "Learn about cannabis cultivation and processing",
+      name: "Education Nights",
+      description: "Cannabis basics, responsible use, product education, and behind-the-brand conversations.",
       icon: GraduationCap,
-      duration: "3-4 hours",
-      capacity: "6-15 guests",
     },
     {
-      id: "group-tour",
-      name: "Group Tour",
-      description: "Behind-the-scenes facility tour and consumption",
+      name: "Community Sessions",
+      description: "Small, local gatherings built around Buffalo culture, veterans, art, music, and cannabis education.",
       icon: Users,
-      duration: "1-2 hours",
-      capacity: "4-20 guests",
+    },
+    {
+      name: "Creative Events",
+      description: "Ideas like paint sessions, live music, glass demos, and brand pop-ups will be announced after launch.",
+      icon: Palette,
     },
   ];
 
   return (
-    <section id="events" className="py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-battles-black mb-6">
-            <span className="text-battles-gold">Premium</span> Lounge Events
+    <section id="events" className="bg-gray-50 py-20">
+      <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <p className="inline-flex items-center gap-2 border border-yellow-500/30 bg-yellow-100 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-battles-black">
+            <Calendar className="h-4 w-4" /> Events after launch
+          </p>
+          <h2 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] text-battles-black sm:text-6xl">
+            The lounge energy is still part of the plan.
           </h2>
-          <p className="text-xl text-battles-gray max-w-3xl mx-auto">
-            Book exclusive experiences in our state-of-the-art consumption lounge. 
-            From private tastings to educational workshops - create unforgettable cannabis tourism memories.
+          <p className="mt-5 text-lg leading-8 text-battles-gray">
+            The original site had events because that is still the long-term vision. We are keeping that story, but not
+            taking bookings before the Buffalo retail experience is legally open and ready.
           </p>
         </div>
 
-        {/* Event Types */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="mt-14 grid gap-8 md:grid-cols-3">
           {eventTypes.map((event) => {
             const IconComponent = event.icon;
             return (
-              <div
-                key={event.id}
-                className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center"
-              >
-                <div className="bg-battles-gold rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-6">
-                  <IconComponent className="text-battles-black h-8 w-8" />
+              <article key={event.name} className="rounded-2xl bg-white p-8 text-center shadow-lg">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-battles-gold">
+                  <IconComponent className="h-8 w-8 text-black" />
                 </div>
-                <h3 className="text-2xl font-bold text-battles-black mb-4">
-                  {event.name}
-                </h3>
-                <p className="text-battles-gray mb-4">{event.description}</p>
-                <div className="space-y-2 text-sm text-battles-gray">
-                  <p><strong>Duration:</strong> {event.duration}</p>
-                  <p><strong>Capacity:</strong> {event.capacity}</p>
-                </div>
-              </div>
+                <h3 className="mt-6 text-2xl font-black uppercase tracking-[-0.04em] text-battles-black">{event.name}</h3>
+                <p className="mt-4 leading-7 text-battles-gray">{event.description}</p>
+              </article>
             );
           })}
         </div>
 
-        {/* Booking Form */}
-        <div className="bg-white rounded-xl shadow-lg p-8 max-w-3xl mx-auto">
-          <div className="flex items-center mb-8">
-            <Calendar className="text-battles-gold h-8 w-8 mr-3" />
-            <h3 className="text-3xl font-bold text-battles-black">
-              Book Your <span className="text-battles-gold">Experience</span>
-            </h3>
+        <div className="mt-14 rounded-3xl bg-battles-black p-8 text-white shadow-xl md:p-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+            <div>
+              <div className="flex gap-4 text-battles-gold">
+                <Coffee className="h-6 w-6" />
+                <Music className="h-6 w-6" />
+                <Palette className="h-6 w-6" />
+              </div>
+              <h3 className="mt-5 text-3xl font-black uppercase tracking-[-0.05em]">
+                Want to know when events become real?
+              </h3>
+              <p className="mt-4 max-w-2xl leading-8 text-zinc-300">
+                Join the update list or reach out directly. We will announce events only when the venue, timing, and
+                compliance path are actually ready.
+              </p>
+            </div>
+            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
+              <button
+                onClick={() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" })}
+                className="inline-flex items-center justify-center rounded-lg bg-battles-gold px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-300"
+              >
+                Get updates
+              </button>
+              <a
+                href="mailto:battlesbudz@gmail.com"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-battles-gold px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-battles-gold transition hover:bg-battles-gold hover:text-black"
+              >
+                Contact us <Mail className="h-4 w-4" />
+              </a>
+            </div>
           </div>
-
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your full name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email Address</FormLabel>
-                      <FormControl>
-                        <Input type="email" placeholder="your@email.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="phone"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
-                      <FormControl>
-                        <Input placeholder="(555) 123-4567" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="eventType"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Event Type</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select event type" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="private-tasting">Private Tasting</SelectItem>
-                          <SelectItem value="educational-workshop">Educational Workshop</SelectItem>
-                          <SelectItem value="group-tour">Group Tour</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <FormField
-                  control={form.control}
-                  name="preferredDate"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Preferred Date</FormLabel>
-                      <FormControl>
-                        <Input type="date" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <FormField
-                  control={form.control}
-                  name="guestCount"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Number of Guests</FormLabel>
-                      <Select onValueChange={field.onChange} defaultValue={field.value}>
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select guest count" />
-                          </SelectTrigger>
-                        </FormControl>
-                        <SelectContent>
-                          <SelectItem value="1-2">1-2 guests</SelectItem>
-                          <SelectItem value="3-5">3-5 guests</SelectItem>
-                          <SelectItem value="6-10">6-10 guests</SelectItem>
-                          <SelectItem value="11-15">11-15 guests</SelectItem>
-                          <SelectItem value="16-20">16-20 guests</SelectItem>
-                        </SelectContent>
-                      </Select>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-              </div>
-
-              <FormField
-                control={form.control}
-                name="message"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Special Requests (Optional)</FormLabel>
-                    <FormControl>
-                      <Textarea 
-                        placeholder="Any special requests, dietary restrictions, or additional information..."
-                        className="resize-none"
-                        rows={4}
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <div className="text-center">
-                <Button
-                  type="submit"
-                  disabled={eventBookingMutation.isPending}
-                  className="bg-battles-gold text-battles-black hover:bg-yellow-400 font-semibold px-8 py-3 text-lg"
-                >
-                  {eventBookingMutation.isPending ? (
-                    <>
-                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Submitting Request...
-                    </>
-                  ) : (
-                    "Submit Booking Request"
-                  )}
-                </Button>
-                <p className="text-sm text-battles-gray mt-4">
-                  Must be 21+ to book lounge experiences. We'll confirm availability and pricing within 24 hours.
-                </p>
-              </div>
-            </form>
-          </Form>
         </div>
       </div>
     </section>
