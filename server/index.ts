@@ -44,7 +44,7 @@ app.use((req, res, next) => {
   const retiredPublicPaths = [
     /^\/shop\/?$/,
     /^\/products\/(battle-brew|cosmic-chewz|freedom-fog-vapes|heirloom-flower)\/?$/,
-    /^\/(battles-buds-cannabis-gloversville|veteran-gloversville-cannabis|justin-battles-cannabis)\/?$/,
+    /^\/justin-battles-cannabis\/?$/,
     /^\/location(?:\/.*)?$/,
     /^\/community(?:\/.*)?$/,
     /^\/enhanced-community\/?$/,

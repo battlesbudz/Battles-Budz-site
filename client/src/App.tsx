@@ -22,8 +22,6 @@ function Router() {
         <Route path="/age-verification" component={AgeVerification} />
         <Route path="/shop"><Redirect to="/" /></Route>
         <Route path="/products/:product"><Redirect to="/" /></Route>
-        <Route path="/battles-buds-cannabis-gloversville"><Redirect to="/" /></Route>
-        <Route path="/veteran-gloversville-cannabis"><Redirect to="/" /></Route>
         <Route path="/justin-battles-cannabis"><Redirect to="/" /></Route>
         <Route path="/location/:location"><Redirect to="/" /></Route>
         <Route path="/community"><Redirect to="/" /></Route>

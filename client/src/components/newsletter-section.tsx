@@ -4,8 +4,8 @@ import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Loader2 } from "lucide-react";
-import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Loader2, Mail } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
@@ -18,15 +18,15 @@ export default function NewsletterSection() {
     },
     onSuccess: () => {
       toast({
-        title: "Success!",
-        description: "Thank you for subscribing! We'll keep you updated on our launch.",
+        title: "You're on the list.",
+        description: "We'll keep you updated on the Buffalo launch and current drops.",
       });
       setEmail("");
       queryClient.invalidateQueries({ queryKey: ["/api/newsletter/subscribers"] });
     },
     onError: (error: any) => {
       toast({
-        title: "Subscription Error",
+        title: "Subscription error",
         description: error.message || "Failed to subscribe. Please try again.",
         variant: "destructive",
       });
@@ -41,87 +41,89 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section id="newsletter" className="py-20 bg-battles-black text-white">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 className="text-4xl md:text-5xl font-playfair font-bold mb-6">
-          Stay <span className="text-battles-gold">Connected</span>
-        </h2>
-        <p className="text-xl text-gray-300 mb-8">
-          Be the first to know when we launch retail operations, special events,
-          and exclusive product releases.
-        </p>
-
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Input
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="flex-1 bg-gray-800 text-white border-gray-700 focus:border-battles-gold"
-              required
-            />
-            <Button
-              type="submit"
-              disabled={newsletterMutation.isPending}
-              className="bg-battles-gold text-battles-black hover:bg-yellow-400 font-semibold whitespace-nowrap"
-            >
-              {newsletterMutation.isPending ? (
-                <>
-                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  Subscribing...
-                </>
-              ) : (
-                "Get Updates"
-              )}
-            </Button>
-          </div>
-          <p className="text-gray-400 text-sm mt-4">
-            We respect your privacy. Unsubscribe at any time.
+    <section id="newsletter" className="border-y border-yellow-300/20 bg-zinc-950 py-16 text-white">
+      <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8">
+        <div>
+          <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
+            <Mail className="h-4 w-4" /> Buffalo updates
           </p>
-        </form>
+          <h2 className="mt-5 max-w-2xl text-5xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
+            Know before the doors open.
+          </h2>
+          <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-300">
+            Get launch updates, apparel drops, battery availability, and the first notice when the Buffalo retail experience is ready.
+          </p>
+        </div>
 
-        <div className="mt-12 border-t border-gray-800 pt-8">
-          <h3 className="text-2xl font-bold mb-6 text-battles-gold">
-            Follow Our Journey
-          </h3>
-          <div className="flex justify-center space-x-6">
-            <a
-              href="https://instagram.com/battles_budz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-battles-gold text-2xl transition-colors"
-              title="Follow @battles_budz on Instagram"
-            >
-              <Instagram className="h-6 w-6" />
-            </a>
-            <a
-              href="https://www.facebook.com/profile.php?id=100095028196403"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-battles-gold text-2xl transition-colors"
-              title="Follow Battles Budz on Facebook"
-            >
-              <Facebook className="h-6 w-6" />
-            </a>
-            <a
-              href="https://twitter.com/BattlesBudz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-battles-gold text-2xl transition-colors"
-              title="Follow @BattlesBudz on Twitter"
-            >
-              <Twitter className="h-6 w-6" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/justin-battles-5548a018a"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-battles-gold text-2xl transition-colors"
-              title="Connect with Justin Battles on LinkedIn"
-            >
-              <Linkedin className="h-6 w-6" />
-            </a>
+        <div className="rounded-lg border border-yellow-300/20 bg-black p-5 sm:p-7">
+          <form onSubmit={handleSubmit}>
+            <div className="flex flex-col gap-3 sm:flex-row">
+              <Input
+                type="email"
+                placeholder="Enter your email address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="min-h-12 flex-1 rounded-none border-white/15 bg-zinc-900 text-white placeholder:text-zinc-500 focus:border-yellow-300"
+                required
+              />
+              <Button
+                type="submit"
+                disabled={newsletterMutation.isPending}
+                className="min-h-12 rounded-none bg-yellow-300 px-6 font-black uppercase tracking-[0.12em] text-black hover:bg-yellow-200"
+              >
+                {newsletterMutation.isPending ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Joining...
+                  </>
+                ) : (
+                  "Get updates"
+                )}
+              </Button>
+            </div>
+            <p className="mt-4 text-sm text-zinc-500">No spam. Just launch updates and drop notices.</p>
+          </form>
+
+          <div className="mt-8 border-t border-white/10 pt-6">
+            <p className="text-sm font-black uppercase tracking-[0.18em] text-yellow-300">Follow the build</p>
+            <div className="mt-5 flex gap-5">
+              <a
+                href="https://instagram.com/battles_budz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 transition hover:text-yellow-300"
+                title="Follow @battles_budz on Instagram"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=100095028196403"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 transition hover:text-yellow-300"
+                title="Follow Battles Budz on Facebook"
+              >
+                <Facebook className="h-6 w-6" />
+              </a>
+              <a
+                href="https://twitter.com/BattlesBudz"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 transition hover:text-yellow-300"
+                title="Follow @BattlesBudz on Twitter"
+              >
+                <Twitter className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/justin-battles-5548a018a"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-400 transition hover:text-yellow-300"
+                title="Connect with Justin Battles on LinkedIn"
+              >
+                <Linkedin className="h-6 w-6" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
