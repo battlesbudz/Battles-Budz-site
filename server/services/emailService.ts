@@ -197,8 +197,8 @@ export async function sendExperienceBookingConfirmation(booking: any) {
           </div>
           <div style="padding: 20px; background-color: #000; color: #FFD700; text-align: center;">
             <p><strong>Battles Budz</strong></p>
-            <p>📞 904-415-7635 | 📧 Battlesbudz@gmail.com</p>
-            <p>Premium Cannabis Tourism • Gloversville, NY</p>
+            <p>Phone: 904-415-7635 | Email: battlesbudz@gmail.com</p>
+            <p>Battles Budz - Buffalo, NY</p>
           </div>
         </div>
       `

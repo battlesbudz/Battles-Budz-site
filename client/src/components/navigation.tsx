@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, ShoppingBag, X } from "lucide-react";
 import logoPath from "@assets/BattlesBudz_Logo_1752301078028.png";
 
+const shopUrl = "https://shop.battlesbudz.com/";
+
 const links = [
-  { label: "Available now", href: "#available-now" },
-  { label: "Dual Cart Battery", href: "#dual-cart-battery" },
+  { label: "Shop", href: "#shop" },
+  { label: "Batteries", href: "#dual-cart-battery" },
   { label: "Our story", href: "#about" },
   { label: "Updates", href: "#newsletter" },
   { label: "Contact", href: "#contact" },
@@ -15,21 +17,60 @@ export default function Navigation() {
   const [open, setOpen] = useState(false);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-300/15 bg-[#090909]/95 backdrop-blur">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-8">
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-300/25 bg-black/95 text-white backdrop-blur">
+      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Battles Budz home">
-          <img src={logoPath} alt="" className="h-10 w-10 rounded-full object-cover" />
-          <span className="text-base font-black uppercase tracking-[-0.03em] text-yellow-300 sm:text-lg">Battles Budz</span>
+          <img src={logoPath} alt="Battles Budz USA" className="h-16 w-auto object-contain" />
         </Link>
-        <div className="hidden items-center gap-7 lg:flex">
-          {links.map((link) => <a key={link.href} href={link.href} className="text-sm font-semibold text-zinc-200 transition hover:text-yellow-300">{link.label}</a>)}
-          <a href="#newsletter" className="rounded-full bg-yellow-300 px-4 py-2 text-sm font-bold text-black transition hover:bg-yellow-200">Stay in the loop</a>
+
+        <div className="hidden items-center gap-10 lg:flex">
+          {links.map((link) => (
+            <a key={link.href} href={link.href} className="text-sm font-black uppercase tracking-[0.18em] text-zinc-100 transition hover:text-yellow-300">
+              {link.label}
+            </a>
+          ))}
         </div>
-        <button onClick={() => setOpen(!open)} className="rounded-lg border border-yellow-300/40 p-2 text-yellow-300 lg:hidden" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open}>
+
+        <a
+          href={shopUrl}
+          aria-label="Open Battles Budz Shopify store"
+          className="hidden items-center gap-2 text-yellow-300 transition hover:text-yellow-100 lg:inline-flex"
+        >
+          <ShoppingBag className="h-6 w-6" />
+          <span className="sr-only">Shopify store</span>
+        </a>
+
+        <button
+          onClick={() => setOpen(!open)}
+          className="rounded-lg border border-yellow-300/40 p-2 text-yellow-300 lg:hidden"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+        >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
-      {open && <div className="border-t border-white/10 bg-[#090909] px-6 py-4 lg:hidden">{links.map((link) => <a key={link.href} href={link.href} onClick={() => setOpen(false)} className="block py-3 font-semibold text-zinc-200 hover:text-yellow-300">{link.label}</a>)}</div>}
+
+      {open ? (
+        <div className="border-t border-white/10 bg-black px-5 py-4 lg:hidden">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+              className="block border-b border-white/10 py-4 text-sm font-black uppercase tracking-[0.16em] text-zinc-200 hover:text-yellow-300"
+            >
+              {link.label}
+            </a>
+          ))}
+          <a
+            href={shopUrl}
+            onClick={() => setOpen(false)}
+            className="mt-4 inline-flex w-full items-center justify-center gap-2 bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-black"
+          >
+            Shop the drop <ShoppingBag className="h-4 w-4" />
+          </a>
+        </div>
+      ) : null}
     </nav>
   );
 }

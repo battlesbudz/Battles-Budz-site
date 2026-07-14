@@ -1,4 +1,18 @@
-import { ArrowDown, ArrowUpRight, BatteryCharging, Mail, ShieldCheck, Sparkles, Store } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowUpRight,
+  BatteryCharging,
+  Clock3,
+  LockKeyhole,
+  Mail,
+  PackageCheck,
+  ShieldCheck,
+  ShoppingBag,
+  Sparkles,
+  Store,
+  Sun,
+} from "lucide-react";
+import type { ReactNode } from "react";
 import Navigation from "@/components/navigation";
 import NewsletterSection from "@/components/newsletter-section";
 import Footer from "@/components/footer";
@@ -6,89 +20,290 @@ import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl, getOrganizationSchema } from "@/utils/seo";
 import logoPath from "@assets/BattlesBudz_Logo_1752301078028.png";
 
+const shopUrl = "https://shop.battlesbudz.com/";
+const teeUrl = "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt";
+const hoodieUrl = "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie";
+const longSleeveUrl = "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve";
+const tankUrl = "https://shop.battlesbudz.com/products/mens-tank-top";
+const wholesaleEmailHref =
+  "mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Dual%20Cart%20Battery%20Wholesale%20Inquiry";
+
 const scrollTo = (id: string) => {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 };
 
-const wholesaleEmailHref = "mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Dual%20Cart%20Battery%20Wholesale%20Inquiry";
+type ProductCardProps = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  cta: string;
+  href?: string;
+  onClick?: () => void;
+  badge?: string;
+  visual: ReactNode;
+};
+
+function ProductCard({ eyebrow, title, description, cta, href, onClick, badge, visual }: ProductCardProps) {
+  const actionClass =
+    "mt-5 inline-flex items-center justify-center gap-2 border border-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black";
+
+  return (
+    <article className="group grid min-h-full grid-cols-[112px_1fr] gap-5 rounded-lg border border-yellow-300/25 bg-black/70 p-4 shadow-[0_0_0_1px_rgba(255,255,255,0.04)] transition hover:border-yellow-300/70 sm:grid-cols-[150px_1fr]">
+      <div className="flex min-h-32 items-center justify-center overflow-hidden rounded-md border border-white/10 bg-zinc-950">
+        {visual}
+      </div>
+      <div className="flex flex-col justify-center">
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-xs font-black uppercase tracking-[0.16em] text-yellow-300">{eyebrow}</p>
+          {badge ? <span className="border border-yellow-300/40 px-2 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-yellow-100">{badge}</span> : null}
+        </div>
+        <h3 className="mt-2 text-2xl font-black uppercase leading-none tracking-[-0.03em] text-white sm:text-3xl">{title}</h3>
+        <p className="mt-3 text-sm leading-6 text-zinc-400">{description}</p>
+        {href ? (
+          <a href={href} className={actionClass}>
+            {cta} <ArrowUpRight className="h-4 w-4" />
+          </a>
+        ) : (
+          <button onClick={onClick} className={actionClass}>
+            {cta} <ArrowDown className="h-4 w-4" />
+          </button>
+        )}
+      </div>
+    </article>
+  );
+}
+
+function GoldLabel({ children }: { children: ReactNode }) {
+  return (
+    <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
+      {children}
+    </p>
+  );
+}
+
+function HoodieMock({ compact = false }: { compact?: boolean }) {
+  return (
+    <div className={`relative mx-auto ${compact ? "h-28 w-24" : "h-56 w-44"}`} aria-label="Black Battles Budz hoodie mockup">
+      <div className="absolute left-1/2 top-0 h-8 w-20 -translate-x-1/2 rounded-t-full border border-zinc-700 bg-zinc-900" />
+      <div className="absolute inset-x-4 top-5 h-16 rounded-t-[42px] border border-zinc-700 bg-zinc-900" />
+      <div className="absolute inset-x-2 bottom-0 top-12 rounded-b-lg rounded-t-[30px] border border-zinc-700 bg-zinc-950 shadow-inner shadow-black" />
+      <div className="absolute left-5 top-10 h-24 w-5 -rotate-12 rounded-full border border-zinc-700 bg-zinc-950" />
+      <div className="absolute right-5 top-10 h-24 w-5 rotate-12 rounded-full border border-zinc-700 bg-zinc-950" />
+      <img src={logoPath} alt="" className={`absolute ${compact ? "left-9 top-11 w-9" : "left-16 top-20 w-14"} h-auto`} />
+      {!compact ? <div className="absolute bottom-8 left-1/2 h-10 w-24 -translate-x-1/2 rounded-t-lg border border-zinc-700 bg-black/60" /> : null}
+    </div>
+  );
+}
+
+function LongSleeveMock() {
+  return (
+    <div className="relative h-36 w-40" aria-label="Black Battles Budz long sleeve mockup">
+      <div className="absolute left-1/2 top-2 h-8 w-28 -translate-x-1/2 rounded-t-full border border-zinc-700 bg-zinc-950" />
+      <div className="absolute left-10 top-8 h-24 w-20 rounded-b-md border border-zinc-700 bg-black" />
+      <div className="absolute left-3 top-10 h-24 w-5 -rotate-12 rounded-full border border-zinc-700 bg-black" />
+      <div className="absolute right-3 top-10 h-24 w-5 rotate-12 rounded-full border border-zinc-700 bg-black" />
+      <img src={logoPath} alt="" className="absolute left-1/2 top-12 w-16 -translate-x-1/2" />
+    </div>
+  );
+}
+
+function SunglassesMock() {
+  return (
+    <div className="relative h-28 w-40" aria-label="Battles Budz sunglasses coming soon mockup">
+      <div className="absolute left-2 top-10 h-10 w-14 rounded-full border-4 border-yellow-300 bg-black" />
+      <div className="absolute right-2 top-10 h-10 w-14 rounded-full border-4 border-yellow-300 bg-black" />
+      <div className="absolute left-1/2 top-14 h-2 w-10 -translate-x-1/2 bg-yellow-300" />
+      <div className="absolute left-0 top-12 h-1 w-10 -rotate-12 bg-yellow-300" />
+      <div className="absolute right-0 top-12 h-1 w-10 rotate-12 bg-yellow-300" />
+    </div>
+  );
+}
+
+function HeroShowcase() {
+  return (
+    <div className="relative min-h-[500px] overflow-hidden rounded-lg border border-yellow-300/25 bg-[url('/media/battles-budz-dual-cart-battery-poster.jpg')] bg-cover bg-center p-4 shadow-2xl shadow-black md:min-h-[560px]">
+      <div className="absolute inset-0 bg-black/80" />
+      <div className="absolute inset-0 opacity-25 [background-image:linear-gradient(rgba(250,204,21,0.18)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.12)_1px,transparent_1px)] [background-size:44px_44px]" />
+      <div className="relative grid h-full min-h-[468px] grid-cols-1 items-end gap-4 md:grid-cols-[0.92fr_1.08fr]">
+        <div className="space-y-4">
+          <div className="rounded-lg border border-yellow-300/30 bg-black/80 p-4">
+            <video
+              className="mx-auto aspect-[9/16] max-h-[360px] w-full rounded-md object-cover"
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="metadata"
+              poster="/media/battles-budz-dual-cart-battery-poster.jpg"
+              aria-describedby="battery-video-description"
+            >
+              <source src="/media/battles-budz-dual-cart-battery-loop.mp4" type="video/mp4" />
+              Your browser does not support the product video.
+            </video>
+          </div>
+          <p id="battery-video-description" className="sr-only">
+            A looping product video showing the Battles Budz Dual Cart Battery opening and closing.
+          </p>
+        </div>
+        <div className="grid gap-4">
+          <div className="rounded-lg border border-white/10 bg-black/80 p-4">
+            <HoodieMock />
+          </div>
+          <div className="rounded-lg border border-white/10 bg-black/80 p-4">
+            <img src="/media/battles-budz-full-chest-tee.jpg" alt="Battles Budz black T-shirt with yellow full chest logo" className="mx-auto max-h-60 w-full object-contain" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="min-h-screen overflow-x-hidden bg-[#090909] text-white">
+    <div className="min-h-screen overflow-x-hidden bg-[#050505] text-white">
       <SEOHead
         title="Battles Budz | Opening Soon in Buffalo, NY"
-        description="Battles Budz is a veteran-owned cannabis microbusiness opening soon in Buffalo, New York. Get updates on our opening and current drops."
-        keywords={["Battles Budz", "Buffalo cannabis microbusiness", "veteran owned", "Buffalo opening soon", "cannabis accessories", "Battles Budz apparel"]}
+        description="Battles Budz is a veteran-owned cannabis microbusiness opening soon in Buffalo, New York. Shop current apparel drops and follow the road to launch."
+        keywords={[
+          "Battles Budz",
+          "Buffalo cannabis microbusiness",
+          "veteran owned cannabis brand",
+          "Battles Budz apparel",
+          "Battles Budz hoodie",
+          "dual cart battery",
+        ]}
         canonicalUrl={getCanonicalUrl("/")}
         structuredData={getOrganizationSchema()}
       />
       <Navigation />
 
       <main>
-        <section className="relative isolate overflow-hidden border-b border-yellow-400/15 pt-28 sm:pt-36">
-          <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_75%_20%,rgba(250,204,21,0.18),transparent_30%),radial-gradient(circle_at_12%_75%,rgba(234,179,8,0.1),transparent_32%)]" />
-          <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 lg:grid-cols-[1.2fr_.8fr] lg:items-end lg:px-8 lg:pb-28">
-            <div>
-              <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-yellow-400/40 bg-yellow-400/10 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-yellow-300">
-                <Sparkles className="h-3.5 w-3.5" /> Buffalo, New York &middot; Opening soon
-              </p>
-              <h1 className="max-w-4xl text-5xl font-black uppercase leading-[0.9] tracking-[-0.06em] sm:text-7xl lg:text-8xl">
-                Built for <span className="text-yellow-300">the wait.</span>
+        <section className="relative isolate border-b border-yellow-300/25 pt-24">
+          <div className="absolute inset-0 -z-10 bg-[#050505]" />
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 pb-10 pt-8 lg:grid-cols-[0.88fr_1.12fr] lg:items-center lg:px-8 lg:pb-0">
+            <div className="py-8 lg:py-16">
+              <GoldLabel>
+                <Sparkles className="h-4 w-4" /> Buffalo retail launch - coming soon
+              </GoldLabel>
+              <h1 className="mt-7 max-w-2xl text-6xl font-black uppercase leading-[0.78] tracking-[-0.08em] text-zinc-100 sm:text-7xl lg:text-8xl">
+                Built for the wait.
               </h1>
-              <p className="mt-7 max-w-xl text-lg leading-8 text-zinc-300 sm:text-xl">
-                Battles Budz is a veteran-owned cannabis microbusiness preparing to open in Buffalo. While we wait for final OCM clearance, follow the build and stay close to the first drops.
+              <p className="mt-6 max-w-xl text-lg font-semibold leading-8 text-zinc-200">
+                Battles Budz is opening soon in Buffalo, New York. Until the final OCM go-ahead lands, merch and brand accessories keep the movement alive.
               </p>
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <button onClick={() => scrollTo("available-now")} className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow-300 px-6 py-3.5 font-bold text-black transition hover:bg-yellow-200">
-                  See what&apos;s available <ArrowDown className="h-4 w-4" />
-                </button>
-                <button onClick={() => scrollTo("newsletter")} className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-6 py-3.5 font-semibold text-white transition hover:border-yellow-300 hover:text-yellow-200">
-                  Get Buffalo updates <Mail className="h-4 w-4" />
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href={shopUrl} className="inline-flex items-center justify-center gap-2 bg-yellow-300 px-7 py-4 text-base font-black uppercase tracking-[0.1em] text-black transition hover:bg-yellow-200">
+                  Shop the drop <ShoppingBag className="h-5 w-5" />
+                </a>
+                <button
+                  onClick={() => scrollTo("newsletter")}
+                  className="inline-flex items-center justify-center gap-2 border border-yellow-300 px-7 py-4 text-base font-black uppercase tracking-[0.1em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
+                >
+                  Get Buffalo updates <Mail className="h-5 w-5" />
                 </button>
               </div>
-            </div>
-
-            <div className="relative mx-auto w-full max-w-md rounded-[2rem] border border-yellow-300/30 bg-zinc-950 p-8 shadow-2xl shadow-yellow-400/10">
-              <div className="absolute inset-x-8 top-0 h-px bg-yellow-200" />
-              <img src={logoPath} alt="Battles Budz USA" className="mx-auto h-auto w-52" />
-              <div className="mt-10 border-t border-white/10 pt-6">
-                <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-300">The status</p>
-                <p className="mt-3 text-2xl font-bold">Retail is on the way.</p>
-                <p className="mt-3 leading-7 text-zinc-400">We&apos;re waiting for the final go-ahead from the New York Office of Cannabis Management before opening the Buffalo retail experience.</p>
+              <div className="mt-8 grid max-w-xl gap-3 sm:grid-cols-3">
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-black text-yellow-300">21+</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-400">Age gated</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-black text-yellow-300">Buffalo</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-400">No public address yet</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+                  <p className="text-2xl font-black text-yellow-300">Now</p>
+                  <p className="mt-1 text-xs uppercase tracking-[0.16em] text-zinc-400">Apparel online</p>
+                </div>
               </div>
             </div>
+            <HeroShowcase />
+          </div>
+          <div className="border-y border-yellow-900 bg-yellow-300 px-5 py-3 text-center text-sm font-black uppercase tracking-[0.32em] text-black sm:text-base">
+            Buffalo retail launch - coming soon
           </div>
         </section>
 
-        <section id="available-now" className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <section id="shop" className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
             <div>
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-yellow-300">Available now</p>
-              <h2 className="mt-3 text-4xl font-black uppercase tracking-[-0.04em] sm:text-5xl">Support the build.</h2>
+              <GoldLabel>
+                <PackageCheck className="h-4 w-4" /> Available online now
+              </GoldLabel>
+              <h2 className="mt-5 max-w-3xl text-4xl font-black uppercase leading-none tracking-[-0.05em] sm:text-6xl">
+                The shop is the front door.
+              </h2>
             </div>
-            <p className="max-w-md text-zinc-400">Current drops are designed to carry the brand now, before the doors open in Buffalo.</p>
+            <p className="max-w-md text-base leading-7 text-zinc-400">
+              Every card below either goes straight to the Shopify product or explains the next step. No scavenger hunt, no dead ends.
+            </p>
           </div>
-          <div className="mt-10 grid gap-5 md:grid-cols-2">
-            <article className="rounded-3xl border border-white/10 bg-zinc-900 p-7 transition hover:border-yellow-300/50">
-              <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-300">Merchandise</p>
-              <h3 className="mt-4 text-3xl font-bold">The first drop</h3>
-              <p className="mt-3 max-w-lg leading-7 text-zinc-400">Black Battles Budz tees are on the way for online ordering, with future hoodie drops in the works. Join the list to catch the release.</p>
-              <button onClick={() => scrollTo("newsletter")} className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-300 hover:text-yellow-200">Get launch updates <ArrowUpRight className="h-4 w-4" /></button>
-            </article>
-            <article className="rounded-3xl border border-yellow-300/25 bg-gradient-to-br from-yellow-300/15 to-zinc-950 p-7">
-              <p className="text-sm font-bold uppercase tracking-[0.16em] text-yellow-200">Accessories</p>
-              <h3 className="mt-4 text-3xl font-bold">Dual Cart Battery · $60</h3>
-              <p className="mt-3 max-w-lg leading-7 text-zinc-300">A Battles Budz branded dual cart battery with no customer-facing purchase cap. Online checkout will open only after our payment provider has approved the actual product and business arrangement.</p>
-              <button onClick={() => scrollTo("dual-cart-battery")} className="mt-7 inline-flex items-center gap-2 font-bold text-yellow-200 hover:text-white">See the battery <ArrowDown className="h-4 w-4" /></button>
-            </article>
+
+          <div id="available-now" className="mt-10 grid gap-4 lg:grid-cols-3">
+            <ProductCard
+              eyebrow="$25 - S to XL"
+              title="Full-chest tee"
+              description="Black tee with the yellow Battles Budz USA logo across the chest."
+              cta="Shop T-shirts"
+              href={teeUrl}
+              visual={<img src="/media/battles-budz-full-chest-tee.jpg" alt="" className="h-full max-h-36 w-full object-contain" />}
+            />
+            <ProductCard
+              eyebrow="$60 - free shipping"
+              title="Heavy blend hoodie"
+              description="Print-on-demand hoodie with the Battles Budz crest on the upper left chest."
+              cta="Shop hoodies"
+              href={hoodieUrl}
+              visual={<HoodieMock compact />}
+            />
+            <ProductCard
+              eyebrow="$60 - retail accessory"
+              title="Dual-cart battery"
+              description="About 50 on hand. Customer checkout is being finalized; wholesale inquiries are open."
+              cta="See battery"
+              onClick={() => scrollTo("dual-cart-battery")}
+              visual={
+                <video className="h-36 w-full object-cover" autoPlay loop muted playsInline preload="metadata" poster="/media/battles-budz-dual-cart-battery-poster.jpg">
+                  <source src="/media/battles-budz-dual-cart-battery-loop.mp4" type="video/mp4" />
+                </video>
+              }
+            />
+          </div>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-3">
+            <ProductCard
+              eyebrow="Apparel"
+              title="Long sleeve"
+              description="Black long sleeve with the Battles Budz crest, ready through Shopify."
+              cta="Shop long sleeve"
+              href={longSleeveUrl}
+              visual={<LongSleeveMock />}
+            />
+            <ProductCard
+              eyebrow="Apparel"
+              title="Tank top"
+              description="A warm-weather logo piece for the first Battles Budz apparel run."
+              cta="Shop tank tops"
+              href={tankUrl}
+              visual={<img src="/media/battles-budz-full-chest-tee.jpg" alt="" className="h-full max-h-36 w-full object-contain" />}
+            />
+            <ProductCard
+              eyebrow="Preview"
+              title="Sunglasses"
+              description="A future accessories drop. Keeping this visible without pretending it is ready to ship."
+              cta="Get drop updates"
+              badge="Coming soon"
+              onClick={() => scrollTo("newsletter")}
+              visual={<SunglassesMock />}
+            />
           </div>
         </section>
 
-        <section id="dual-cart-battery" className="border-y border-yellow-300/15 bg-zinc-950">
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[.9fr_1.1fr] lg:items-center lg:px-8">
-            <div className="relative mx-auto w-full max-w-sm overflow-hidden rounded-[2rem] border border-yellow-300/30 bg-black shadow-2xl shadow-yellow-300/10">
+        <section id="dual-cart-battery" className="border-y border-yellow-300/20 bg-zinc-950">
+          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-8">
+            <div className="overflow-hidden rounded-lg border border-yellow-300/30 bg-black p-4 shadow-2xl shadow-yellow-300/5">
               <video
-                className="aspect-[9/16] w-full object-cover"
+                className="mx-auto aspect-[9/16] max-h-[720px] w-full rounded-md object-cover"
                 autoPlay
                 loop
                 muted
@@ -96,41 +311,98 @@ export default function Home() {
                 controls
                 preload="metadata"
                 poster="/media/battles-budz-dual-cart-battery-poster.jpg"
-                aria-describedby="battery-video-description"
               >
                 <source src="/media/battles-budz-dual-cart-battery-loop.mp4" type="video/mp4" />
                 Your browser does not support the product video.
               </video>
-              <p id="battery-video-description" className="sr-only">A looping product video showing the Battles Budz Dual Cart Battery opening and closing.</p>
             </div>
             <div>
-              <p className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-[0.18em] text-yellow-300"><BatteryCharging className="h-4 w-4" /> Built for the rotation</p>
-              <h2 className="mt-4 max-w-2xl text-4xl font-black uppercase tracking-[-0.04em] sm:text-6xl">Battles Budz<br /><span className="text-yellow-300">Dual Cart Battery.</span></h2>
-              <p className="mt-6 max-w-xl text-xl font-bold text-white">$60 · No purchase cap</p>
-              <p className="mt-4 max-w-xl leading-8 text-zinc-300">The first Battles Budz accessory drop is in final checkout setup. Watch it open, see the details, and get on the list for the moment online purchasing is approved and live.</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <button onClick={() => scrollTo("newsletter")} className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow-300 px-6 py-3.5 font-bold text-black transition hover:bg-yellow-200">Get purchase updates <Mail className="h-4 w-4" /></button>
-                <a href={wholesaleEmailHref} className="inline-flex items-center justify-center gap-2 rounded-full border border-yellow-300/50 px-6 py-3.5 font-bold text-yellow-200 transition hover:bg-yellow-300 hover:text-black"><Store className="h-4 w-4" /> Wholesale pricing</a>
+              <GoldLabel>
+                <BatteryCharging className="h-4 w-4" /> Battles Budz accessory drop
+              </GoldLabel>
+              <h2 className="mt-5 max-w-2xl text-5xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
+                Dual-cart battery.
+              </h2>
+              <p className="mt-5 text-2xl font-black text-yellow-300">$60. About 50 on hand.</p>
+              <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-300">
+                The battery is a branded empty device accessory. We are keeping it visible because it is a real product, while separating it from the Shopify apparel flow until checkout is fully ready for that category.
+              </p>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
+                  <Clock3 className="h-6 w-6 text-yellow-300" />
+                  <p className="mt-4 font-black uppercase tracking-[0.08em] text-white">Retail status</p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">Online customer checkout is next in line after payment setup.</p>
+                </div>
+                <div className="rounded-lg border border-white/10 bg-white/[0.03] p-5">
+                  <Store className="h-6 w-6 text-yellow-300" />
+                  <p className="mt-4 font-black uppercase tracking-[0.08em] text-white">Wholesale</p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-400">Dispensaries and retailers can ask for pricing now.</p>
+                </div>
               </div>
-              <div className="mt-8 max-w-xl rounded-2xl border border-white/10 bg-white/5 p-5">
-                <p className="font-bold text-white">Are you a dispensary or retailer?</p>
-                <p className="mt-2 leading-7 text-zinc-400">Carry the Battles Budz Dual Cart Battery in your store. Email <a className="font-semibold text-yellow-300 hover:text-yellow-200" href={wholesaleEmailHref}>battlesbudz@gmail.com</a> for professional wholesale pricing. Wholesale fulfillment may take up to one month.</p>
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <button
+                  onClick={() => scrollTo("newsletter")}
+                  className="inline-flex items-center justify-center gap-2 bg-yellow-300 px-7 py-4 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-yellow-200"
+                >
+                  Get battery updates <Mail className="h-5 w-5" />
+                </button>
+                <a
+                  href={wholesaleEmailHref}
+                  className="inline-flex items-center justify-center gap-2 border border-yellow-300 px-7 py-4 text-sm font-black uppercase tracking-[0.12em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
+                >
+                  Wholesale pricing <ArrowUpRight className="h-5 w-5" />
+                </a>
+              </div>
+              <p className="mt-5 text-sm leading-6 text-zinc-500">
+                Are you a dispensary or retailer? Email battlesbudz@gmail.com for professional wholesale pricing. Wholesale fulfillment may take up to one month.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section id="about" className="mx-auto grid max-w-7xl gap-10 px-5 py-16 lg:grid-cols-[0.78fr_1.22fr] lg:px-8">
+          <div>
+            <GoldLabel>
+              <ShieldCheck className="h-4 w-4" /> Who we are
+            </GoldLabel>
+            <h2 className="mt-5 text-5xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
+              A Buffalo cannabis brand with work ethic.
+            </h2>
+          </div>
+          <div className="space-y-5 text-lg leading-8 text-zinc-300">
+            <p>
+              Battles Budz is a veteran-owned cannabis microbusiness preparing to open in Buffalo. The public retail launch is not live yet because we are waiting on the Office of Cannabis Management to give the full go-ahead.
+            </p>
+            <p>
+              That waiting period does not mean the brand goes quiet. It means we build in public: apparel first, accessories next, then the full adult-use retail experience when the state process clears.
+            </p>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded-lg border border-yellow-300/20 bg-yellow-300/5 p-5">
+                <ShoppingBag className="h-6 w-6 text-yellow-300" />
+                <p className="mt-4 font-black uppercase tracking-[0.08em] text-white">Buy now</p>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">Apparel through the Battles Budz Shopify store.</p>
+              </div>
+              <div className="rounded-lg border border-yellow-300/20 bg-yellow-300/5 p-5">
+                <BatteryCharging className="h-6 w-6 text-yellow-300" />
+                <p className="mt-4 font-black uppercase tracking-[0.08em] text-white">Next up</p>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">Dual-cart battery checkout and wholesale flow.</p>
+              </div>
+              <div className="rounded-lg border border-yellow-300/20 bg-yellow-300/5 p-5">
+                <Sun className="h-6 w-6 text-yellow-300" />
+                <p className="mt-4 font-black uppercase tracking-[0.08em] text-white">Coming soon</p>
+                <p className="mt-2 text-sm leading-6 text-zinc-400">Sunglasses and more brand gear.</p>
               </div>
             </div>
           </div>
         </section>
 
-        <section id="about" className="border-y border-white/10 bg-zinc-950">
-          <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[.8fr_1.2fr] lg:px-8">
-            <div>
-              <p className="text-sm font-bold uppercase tracking-[0.18em] text-yellow-300">The brand</p>
-              <h2 className="mt-3 text-4xl font-black uppercase tracking-[-0.04em] sm:text-5xl">Made to show up.</h2>
-            </div>
-            <div className="space-y-6 text-lg leading-8 text-zinc-300">
-              <p>Battles Budz is building a disciplined, community-minded cannabis brand for Buffalo. We believe the work before opening matters: showing up, building trust, and making products people want to stand behind.</p>
-              <p>Our retail cannabis experience will open only after final authorization. Until then, this is where to follow the journey, shop the first drops, and connect with the team.</p>
-              <div className="flex items-center gap-3 rounded-2xl border border-yellow-300/20 bg-yellow-300/5 p-5 text-base text-zinc-200"><ShieldCheck className="h-6 w-6 shrink-0 text-yellow-300" /> Adult-oriented brand. Retail cannabis coming only after final OCM clearance.</div>
-            </div>
+        <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
+          <div className="rounded-lg border border-yellow-300/25 bg-black p-6 text-center sm:p-8">
+            <LockKeyhole className="mx-auto h-7 w-7 text-yellow-300" />
+            <p className="mt-4 text-sm font-black uppercase tracking-[0.28em] text-yellow-300">Cannabis menu - coming soon</p>
+            <p className="mx-auto mt-3 max-w-2xl text-zinc-400">
+              Cannabis product menus will appear only after the Buffalo retail launch is fully cleared. For now, shop the apparel drop and join the update list.
+            </p>
           </div>
         </section>
 

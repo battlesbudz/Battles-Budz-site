@@ -225,7 +225,7 @@ export default function InvestorPortal() {
   const businessStats = {
     licenseStatus: "Provisional - Approved",
     licenseNumber: "OCMMICR-2023-000258",
-    location: "19 North Main Street, Gloversville, NY",
+    location: "Buffalo, NY - public address pending launch",
     fundingRound: "$1M for 10% equity",
     capitalRaised: "Funding in progress",
     nextMilestone: "Site approval completion"
@@ -452,8 +452,8 @@ export default function InvestorPortal() {
                       <p className="text-sm text-gray-300">Service-Disabled Veteran-Owned Business</p>
                     </div>
                     <div className="border-l-4 border-yellow-500 pl-4">
-                      <h4 className="font-semibold text-white">Premium Facility Secured</h4>
-                      <p className="text-sm text-gray-300">7,600 sq ft in Gloversville, NY</p>
+                      <h4 className="font-semibold text-white">Buffalo Launch Site In Progress</h4>
+                      <p className="text-sm text-gray-300">Public address pending final launch clearance</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -570,10 +570,10 @@ export default function InvestorPortal() {
                   </CardHeader>
                   <CardContent className="space-y-3">
                     <p className="text-gray-300 text-sm">
-                      <strong>19 North Main Street, Gloversville, NY</strong>
+                      <strong>Buffalo, New York</strong>
                     </p>
                     <div className="space-y-2 text-gray-300 text-sm">
-                      <p>• 7,600 sq ft facility with dedicated areas for:</p>
+                      <p>- Planned adult-use microbusiness facility with dedicated areas for:</p>
                       <p className="ml-4">- Cultivation and processing</p>
                       <p className="ml-4">- Retail dispensary operations</p>
                       <p className="ml-4">- Consumption lounge and entertainment</p>
@@ -670,7 +670,7 @@ export default function InvestorPortal() {
                     </div>
                     <div className="border-l-4 border-blue-500 pl-4">
                       <p className="font-medium text-gray-200">Site Selection Confirmed</p>
-                      <p className="text-sm text-gray-400">19 North Main Street, Gloversville, NY</p>
+                      <p className="text-sm text-gray-400">Buffalo, NY - public address pending launch</p>
                     </div>
                   </div>
                 </CardContent>
@@ -700,7 +700,7 @@ export default function InvestorPortal() {
                   <h4 className="font-semibold text-battles-gold mb-3">Business Model</h4>
                   <div className="space-y-4 text-gray-300">
                     <p>
-                      Battles Budz is a licensed cannabis microbusiness in Gloversville, NY. We are fully vertically integrated with cultivation, processing, retail, delivery, and on-site consumption all under one license.
+                      Battles Budz is a licensed cannabis microbusiness preparing to open in Buffalo, NY. We are building toward a vertically integrated model with cultivation, processing, retail, delivery, and on-site consumption all under one license.
                     </p>
                     
                     <div>
@@ -757,7 +757,7 @@ export default function InvestorPortal() {
                     <div>
                       <h5 className="font-medium text-battles-gold mb-2">Facility & Operations</h5>
                       <p>
-                        Our facility includes a 7,600 sq ft building with cultivation rooms, processing kitchen, hash room, beverage production, candy lab, retail dispensary, fulfillment area, and a secured basement vault.
+                        Our launch plan includes dedicated areas for cultivation, processing, retail, fulfillment, and secured operations once the Buffalo site is ready for public launch.
                       </p>
                       <p className="mt-2">
                         Our cultivation features two flowering rooms, drying and curing areas, and a tissue culture-based nursery with bulletproof glass windows for guests to view.
@@ -956,8 +956,8 @@ export default function InvestorPortal() {
                       <span className="text-sm text-gray-400">January 2025</span>
                     </div>
                     <p className="text-gray-300 mb-2">
-                      Secured location at 19 North Main Street, Gloversville, NY. Received first 
-                      investor commitment and moving forward with site approval process. 
+                      Confirmed the move toward a Buffalo launch. Received first
+                      investor commitment and continued the site approval process.
                       Working on GMP certification requirements.
                     </p>
                     <Badge className="bg-yellow-900 text-yellow-300">In Progress</Badge>
@@ -1186,10 +1186,10 @@ export default function InvestorPortal() {
                         Secured Premium Facility
                       </h4>
                       <p className="text-gray-300 text-sm leading-relaxed">
-                        7,600 sq. ft. building secured in Gloversville, NY for cultivation, retail, processing, 
-                        and VIP consumption lounge operations.
+                        Buffalo launch site planning in progress for cultivation, retail, processing,
+                        and future adult-use operations.
                       </p>
-                      <Badge className="bg-blue-900 text-blue-300 mt-2">19 North Main Street</Badge>
+                      <Badge className="bg-blue-900 text-blue-300 mt-2">Buffalo, NY</Badge>
                     </div>
 
                     <div className="border-l-4 border-yellow-500 pl-6 py-3">
