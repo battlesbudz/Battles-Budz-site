@@ -28,6 +28,7 @@ export default function Footer() {
           <div className="mt-7 grid gap-3 text-sm text-zinc-400">
             <a href="#shop" className="hover:text-yellow-300">Shop current drops</a>
             <a href="#dual-cart-battery" className="hover:text-yellow-300">Dual-cart battery</a>
+            <a href="/shipping-returns" className="hover:text-yellow-300">Shipping and returns</a>
             <a href="/privacy-policy" className="hover:text-yellow-300">Privacy policy</a>
             <a href="/terms-of-service" className="hover:text-yellow-300">Terms of service</a>
             <a href="/age-verification" className="hover:text-yellow-300">21+ information</a>

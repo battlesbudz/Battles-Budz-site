@@ -9,6 +9,7 @@ const links = [
   { label: "Shop", href: "#shop" },
   { label: "Batteries", href: "#dual-cart-battery" },
   { label: "Our story", href: "#about" },
+  { label: "Policies", href: "#policies" },
   { label: "Updates", href: "#newsletter" },
   { label: "Contact", href: "#contact" },
 ];

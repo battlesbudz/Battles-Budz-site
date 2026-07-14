@@ -396,6 +396,46 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="policies" className="border-y border-yellow-300/20 bg-zinc-950">
+          <div className="mx-auto max-w-7xl px-5 py-16 lg:px-8">
+            <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+              <div>
+                <GoldLabel>
+                  <PackageCheck className="h-4 w-4" /> Customer policy snapshot
+                </GoldLabel>
+                <h2 className="mt-5 max-w-3xl text-4xl font-black uppercase leading-none tracking-[-0.05em] sm:text-6xl">
+                  Clear terms before checkout.
+                </h2>
+              </div>
+              <a
+                href="/shipping-returns"
+                className="inline-flex items-center justify-center gap-2 border border-yellow-300 px-6 py-3 text-sm font-black uppercase tracking-[0.12em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
+              >
+                Read full policy <ArrowUpRight className="h-4 w-4" />
+              </a>
+            </div>
+
+            <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-lg border border-white/10 bg-black p-5">
+                <p className="text-sm font-black uppercase tracking-[0.16em] text-yellow-300">Shipping</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">$8.99 under $50. Free shipping at $50+. Self-fulfilled items are intended to ship within two business days.</p>
+              </div>
+              <div className="rounded-lg border border-white/10 bg-black p-5">
+                <p className="text-sm font-black uppercase tracking-[0.16em] text-yellow-300">Refunds</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">30-day refund option. Customer pays return postage for standard returns.</p>
+              </div>
+              <div className="rounded-lg border border-white/10 bg-black p-5">
+                <p className="text-sm font-black uppercase tracking-[0.16em] text-yellow-300">Exchanges</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">30-day apparel size exchanges, even if worn. Battles Budz pays return postage; customer pays $9 replacement shipping.</p>
+              </div>
+              <div className="rounded-lg border border-white/10 bg-black p-5">
+                <p className="text-sm font-black uppercase tracking-[0.16em] text-yellow-300">Batteries</p>
+                <p className="mt-3 text-sm leading-6 text-zinc-400">If a battery does not work, send a photo or video and we will send a replacement.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="mx-auto max-w-7xl px-5 pb-16 lg:px-8">
           <div className="rounded-lg border border-yellow-300/25 bg-black p-6 text-center sm:p-8">
             <LockKeyhole className="mx-auto h-7 w-7 text-yellow-300" />
