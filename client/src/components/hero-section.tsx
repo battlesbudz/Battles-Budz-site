@@ -24,7 +24,7 @@ export default function HeroSection() {
 
         <div className="mx-auto mt-8 max-w-4xl">
           <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.2em] text-yellow-200">
-            <MapPin className="h-4 w-4" /> Buffalo retail launch — opening soon
+            <MapPin className="h-4 w-4" /> Buffalo, New York
           </p>
 
           <h1 className="mt-6 text-4xl font-black uppercase leading-[0.92] tracking-[-0.06em] md:text-6xl lg:text-7xl">
@@ -34,9 +34,8 @@ export default function HeroSection() {
           </h1>
 
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-zinc-300 md:text-xl">
-            Veteran-owned cannabis microbusiness preparing to open in Buffalo, New York. We are waiting on the final
-            state go-ahead for retail cannabis sales; until then, Battles Budz merch is available now and launch updates
-            are open.
+            Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel,
+            explore the brand, and join the update list for retail launch news.
           </p>
 
           <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -58,17 +57,17 @@ export default function HeroSection() {
             <div className="rounded-xl border border-yellow-300/25 bg-zinc-950/80 p-4">
               <ShieldCheck className="mx-auto h-6 w-6 text-battles-gold" />
               <p className="mt-3 text-sm font-black uppercase tracking-[0.16em] text-yellow-200">21+</p>
-              <p className="mt-1 text-sm text-zinc-400">Adult-focused cannabis brand.</p>
+              <p className="mt-1 text-sm text-zinc-400">Age-gated brand experience.</p>
             </div>
             <div className="rounded-xl border border-yellow-300/25 bg-zinc-950/80 p-4">
               <MapPin className="mx-auto h-6 w-6 text-battles-gold" />
               <p className="mt-3 text-sm font-black uppercase tracking-[0.16em] text-yellow-200">Buffalo</p>
-              <p className="mt-1 text-sm text-zinc-400">Opening soon; no public address yet.</p>
+              <p className="mt-1 text-sm text-zinc-400">Retail launch updates shared here.</p>
             </div>
             <div className="rounded-xl border border-yellow-300/25 bg-zinc-950/80 p-4">
               <Clock3 className="mx-auto h-6 w-6 text-battles-gold" />
               <p className="mt-3 text-sm font-black uppercase tracking-[0.16em] text-yellow-200">Now</p>
-              <p className="mt-1 text-sm text-zinc-400">Apparel, accessories, and updates.</p>
+              <p className="mt-1 text-sm text-zinc-400">Official apparel and brand updates.</p>
             </div>
           </div>
         </div>

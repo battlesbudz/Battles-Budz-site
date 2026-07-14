@@ -108,41 +108,41 @@ export default function RetailSection() {
   const availableProducts: AvailableProduct[] = [
     {
       title: "Full-Chest Tee",
-      price: "$25 · S-XL",
-      description: "Black tee with the yellow Battles Budz USA logo across the chest. This is the core brand shirt and the easiest way to support the build now.",
+      price: "$25 | S-XL",
+      description: "Signature black tee with the oversized yellow Battles Budz USA logo across the chest.",
       href: teeUrl,
       cta: "Shop T-shirts",
       visual: "tee",
     },
     {
       title: "Heavy Blend Hoodie",
-      price: "$60 · Free shipping",
-      description: "Black print-on-demand hoodie with the Battles Budz crest on the upper-left chest. Warm, simple, and built around the same yellow-on-black look.",
+      price: "$60 | Free shipping",
+      description: "Heavy blend black hoodie with the yellow Battles Budz crest on the upper-left chest. U.S. shipping included.",
       href: hoodieUrl,
       cta: "Shop hoodies",
       visual: "hoodie",
     },
     {
       title: "Long Sleeve",
-      price: "$35 · S-4XL",
-      description: "Black long sleeve with Battles Budz branding, available through the Shopify apparel store.",
+      price: "$35 | S-4XL",
+      description: "Black long sleeve with clean Battles Budz branding and an easy everyday fit.",
       href: longSleeveUrl,
       cta: "Shop long sleeves",
       visual: "long-sleeve",
     },
     {
       title: "Tank Top",
-      price: "$25 · XS-2XL",
-      description: "A warm-weather logo piece for the first Battles Budz apparel run.",
+      price: "$25 | XS-2XL",
+      description: "Sleeveless black logo tank made for warm weather, workouts, and summer events.",
       href: tankUrl,
       cta: "Shop tank tops",
       visual: "tee",
     },
     {
       title: "Dual-Cart Battery",
-      price: "$60 · About 50 on hand",
-      description: "A dual-cart empty device accessory. Retail online checkout is being kept separate from Shopify until that path is fully ready; wholesale conversations are open now.",
-      cta: "Wholesale pricing",
+      price: "$60 | Limited first batch",
+      description: "Dual-cart battery accessory with Battles Budz branding. For retail availability or bulk orders, contact the Battles Budz team.",
+      cta: "Battery inquiries",
       visual: "battery",
     },
   ];
@@ -150,22 +150,22 @@ export default function RetailSection() {
   const comingProducts: ComingProduct[] = [
     {
       title: "Heirloom Flower",
-      description: "Small-batch flower will return to the site only when the Buffalo retail launch is cleared.",
+      description: "Small-batch flower selected for aroma, structure, and a clean finish.",
       image: cannabisFlower1,
     },
     {
       title: "Battle Brew",
-      description: "The signature infused tea concept remains part of the future menu, not today's checkout.",
+      description: "Signature infused tea concept built around bold flavor and Battles Budz branding.",
       image: battleBrewImg,
     },
     {
       title: "Cosmic Chewz",
-      description: "The edible line is staying in the brand story, with availability held until launch.",
+      description: "Edible concept shaped around precise portions and bright flavors.",
       image: cosmicChewzImg,
     },
     {
       title: "Freedom Fog Vapes",
-      description: "Cannabis vape products are future-menu items and will not be sold before clearance.",
+      description: "Vape line concept designed around premium extracts and a bold visual identity.",
       image: freedomFogImg,
     },
   ];
@@ -181,14 +181,14 @@ export default function RetailSection() {
             Current <span className="text-battles-gold">Drops</span>
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
-            The shop is live for Battles Budz merch. Cannabis products are not for sale yet; those stay in the story
-            until Buffalo retail operations are fully cleared.
+            Shop official Battles Budz apparel and accessories today. Cannabis products are reserved for the licensed
+            Buffalo retail launch.
           </p>
           <a
             href={shopUrl}
             className="mt-8 inline-flex items-center gap-2 rounded-lg bg-battles-gold px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-300"
           >
-            Open full Shopify store <ArrowUpRight className="h-5 w-5" />
+            Shop the full store <ArrowUpRight className="h-5 w-5" />
           </a>
         </div>
 
@@ -214,23 +214,22 @@ export default function RetailSection() {
             </div>
             <div>
               <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-                <BatteryCharging className="h-4 w-4" /> Accessory inventory
+                <BatteryCharging className="h-4 w-4" /> Battery accessory
               </p>
               <h3 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.05em] text-white">
                 Dual-cart battery.
               </h3>
-              <p className="mt-4 text-lg font-bold text-battles-gold">$60. About 50 on hand.</p>
+              <p className="mt-4 text-lg font-bold text-battles-gold">$60. Limited first batch available.</p>
               <p className="mt-4 leading-8 text-zinc-300">
-                This is an empty battery accessory, not a cannabis product. It is visible here because it is part of the
-                Battles Budz product ecosystem, but the retail online payment path is being handled separately from the
-                apparel Shopify checkout until that flow is ready.
+                The Battles Budz dual-cart battery is a branded accessory for customers who want a compact device built
+                for two cartridges. Retail availability updates and wholesale requests are coordinated directly by email.
               </p>
               <div className="mt-7 flex flex-col gap-4 sm:flex-row">
                 <button
                   onClick={() => document.getElementById("newsletter")?.scrollIntoView({ behavior: "smooth" })}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-battles-gold px-6 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-300"
                 >
-                  Get battery updates <Bell className="h-4 w-4" />
+                  Battery updates <Bell className="h-4 w-4" />
                 </button>
                 <a
                   href={batteryWholesaleHref}
@@ -240,8 +239,8 @@ export default function RetailSection() {
                 </a>
               </div>
               <p className="mt-5 text-sm text-zinc-500">
-                Dispensaries and retailers can email battlesbudz@gmail.com for professional wholesale pricing.
-                Wholesale fulfillment may take up to one month.
+                Dispensaries and retailers can email battlesbudz@gmail.com for wholesale pricing. Bulk fulfillment
+                timelines vary by order size.
               </p>
             </div>
           </div>
@@ -251,15 +250,15 @@ export default function RetailSection() {
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-                <LockKeyhole className="h-4 w-4" /> Cannabis menu — coming soon
+                <LockKeyhole className="h-4 w-4" /> Future cannabis menu
               </p>
               <h3 className="mt-5 text-3xl font-black uppercase leading-none tracking-[-0.05em] text-white sm:text-5xl">
-                What we are building toward.
+                Buffalo launch lineup.
               </h3>
             </div>
             <p className="max-w-xl leading-7 text-zinc-400">
-              These products are part of the Battles Budz roadmap. They come back as real menu items only after the
-              Buffalo launch is fully cleared.
+              These products represent the Battles Budz menu direction for the Buffalo retail launch. Availability,
+              pricing, and final product details will be published when retail service begins.
             </p>
           </div>
 

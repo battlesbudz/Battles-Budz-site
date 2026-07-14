@@ -9,7 +9,8 @@ export default function Footer() {
         <div>
           <img src="/media/battles-budz-logo-cropped.png" alt="Battles Budz USA" className="h-16 w-auto object-contain" />
           <p className="mt-5 max-w-lg leading-7 text-zinc-400">
-            Battles Budz is a veteran-owned cannabis microbusiness opening soon in Buffalo, New York. Apparel is available now while the retail launch moves toward final clearance.
+            Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel now
+            and follow the brand for retail launch updates.
           </p>
           <a
             href={shopUrl}
@@ -28,7 +29,7 @@ export default function Footer() {
             <a href="#retail" className="hover:text-yellow-300">Current drops</a>
             <a href="#dual-cart-battery" className="hover:text-yellow-300">Dual-cart battery</a>
             <a href="#about" className="hover:text-yellow-300">Our story</a>
-            <a href="#events" className="hover:text-yellow-300">Events after launch</a>
+            <a href="#events" className="hover:text-yellow-300">Community events</a>
             <a href="/shipping-returns" className="hover:text-yellow-300">Shipping and returns</a>
             <a href="/privacy-policy" className="hover:text-yellow-300">Privacy policy</a>
             <a href="/terms-of-service" className="hover:text-yellow-300">Terms of service</a>

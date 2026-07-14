@@ -5,17 +5,17 @@ export default function ServicesSection() {
     {
       icon: Shirt,
       title: "Merchandise",
-      description: "Battles Budz apparel is available now through Shopify, including tees, hoodies, long sleeves, and tanks.",
+      description: "Official Battles Budz apparel is available through the online store, including tees, hoodies, long sleeves, and tanks.",
     },
     {
       icon: PackageCheck,
       title: "Accessories",
-      description: "The dual-cart battery is real inventory and will be handled through the cleanest payment path for that category.",
+      description: "Battery inquiries and wholesale conversations are available directly through the Battles Budz team.",
     },
     {
       icon: Truck,
       title: "Shipping",
-      description: "Current drops are shipping-only while the Buffalo retail location is not yet open to the public.",
+      description: "Current online orders ship directly to customers. Pickup details will be announced with retail launch details.",
     },
   ];
 
@@ -23,27 +23,27 @@ export default function ServicesSection() {
     {
       icon: Sprout,
       title: "Cultivation",
-      description: "Indoor cultivation remains part of the Battles Budz plan once retail operations are cleared.",
+      description: "Planned indoor cultivation focused on consistency, quality, and product integrity.",
     },
     {
       icon: FlaskConical,
       title: "Processing",
-      description: "Infused products, beverages, and concentrates belong to the future cannabis menu, not the current checkout.",
+      description: "Infused products, beverages, and concentrates are part of the future licensed product lineup.",
     },
     {
       icon: Store,
       title: "Retail",
-      description: "The Buffalo retail experience will launch after the final state go-ahead is in place.",
+      description: "The Buffalo retail experience will introduce Battles Budz products and customer education in a compliant, age-gated setting.",
     },
     {
       icon: Sofa,
       title: "Consumption Lounge",
-      description: "The lounge concept is still part of the long-term vision and will be announced when it is real and ready.",
+      description: "A future lounge concept designed around comfort, education, and responsible adult use.",
     },
     {
       icon: Calendar,
       title: "Events",
-      description: "Educational and community events will be built around the retail launch instead of being booked early.",
+      description: "Educational and community programming will be announced through the update list.",
     },
   ];
 
@@ -52,14 +52,14 @@ export default function ServicesSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
           <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-            What we do now / what comes next
+            Current offerings and future vision
           </p>
           <h2 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
             Built as a <span className="text-battles-gold">microbusiness</span>.
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
-            Battles Budz is being built as a vertically integrated cannabis brand, but the website should be honest:
-            today is merch, accessories, and launch updates. Cannabis retail comes after final clearance.
+            Battles Budz is building toward a vertically integrated cannabis microbusiness. Today, customers can shop
+            official apparel, ask about accessories, and follow Buffalo launch updates.
           </p>
         </div>
 

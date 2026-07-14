@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
               <li>Subscribe to our newsletter</li>
               <li>Submit a job application</li>
               <li>Contact us through our website</li>
-              <li>Book events or experiences</li>
+              <li>Request event or launch updates</li>
               <li>Create an investor account</li>
             </ul>
           </section>
@@ -76,7 +76,7 @@ export default function PrivacyPolicy() {
             </p>
             <div className="text-gray-300">
               <p>Email: battlesbudz@gmail.com</p>
-              <p>We do not publish our retail address before opening.</p>
+              <p>Retail address details will be shared when customer visits begin.</p>
             </div>
           </section>
         </div>

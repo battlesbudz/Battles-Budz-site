@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: "Battles Budz",
   tagline: "Opening Soon in Buffalo",
-  description: "Battles Budz is a veteran-owned cannabis microbusiness opening soon in Buffalo, New York. Follow the build and current drops.",
+  description: "Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel and sign up for retail launch updates.",
   url: import.meta.env.VITE_SITE_URL || "https://battlesbudz.com",
   businessName: "Battles Budz LLC",
   location: { city: "Buffalo", state: "NY" },

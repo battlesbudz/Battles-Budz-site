@@ -30,7 +30,8 @@ export default function ShippingReturns() {
           Shipping, returns, and exchanges.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-          These are the customer-facing terms for Battles Budz merch and accessories while we prepare for the Buffalo retail launch. Shopify checkout may also show product-specific fulfillment timing for print-on-demand apparel.
+          These terms apply to Battles Budz merch and accessory orders. Online checkout may also show product-specific
+          fulfillment timing for print-on-demand apparel.
         </p>
 
         <section className="mt-12 grid gap-4 md:grid-cols-2">
@@ -38,14 +39,14 @@ export default function ShippingReturns() {
             <Truck className="h-7 w-7 text-yellow-300" />
             <h2 className="mt-5 text-2xl font-black uppercase tracking-[-0.03em] text-white">Shipping</h2>
             <ul className="mt-4 space-y-3 text-zinc-300">
-              <li>U.S. shipping only for now.</li>
+              <li>U.S. shipping is currently available.</li>
               <li>$8.99 shipping on orders under $50.</li>
               <li>Free shipping on orders of $50 or more.</li>
-              <li>Self-fulfilled items are intended to ship within two business days.</li>
-              <li>Print-on-demand apparel may follow the provider's production timeline shown in Shopify.</li>
+              <li>Self-fulfilled items generally ship within two business days.</li>
+              <li>Print-on-demand apparel may follow the production timeline shown at checkout.</li>
             </ul>
             <a href={shopShippingPolicyUrl} className="mt-6 inline-flex items-center text-sm font-black uppercase tracking-[0.12em] text-yellow-300 hover:text-yellow-100">
-              View Shopify shipping policy
+              View store shipping policy
             </a>
           </article>
 
@@ -54,12 +55,12 @@ export default function ShippingReturns() {
             <h2 className="mt-5 text-2xl font-black uppercase tracking-[-0.03em] text-white">Refunds</h2>
             <ul className="mt-4 space-y-3 text-zinc-300">
               <li>Refund requests are accepted within 30 days.</li>
-              <li>If you genuinely hate it, we do not want to force you to keep it.</li>
-              <li>For standard refunds, the customer pays return postage.</li>
-              <li>Items should be sent back before the refund is completed unless support says otherwise.</li>
+              <li>If your purchase is not the right fit, contact us and we will help.</li>
+              <li>Customers are responsible for return postage on standard refunds.</li>
+              <li>Refunds are processed after returned items are received unless support confirms another arrangement.</li>
             </ul>
             <a href={shopRefundPolicyUrl} className="mt-6 inline-flex items-center text-sm font-black uppercase tracking-[0.12em] text-yellow-300 hover:text-yellow-100">
-              View Shopify refund policy
+              View store refund policy
             </a>
           </article>
 
@@ -69,8 +70,8 @@ export default function ShippingReturns() {
             <ul className="mt-4 space-y-3 text-zinc-300">
               <li>Apparel size exchanges are accepted within 30 days.</li>
               <li>Worn items are still eligible for a size exchange.</li>
-              <li>Battles Budz pays the return postage for the original item.</li>
-              <li>The customer pays $9 for us to ship the replacement.</li>
+              <li>Battles Budz covers return postage for the original item.</li>
+              <li>Replacement shipping is $9.</li>
             </ul>
           </article>
 
@@ -79,8 +80,8 @@ export default function ShippingReturns() {
             <h2 className="mt-5 text-2xl font-black uppercase tracking-[-0.03em] text-white">Battery replacements</h2>
             <ul className="mt-4 space-y-3 text-zinc-300">
               <li>If a Battles Budz battery arrives defective or stops working, send a photo or video showing the issue.</li>
-              <li>Once support can see the problem, we send a replacement without a long back-and-forth.</li>
-              <li>Battery customer checkout will open only after the payment/provider path is ready.</li>
+              <li>After review, we will arrange a replacement without unnecessary back-and-forth.</li>
+              <li>Battery sales and wholesale requests are coordinated directly through support.</li>
             </ul>
           </article>
         </section>

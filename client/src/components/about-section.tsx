@@ -5,17 +5,17 @@ export default function AboutSection() {
     {
       icon: Award,
       title: "Veteran-Led",
-      description: "Military discipline and values guide every aspect of our operation.",
+      description: "Military discipline and accountability guide how the brand is being built.",
     },
     {
       icon: Heart,
       title: "Community-Focused",
-      description: "Building connections and preparing to serve the Buffalo community.",
+      description: "Battles Budz is preparing to serve Buffalo with clear information, hospitality, and trust.",
     },
     {
       icon: Leaf,
       title: "Quality-Driven",
-      description: "Uncompromising standards from cultivation to consumption.",
+      description: "Every product decision starts with consistency, education, and responsible adult use.",
     },
   ];
 
@@ -29,26 +29,28 @@ export default function AboutSection() {
 
           <div className="mt-8 space-y-6 text-lg leading-8 text-battles-gray">
             <p>
-              <strong className="text-battles-black">Justin Battles</strong> first turned to cannabis at 14 as the only thing that helped him feel calm and focused. Later, during his eight years in the Army, he was diagnosed with ADHD and tried medications like Adderall and Ritalin, but they did not help. They killed his appetite, caused insomnia, and left him unfocused.
+              <strong className="text-battles-black">Battles Budz</strong> is a veteran-owned cannabis microbusiness
+              founded by Justin Battles, an Army veteran whose personal experience with cannabis shaped a deeper respect
+              for the plant, the people who rely on it, and the responsibility that comes with building a cannabis brand.
             </p>
 
             <p>
-              During his military service, Justin injured his knees jumping out of planes, leading to his medical retirement. Cannabis was the one thing that helped him manage pain and stay clear-headed, inspiring him to learn everything he could about the plant.
+              After military service and medical retirement, Justin studied cultivation and processing with the same
+              discipline he brought to the Army. That work became the foundation for Battles Budz: a Buffalo cannabis
+              brand built around quality, education, and trust.
             </p>
 
             <p>
-              That passion led him to study cultivation and processing and grow medical cannabis for himself and his wife. At Battles Budz, Justin oversees cultivation and product creation, channeling his military discipline into building a Buffalo cannabis business that serves the community with integrity.
-            </p>
-
-            <p>
-              The next chapter is Buffalo. We are not open for cannabis retail yet because the final state go-ahead still has to land, but the brand is moving: merch is live, accessory updates are open, and the cannabis menu will return when it is ready to sell legally and responsibly.
+              The retail experience is being built with the same care as the products. Customers can follow the launch,
+              shop official apparel, and get to know the brand before the Buffalo doors open.
             </p>
 
             <div className="rounded-2xl bg-battles-black p-6 text-white">
               <p className="text-xl font-medium italic text-battles-gold">
-                "We're building Battles Budz to be more than a storefront. The goal is a Buffalo cannabis brand with real products, real education, and a place people can trust. Until the doors open, every drop and every update is part of the build."
+                "Battles Budz is about quality, trust, and community. We want customers to know who we are before they
+                ever walk through the door."
               </p>
-              <p className="mt-4 text-sm">— Justin Battles, Founder & CEO</p>
+              <p className="mt-4 text-sm">- Justin Battles, Founder & CEO</p>
             </div>
           </div>
         </div>
