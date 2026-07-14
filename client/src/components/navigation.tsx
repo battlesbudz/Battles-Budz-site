@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
 import { Menu, ShoppingBag, X } from "lucide-react";
-import logoPath from "@assets/BattlesBudz_Logo_1752301078028.png";
 
 const shopUrl = "https://shop.battlesbudz.com/";
 
@@ -9,7 +8,6 @@ const links = [
   { label: "Shop", href: "#shop" },
   { label: "Batteries", href: "#dual-cart-battery" },
   { label: "Our story", href: "#about" },
-  { label: "Policies", href: "#policies" },
   { label: "Updates", href: "#newsletter" },
   { label: "Contact", href: "#contact" },
 ];
@@ -19,12 +17,12 @@ export default function Navigation() {
 
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-300/25 bg-black/95 text-white backdrop-blur">
-      <div className="mx-auto flex h-24 max-w-7xl items-center justify-between px-5 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Battles Budz home">
-          <img src={logoPath} alt="Battles Budz USA" className="h-16 w-auto object-contain" />
+          <img src="/media/battles-budz-logo-cropped.png" alt="Battles Budz USA" className="h-12 w-auto object-contain sm:h-14" />
         </Link>
 
-        <div className="hidden items-center gap-10 lg:flex">
+        <div className="hidden items-center gap-9 lg:flex">
           {links.map((link) => (
             <a key={link.href} href={link.href} className="text-sm font-black uppercase tracking-[0.18em] text-zinc-100 transition hover:text-yellow-300">
               {link.label}

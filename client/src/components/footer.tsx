@@ -1,5 +1,4 @@
 import { Mail, ShoppingBag } from "lucide-react";
-import logoPath from "@assets/BattlesBudz_Logo_1752301078028.png";
 
 const shopUrl = "https://shop.battlesbudz.com/";
 
@@ -8,7 +7,7 @@ export default function Footer() {
     <footer id="contact" className="border-t border-yellow-300/20 bg-black text-white">
       <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1.1fr_.9fr] lg:px-8">
         <div>
-          <img src={logoPath} alt="Battles Budz USA" className="h-16 w-auto object-contain" />
+          <img src="/media/battles-budz-logo-cropped.png" alt="Battles Budz USA" className="h-16 w-auto object-contain" />
           <p className="mt-5 max-w-lg leading-7 text-zinc-400">
             Battles Budz is a veteran-owned cannabis microbusiness opening soon in Buffalo, New York. Apparel is available now while the retail launch moves toward final clearance.
           </p>
@@ -36,7 +35,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-t border-white/10 px-5 py-5 text-center text-sm text-zinc-500">
-        (c) {new Date().getFullYear()} Battles Budz LLC. Buffalo, New York. Opening soon.
+        © {new Date().getFullYear()} Battles Budz LLC. Buffalo, New York. Opening soon.
       </div>
     </footer>
   );
