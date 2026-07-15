@@ -51,7 +51,7 @@ export default function NewsletterSection() {
             Join the Battles Budz list.
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-300">
-            Be first to hear about apparel drops, battery availability, community events, and retail launch announcements.
+            Be first to hear about new drops, events, and retail launch news.
           </p>
         </div>
 

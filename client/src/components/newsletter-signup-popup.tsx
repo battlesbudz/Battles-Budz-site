@@ -117,7 +117,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
               Get Battles Budz updates.
             </DialogTitle>
             <DialogDescription className="text-base leading-7 text-zinc-300">
-              Product drops, battery availability, events, and retail launch news.
+              New drops, events, and retail launch news.
             </DialogDescription>
           </DialogHeader>
         </div>
