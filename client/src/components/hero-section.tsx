@@ -1,4 +1,4 @@
-import { ChevronDown, Mail, MapPin, ShoppingBag } from "lucide-react";
+import { Mail, MapPin, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
 
 export default function HeroSection() {
@@ -57,13 +57,6 @@ export default function HeroSection() {
         </div>
       </div>
 
-      <button
-        onClick={() => scrollToSection("newsletter")}
-        aria-label="Scroll to email signup"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-battles-gold"
-      >
-        <ChevronDown className="h-8 w-8 animate-bounce" />
-      </button>
     </section>
   );
 }
