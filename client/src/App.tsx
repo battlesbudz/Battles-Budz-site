@@ -121,6 +121,9 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
+        <a href="#main-content" className="skip-link">
+          Skip to main content
+        </a>
         <Toaster />
         <ScrollToRouteTop />
         <Router />

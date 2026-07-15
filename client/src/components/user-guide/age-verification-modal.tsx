@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Shield, Leaf } from 'lucide-react';
 
@@ -17,22 +17,27 @@ export function AgeVerificationModal({ isOpen, onVerified, onDenied }: AgeVerifi
 
   return (
     <Dialog open={isOpen} onOpenChange={() => {}}>
-      <DialogContent className="max-w-md bg-battles-black border-battles-gold/30 text-white" hideClose>
-        <DialogHeader>
-          <DialogTitle className="sr-only">Age Verification</DialogTitle>
+      <DialogContent
+        className="max-w-md border-battles-gold/30 bg-battles-black text-white opacity-100 !duration-0 !animate-none data-[state=open]:!animate-none data-[state=open]:!opacity-100 data-[state=closed]:!animate-none"
+        hideClose
+      >
+        <DialogHeader className="text-center">
+          <DialogTitle className="text-3xl font-bold text-battles-gold">Welcome to Battles Budz</DialogTitle>
+          <DialogDescription className="text-sm leading-6 text-zinc-300">
+            You must be 21 or older and consent to view cannabis-related material to enter this website.
+          </DialogDescription>
         </DialogHeader>
         <div className="space-y-6 text-center">
           {/* Header */}
           <div className="space-y-4">
             <div className="flex items-center justify-center">
               <div className="p-4 rounded-full bg-battles-gold/20">
-                <Leaf className="h-12 w-12 text-battles-gold" />
+                <Leaf className="h-12 w-12 text-battles-gold" aria-hidden="true" />
               </div>
             </div>
             <div>
-              <h2 className="text-3xl font-bold text-battles-gold mb-3">Welcome to Battles Budz</h2>
               <p className="text-xl text-white mb-4">Are you 21 years or older?</p>
-              <p className="text-sm text-gray-400">
+              <p className="text-sm text-zinc-300">
                 You must be 21+ to enter this cannabis website as required by New York State law.
               </p>
             </div>
@@ -43,14 +48,14 @@ export function AgeVerificationModal({ isOpen, onVerified, onDenied }: AgeVerifi
             <Button
               onClick={onDenied}
               variant="outline"
-              className="flex-1 border-red-500/50 text-red-400 hover:bg-red-500/10 hover:border-red-500"
+              className="flex-1 border-red-300 bg-black font-semibold text-red-100 hover:border-red-200 hover:bg-red-950 hover:text-white"
             >
               No, I'm under 21
             </Button>
             
             <Button
               onClick={handleVerify}
-              className="flex-1 bg-battles-gold text-battles-black hover:bg-yellow-600 font-semibold"
+              className="flex-1 bg-yellow-300 font-semibold text-black hover:bg-yellow-200"
             >
               Yes, I'm 21+
             </Button>

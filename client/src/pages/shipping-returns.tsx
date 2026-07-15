@@ -1,5 +1,6 @@
 import { ArrowLeft, BatteryCharging, PackageCheck, RefreshCcw, ShieldCheck, Truck } from "lucide-react";
 import { Link } from "wouter";
+import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 
@@ -15,12 +16,10 @@ export default function ShippingReturns() {
         canonicalUrl={getCanonicalUrl("/shipping-returns")}
       />
 
-      <main className="mx-auto max-w-5xl px-5 py-12 lg:px-8">
-        <Link href="/">
-          <button className="mb-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-yellow-300 transition hover:text-yellow-100">
-            <ArrowLeft className="h-5 w-5" />
-            Back to home
-          </button>
+      <main id="main-content" className="mx-auto max-w-5xl px-5 py-12 lg:px-8">
+        <Link href="/" className="mb-8 inline-flex items-center gap-2 text-sm font-black uppercase tracking-[0.14em] text-yellow-300 transition hover:text-yellow-100">
+          <ArrowLeft className="h-5 w-5" aria-hidden="true" />
+          Back to home
         </Link>
 
         <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
@@ -97,6 +96,7 @@ export default function ShippingReturns() {
           </p>
         </section>
       </main>
+      <Footer />
     </div>
   );
 }

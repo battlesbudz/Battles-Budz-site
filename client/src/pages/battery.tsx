@@ -20,7 +20,7 @@ export default function BatteryPage() {
       />
       <Navigation />
 
-      <main className="pt-24">
+      <main id="main-content" className="pt-24">
         <section className="relative overflow-hidden border-b border-yellow-300/20 bg-black px-5 py-16 sm:px-6 lg:px-8">
           <div className="absolute inset-0 opacity-20 [background-image:radial-gradient(circle_at_top_right,rgba(250,204,21,0.42),transparent_32%),linear-gradient(rgba(250,204,21,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(250,204,21,0.08)_1px,transparent_1px)] [background-size:100%_100%,54px_54px,54px_54px]" />
           <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_.95fr] lg:items-center">
@@ -62,7 +62,9 @@ export default function BatteryPage() {
             <div className="overflow-hidden rounded-3xl border border-yellow-300/25 bg-zinc-950 p-3 shadow-2xl shadow-yellow-950/40">
               <video
                 className="aspect-video w-full rounded-2xl object-cover"
+                aria-label="Battles Budz dual-cart battery product video"
                 autoPlay
+                controls
                 loop
                 muted
                 playsInline

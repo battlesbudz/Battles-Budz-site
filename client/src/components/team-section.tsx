@@ -18,7 +18,7 @@ export default function TeamSection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="mb-6 font-playfair text-4xl font-bold text-battles-black md:text-5xl">
-            Meet the <span className="text-battles-gold">Team</span>
+            Meet the <span className="text-yellow-700">Team</span>
           </h2>
           <p className="mx-auto max-w-3xl text-xl text-battles-gray">
             Meet the people building the Battles Budz experience in Buffalo.
@@ -31,7 +31,7 @@ export default function TeamSection() {
               <img src={member.image} alt={member.name} className="h-64 w-full object-cover" />
               <div className="p-6">
                 <h3 className="mb-2 text-2xl font-bold text-battles-black">{member.name}</h3>
-                <p className="mb-4 font-semibold text-battles-gold">{member.role}</p>
+                <p className="mb-4 font-semibold text-yellow-700">{member.role}</p>
                 <p className="text-sm text-battles-gray">{member.description}</p>
               </div>
             </div>
@@ -40,13 +40,13 @@ export default function TeamSection() {
           <div className="overflow-hidden rounded-xl border-2 border-dashed border-battles-gold bg-gray-50 text-center shadow-lg">
             <div className="flex h-64 w-full items-center justify-center bg-gray-200">
               <div className="text-center">
-                <Plus className="mx-auto mb-4 h-16 w-16 text-battles-gold" />
+                <Plus className="mx-auto mb-4 h-16 w-16 text-yellow-700" aria-hidden="true" />
                 <p className="font-semibold text-battles-gray">Join Our Team</p>
               </div>
             </div>
             <div className="p-6">
               <h3 className="mb-2 text-2xl font-bold text-battles-black">Careers</h3>
-              <p className="mb-4 font-semibold text-battles-gold">Future Opportunities</p>
+              <p className="mb-4 font-semibold text-yellow-700">Future Opportunities</p>
               <p className="mb-4 text-sm text-battles-gray">
                 Interested in joining Battles Budz as the Buffalo launch grows? Share your information and we will keep
                 it on file for future roles.

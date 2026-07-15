@@ -2,6 +2,7 @@ import { FormEvent, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Check } from "lucide-react";
 import Navigation from "@/components/navigation";
+import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
@@ -79,7 +80,7 @@ export default function ProductPreviewPage({ product }: { product: ProductPrevie
       setSubmitted(true);
       setEmail("");
       toast({
-        title: "You’re on the list.",
+        title: "You're on the list.",
       });
     },
     onError: () => {
@@ -99,7 +100,7 @@ export default function ProductPreviewPage({ product }: { product: ProductPrevie
     <div className="min-h-screen bg-black text-white">
       <Navigation />
 
-      <main className="border-b border-yellow-300/20 pt-24">
+      <main id="main-content" className="border-b border-yellow-300/20 pt-24">
         <section className="mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:items-center lg:px-8 lg:py-20">
           <div>
             <h1 className="max-w-4xl text-5xl font-black uppercase leading-none tracking-[-0.06em] text-white sm:text-6xl lg:text-7xl">
@@ -109,9 +110,9 @@ export default function ProductPreviewPage({ product }: { product: ProductPrevie
             <div className="mt-10 max-w-xl rounded-2xl border border-yellow-300/25 bg-zinc-950 p-5 shadow-2xl shadow-yellow-300/5">
               {submitted ? (
                 <div className="flex items-center gap-3 text-yellow-200">
-                  <Check className="h-5 w-5" />
+                  <Check className="h-5 w-5" aria-hidden="true" />
                   <p className="text-lg font-black uppercase tracking-[-0.03em]">
-                    You’re on the list.
+                    You're on the list.
                   </p>
                 </div>
               ) : (
@@ -120,12 +121,18 @@ export default function ProductPreviewPage({ product }: { product: ProductPrevie
                     {product.heading}
                   </h2>
                   <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-3 sm:flex-row">
+                    <label className="sr-only" htmlFor={`${product.slug}-email`}>
+                      Email address for {product.name} updates
+                    </label>
                     <Input
+                      id={`${product.slug}-email`}
+                      name="email"
                       type="email"
                       placeholder="Email address"
+                      autoComplete="email"
                       value={email}
                       onChange={(event) => setEmail(event.target.value)}
-                      className="h-12 flex-1 border-yellow-300/20 bg-black text-white placeholder:text-zinc-500"
+                      className="h-12 flex-1 border-yellow-300/20 bg-black text-white placeholder:text-zinc-400"
                       required
                     />
                     <Button
@@ -152,6 +159,8 @@ export default function ProductPreviewPage({ product }: { product: ProductPrevie
           </div>
         </section>
       </main>
+
+      <Footer />
     </div>
   );
 }
