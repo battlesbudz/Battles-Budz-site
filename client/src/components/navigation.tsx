@@ -17,9 +17,9 @@ export default function Navigation() {
   return (
     <nav className="fixed inset-x-0 top-0 z-50 border-b border-yellow-300/25 bg-black/95 text-white backdrop-blur">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 lg:px-8">
-        <Link href="/" className="flex items-center gap-3" aria-label="Battles Budz home">
+        <a href="/" className="flex items-center gap-3" aria-label="Battles Budz home">
           <img src="/media/battles-budz-logo-cropped.png" alt="Battles Budz USA" className="h-12 w-auto object-contain sm:h-14" />
-        </Link>
+        </a>
 
         <div className="hidden items-center gap-6 lg:flex xl:gap-8">
           {links.map((link) =>
