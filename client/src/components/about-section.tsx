@@ -42,7 +42,7 @@ export default function AboutSection() {
 
             <p>
               The retail experience is being built with the same care as the products. Customers can follow the launch,
-              shop official apparel, and get to know the brand before the Buffalo doors open.
+              shop apparel, and get to know the brand before the Buffalo doors open.
             </p>
 
             <div className="rounded-2xl bg-battles-black p-6 text-white">

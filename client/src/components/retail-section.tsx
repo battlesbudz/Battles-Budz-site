@@ -1,12 +1,9 @@
-import { ArrowUpRight, BatteryCharging, LockKeyhole, Mail, ShoppingBag } from "lucide-react";
-import { Link } from "wouter";
+import { ArrowUpRight } from "lucide-react";
 
 const teeUrl = "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt";
 const hoodieUrl = "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie";
 const longSleeveUrl = "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve";
 const tankUrl = "https://shop.battlesbudz.com/products/mens-tank-top";
-const batteryPurchaseHref =
-  "mailto:battlesbudz@gmail.com?subject=I%20want%20to%20order%20a%20Battles%20Budz%20Dual-Cart%20Battery";
 
 type AvailableProduct = {
   title: string;
@@ -116,80 +113,15 @@ export default function RetailSection() {
     <section id="retail" className="bg-black py-20 text-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-            <ShoppingBag className="h-4 w-4" /> Available online now
-          </p>
           <h2 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
-            Shop what is <span className="text-battles-gold">ready now</span>.
+            Apparel.
           </h2>
-          <p className="mt-5 text-lg leading-8 text-zinc-300">
-            Start with official Battles Budz apparel, then use the quick links below for dual-cart battery orders, wholesale
-            requests, and future cannabis menu updates.
-          </p>
         </div>
 
         <div id="shop" className="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-4">
           {availableProducts.map((product) => (
             <AvailableCard key={product.title} product={product} />
           ))}
-        </div>
-
-        <div className="mt-14 grid gap-7 lg:grid-cols-2">
-          <article className="rounded-3xl border border-yellow-300/25 bg-zinc-950 p-6 shadow-xl shadow-black md:p-8">
-            <div className="grid gap-6 sm:grid-cols-[180px_1fr] sm:items-center">
-              <div className="overflow-hidden rounded-2xl border border-white/10 bg-black">
-                <img
-                  src="/media/battles-budz-dual-cart-battery-poster.jpg"
-                  alt="Battles Budz dual-cart battery"
-                  className="aspect-square h-full w-full object-cover"
-                />
-              </div>
-              <div>
-                <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-                  <BatteryCharging className="h-4 w-4" /> Dual-Cart Battery
-                </p>
-                <h3 className="mt-4 text-3xl font-black uppercase leading-none tracking-[-0.05em] text-white">
-                  Dual-Cart Battery.
-                </h3>
-                <p className="mt-3 leading-7 text-zinc-300">
-                  Learn about the $60 Battles Budz dual-cart battery and email us for invoice and payment details.
-                </p>
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <Link
-                    href="/battery"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-battles-gold px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-yellow-300"
-                  >
-                    Dual-Cart Battery details <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                  <a
-                    href={batteryPurchaseHref}
-                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
-                  >
-                    Email to purchase <Mail className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <article className="rounded-3xl border border-white/10 bg-zinc-950 p-6 shadow-xl shadow-black md:p-8">
-            <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-              <LockKeyhole className="h-4 w-4" /> Future cannabis menu
-            </p>
-            <h3 className="mt-4 text-3xl font-black uppercase leading-none tracking-[-0.05em] text-white">
-              Coming soon in Buffalo.
-            </h3>
-            <p className="mt-3 leading-7 text-zinc-300">
-              Preview the future Battles Budz cannabis menu for Buffalo, including flower, beverages, edibles, and vape
-              concepts.
-            </p>
-            <Link
-              href="/coming-soon"
-              className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border border-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
-            >
-              View coming soon <ArrowUpRight className="h-4 w-4" />
-            </Link>
-          </article>
         </div>
       </div>
     </section>

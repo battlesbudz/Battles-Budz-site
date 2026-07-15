@@ -4,8 +4,8 @@ export default function ServicesSection() {
   const current = [
     {
       icon: Shirt,
-      title: "Merchandise",
-      description: "Official Battles Budz apparel is available through the online store, including tees, hoodies, long sleeves, and tanks.",
+      title: "Apparel",
+      description: "Battles Budz apparel is available through the online store, including tees, hoodies, long sleeves, and tanks.",
     },
     {
       icon: PackageCheck,
@@ -59,7 +59,7 @@ export default function ServicesSection() {
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
             Battles Budz is building toward a vertically integrated cannabis microbusiness. Today, customers can shop
-            official apparel, ask about the dual-cart battery, and follow launch updates.
+            apparel, ask about the dual-cart battery, and follow launch updates.
           </p>
         </div>
 

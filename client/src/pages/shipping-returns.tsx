@@ -11,7 +11,7 @@ export default function ShippingReturns() {
     <div className="min-h-screen bg-black text-white">
       <SEOHead
         title="Shipping, Returns, and Exchanges | Battles Budz"
-        description="Battles Budz shipping, refund, exchange, and product replacement terms for current merch and the dual-cart battery."
+        description="Battles Budz shipping, refund, exchange, and product replacement terms for apparel and the dual-cart battery."
         canonicalUrl={getCanonicalUrl("/shipping-returns")}
       />
 
@@ -30,7 +30,7 @@ export default function ShippingReturns() {
           Shipping, returns, and exchanges.
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
-          These terms apply to Battles Budz merch and accessory orders. Online checkout may also show product-specific
+          These terms apply to Battles Budz apparel and accessory orders. Online checkout may also show product-specific
           fulfillment timing for print-on-demand apparel.
         </p>
 

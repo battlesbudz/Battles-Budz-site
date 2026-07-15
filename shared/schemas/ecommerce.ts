@@ -8,7 +8,7 @@ export const products = pgTable("products", {
   name: text("name").notNull(),
   description: text("description"),
   price: decimal("price", { precision: 10, scale: 2 }).notNull(),
-  category: text("category").notNull(), // "cannabis", "merchandise", "accessories"
+  category: text("category").notNull(), // "cannabis", "apparel", "accessories"
   imageUrl: text("image_url"),
   inStock: boolean("in_stock").default(true),
   createdAt: timestamp("created_at").defaultNow().notNull(),

@@ -44,13 +44,11 @@ export default function HeroSection() {
               Get updates <Mail className="h-5 w-5" />
             </button>
 
-            <p className="text-sm text-zinc-400">Ready to shop now? Browse Battles Budz merch and the dual-cart battery.</p>
-
             <Link
               href="/shop"
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-battles-gold px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-battles-gold transition hover:bg-battles-gold hover:text-black sm:w-auto"
             >
-              Shop available products <ShoppingBag className="h-5 w-5" />
+              Apparel <ShoppingBag className="h-5 w-5" />
             </Link>
           </div>
 

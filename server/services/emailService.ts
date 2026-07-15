@@ -100,7 +100,7 @@ export async function sendWelcomeEmail(subscriberEmail: string) {
             <p>You'll receive updates about:</p>
             <ul>
               <li>Our Buffalo opening</li>
-              <li>Current merchandise and accessory drops</li>
+              <li>Apparel and accessory drops</li>
               <li>Company news and community updates</li>
             </ul>
           </div>

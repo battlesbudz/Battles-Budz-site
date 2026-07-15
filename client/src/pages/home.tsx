@@ -18,11 +18,10 @@ export default function Home() {
     <div className="min-h-screen overflow-x-hidden bg-black">
       <SEOHead
         title="Battles Budz | Buffalo Cannabis Microbusiness Opening Soon"
-        description="Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel and sign up for retail launch updates."
+        description="Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop apparel and sign up for retail launch updates."
         keywords={[
           ...CANNABIS_KEYWORDS.home,
           "Battles Budz apparel",
-          "Battles Budz merchandise",
           "Buffalo cannabis brand",
           "veteran owned cannabis New York",
           "dual cart battery",
