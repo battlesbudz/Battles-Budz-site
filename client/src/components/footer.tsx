@@ -8,14 +8,13 @@ export default function Footer() {
         <div>
           <img src="/media/battles-budz-logo-cropped.png" alt="Battles Budz USA" className="h-16 w-auto object-contain" />
           <p className="mt-5 max-w-lg leading-7 text-zinc-400">
-            Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel now
-            and follow the brand for retail launch updates.
+            Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York.
           </p>
           <Link
             href="/shop"
             className="mt-6 inline-flex items-center gap-2 rounded-lg bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-200"
           >
-            Shop Battles Budz <ShoppingBag className="h-4 w-4" />
+            Apparel <ShoppingBag className="h-4 w-4" />
           </Link>
         </div>
 
@@ -25,7 +24,7 @@ export default function Footer() {
             <Mail className="h-5 w-5 text-yellow-300" /> battlesbudz@gmail.com
           </a>
           <div className="mt-7 grid gap-3 text-sm text-zinc-400">
-            <Link href="/shop" className="hover:text-yellow-300">Current drops</Link>
+            <Link href="/shop" className="hover:text-yellow-300">Apparel</Link>
             <Link href="/battery" className="hover:text-yellow-300">Dual-Cart Battery</Link>
             <Link href="/coming-soon" className="hover:text-yellow-300">Coming soon products</Link>
             <Link href="/our-story" className="hover:text-yellow-300">Our story</Link>

@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Menu, ShoppingBag, X } from "lucide-react";
 
 const links = [
-  { label: "Shop", href: "/shop" },
+  { label: "Apparel", href: "/shop" },
   { label: "Dual-Cart Battery", href: "/battery" },
   { label: "Coming Soon", href: "/coming-soon" },
   { label: "Our Story", href: "/our-story" },
@@ -37,11 +37,11 @@ export default function Navigation() {
 
         <Link
           href="/shop"
-          aria-label="Open Battles Budz shop"
+          aria-label="Open Battles Budz apparel"
           className="hidden items-center gap-2 text-yellow-300 transition hover:text-yellow-100 lg:inline-flex"
         >
           <ShoppingBag className="h-6 w-6" />
-          <span className="sr-only">Battles Budz shop</span>
+          <span className="sr-only">Battles Budz apparel</span>
         </Link>
 
         <button
@@ -82,7 +82,7 @@ export default function Navigation() {
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex w-full items-center justify-center gap-2 bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-black"
           >
-            Shop merch <ShoppingBag className="h-4 w-4" />
+            Apparel <ShoppingBag className="h-4 w-4" />
           </Link>
         </div>
       ) : null}

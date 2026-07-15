@@ -1,41 +1,6 @@
 import { ArrowRight, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
-
-interface ShopCategory {
-  name: string;
-  href: string;
-}
-
-const categories: ShopCategory[] = [
-  {
-    name: "Merchandise",
-    href: "/shop",
-  },
-  {
-    name: "Dual-Cart Battery",
-    href: "/battery",
-  },
-  {
-    name: "Vapes",
-    href: "/products/freedom-fog-vapes",
-  },
-  {
-    name: "Flower",
-    href: "/products/battles-budz-flower",
-  },
-  {
-    name: "Pre-rolls",
-    href: "/products/pre-rolls",
-  },
-  {
-    name: "Edibles",
-    href: "/products/edibles",
-  },
-  {
-    name: "Concentrates",
-    href: "/products/concentrates",
-  },
-];
+import { shopCategories } from "@/data/shopCategories";
 
 export default function ShopByCategorySection() {
   return (
@@ -56,17 +21,23 @@ export default function ShopByCategorySection() {
           className="mt-10 flex snap-x gap-4 overflow-x-auto pb-5 [scrollbar-color:rgba(250,204,21,0.75)_rgba(39,39,42,0.9)]"
           aria-label="Shop Battles Budz categories"
         >
-          {categories.map((category) => (
+          {shopCategories.map((category) => (
             <Link
               key={category.name}
               href={category.href}
-              className="group flex min-h-44 min-w-[11.25rem] snap-start flex-col justify-between rounded-xl border border-yellow-300/20 bg-zinc-950 p-4 transition hover:-translate-y-1 hover:border-yellow-300/60 hover:bg-zinc-900 sm:min-w-[14rem]"
+              className="group relative flex min-h-44 min-w-[11.25rem] snap-start flex-col justify-between overflow-hidden rounded-xl border border-yellow-300/20 bg-zinc-950 p-4 transition hover:-translate-y-1 hover:border-yellow-300/60 sm:min-w-[14rem]"
+              style={{
+                backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.86)), url(${category.imageUrl})`,
+                backgroundPosition: category.imagePosition ?? "center",
+                backgroundSize: "cover",
+              }}
             >
-              <div>
+              <div className="absolute inset-0 bg-yellow-300/0 transition group-hover:bg-yellow-300/10" />
+              <div className="relative">
                 <div className="flex justify-end">
-                  <ArrowRight className="h-4 w-4 shrink-0 text-yellow-300 transition group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 shrink-0 text-yellow-200 drop-shadow transition group-hover:translate-x-1" />
                 </div>
-                <h3 className="mt-7 text-2xl font-black uppercase leading-none tracking-[-0.05em] sm:text-3xl">
+                <h3 className="mt-16 text-2xl font-black uppercase leading-none tracking-[-0.05em] text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)] sm:text-3xl">
                   {category.name}
                 </h3>
               </div>

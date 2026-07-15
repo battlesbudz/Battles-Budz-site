@@ -1,7 +1,7 @@
 export const SITE_CONFIG = {
   name: "Battles Budz",
   tagline: "Opening Soon in Buffalo",
-  description: "Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel and sign up for retail launch updates.",
+  description: "Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop apparel and sign up for retail launch updates.",
   url: import.meta.env.VITE_SITE_URL || "https://battlesbudz.com",
   businessName: "Battles Budz LLC",
   location: { city: "Buffalo", state: "NY" },
@@ -54,7 +54,7 @@ export function getBreadcrumbSchema(breadcrumbs: Array<{ name: string; url: stri
 
 export const CANNABIS_KEYWORDS = {
   home: ["Battles Budz", "Buffalo cannabis microbusiness", "Buffalo opening soon", "veteran owned cannabis business"],
-  shop: ["Battles Budz merchandise", "cannabis accessories", "Battles Budz apparel"],
+  shop: ["Battles Budz apparel", "cannabis accessories"],
   education: ["cannabis education", "responsible cannabis use"],
   community: ["Buffalo cannabis community", "cannabis culture"],
   investors: ["cannabis investment opportunities", "cannabis business investment"],
