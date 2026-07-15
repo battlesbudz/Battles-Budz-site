@@ -42,7 +42,6 @@ app.use((req, res, next) => {
   const server = await registerRoutes(app);
 
   const publicRedirects = [
-    { pattern: /^\/shop\/?$/, destination: "https://shop.battlesbudz.com/" },
     { pattern: /^\/(batteries|dual-cart-battery)\/?$/, destination: "/battery" },
     { pattern: /^\/products\/dual-cart-battery\/?$/, destination: "/battery" },
     { pattern: /^\/products\/(battle-brew|cosmic-chewz|freedom-fog-vapes|heirloom-flower)\/?$/, destination: "/coming-soon" },

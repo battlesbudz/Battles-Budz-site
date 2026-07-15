@@ -2,10 +2,8 @@ import { useState } from "react";
 import { Link } from "wouter";
 import { Menu, ShoppingBag, X } from "lucide-react";
 
-const shopUrl = "https://shop.battlesbudz.com/";
-
 const links = [
-  { label: "Shop", href: shopUrl, external: true },
+  { label: "Shop", href: "/shop" },
   { label: "Battery", href: "/battery" },
   { label: "Coming Soon", href: "/coming-soon" },
   { label: "Our Story", href: "/our-story" },
@@ -37,14 +35,14 @@ export default function Navigation() {
           )}
         </div>
 
-        <a
-          href={shopUrl}
-          aria-label="Open Battles Budz online store"
+        <Link
+          href="/shop"
+          aria-label="Open Battles Budz shop"
           className="hidden items-center gap-2 text-yellow-300 transition hover:text-yellow-100 lg:inline-flex"
         >
           <ShoppingBag className="h-6 w-6" />
-          <span className="sr-only">Online store</span>
-        </a>
+          <span className="sr-only">Battles Budz shop</span>
+        </Link>
 
         <button
           onClick={() => setOpen(!open)}
@@ -79,13 +77,13 @@ export default function Navigation() {
               </Link>
             ),
           )}
-          <a
-            href={shopUrl}
+          <Link
+            href="/shop"
             onClick={() => setOpen(false)}
             className="mt-4 inline-flex w-full items-center justify-center gap-2 bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-black"
           >
             Shop merch <ShoppingBag className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
       ) : null}
     </nav>

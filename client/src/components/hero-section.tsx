@@ -1,7 +1,5 @@
-import { ArrowUpRight, ChevronDown, Clock3, MapPin, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ChevronDown, Clock3, Mail, MapPin, ShieldCheck, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
-
-const shopUrl = "https://shop.battlesbudz.com/";
 
 export default function HeroSection() {
   const scrollToSection = (sectionId: string) => {
@@ -35,22 +33,24 @@ export default function HeroSection() {
           </h1>
 
           <p className="mx-auto mt-7 max-w-3xl text-lg leading-8 text-zinc-300 md:text-xl">
-            Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel,
-            explore the brand, and join the update list for retail launch news.
+            Join the Battles Budz list for launch updates, new product drops, and first access when retail goes live.
           </p>
 
-          <div className="mt-9 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href={shopUrl}
+          <div className="mt-9 flex flex-col items-center justify-center gap-4">
+            <button
+              onClick={() => scrollToSection("newsletter")}
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-battles-gold px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-black shadow-lg shadow-yellow-300/20 transition hover:bg-yellow-300 sm:w-auto"
             >
-              Shop merch now <ShoppingBag className="h-5 w-5" />
-            </a>
+              Get updates <Mail className="h-5 w-5" />
+            </button>
+
+            <p className="text-sm text-zinc-400">Ready to shop now? Browse Battles Budz merch and accessories.</p>
+
             <Link
-              href="/our-story"
+              href="/shop"
               className="inline-flex w-full items-center justify-center gap-2 rounded-lg border-2 border-battles-gold px-10 py-4 text-sm font-black uppercase tracking-[0.14em] text-battles-gold transition hover:bg-battles-gold hover:text-black sm:w-auto"
             >
-              Our story <ArrowUpRight className="h-5 w-5" />
+              Shop available products <ShoppingBag className="h-5 w-5" />
             </Link>
           </div>
 
@@ -75,8 +75,8 @@ export default function HeroSection() {
       </div>
 
       <button
-        onClick={() => scrollToSection("retail")}
-        aria-label="Scroll to available products"
+        onClick={() => scrollToSection("newsletter")}
+        aria-label="Scroll to email signup"
         className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-battles-gold"
       >
         <ChevronDown className="h-8 w-8 animate-bounce" />
