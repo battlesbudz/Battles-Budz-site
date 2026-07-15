@@ -4,7 +4,7 @@ import { Menu, ShoppingBag, X } from "lucide-react";
 
 const links = [
   { label: "Shop", href: "/shop" },
-  { label: "Battery", href: "/battery" },
+  { label: "Dual-Cart Battery", href: "/battery" },
   { label: "Coming Soon", href: "/coming-soon" },
   { label: "Our Story", href: "/our-story" },
   { label: "Updates", href: "/#newsletter", external: true },

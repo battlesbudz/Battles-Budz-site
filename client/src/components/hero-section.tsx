@@ -44,7 +44,7 @@ export default function HeroSection() {
               Get updates <Mail className="h-5 w-5" />
             </button>
 
-            <p className="text-sm text-zinc-400">Ready to shop now? Browse Battles Budz merch and accessories.</p>
+            <p className="text-sm text-zinc-400">Ready to shop now? Browse Battles Budz merch and the dual-cart battery.</p>
 
             <Link
               href="/shop"

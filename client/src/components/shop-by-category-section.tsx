@@ -36,10 +36,10 @@ const categories: ShopCategory[] = [
     cta: "Coming soon",
   },
   {
-    name: "Accessories",
+    name: "Dual-Cart Battery",
     href: "/battery",
     status: "available",
-    cta: "View accessories",
+    cta: "View dual-cart battery",
   },
   {
     name: "Concentrates",
@@ -69,7 +69,7 @@ export default function ShopByCategorySection() {
             </h2>
           </div>
           <p className="max-w-xl text-base leading-7 text-zinc-300">
-            Apparel and accessories are available now. Cannabis categories are coming after retail launch.
+            Apparel and the dual-cart battery are available now. Cannabis categories are coming after retail launch.
           </p>
         </div>
         <p className="mt-6 text-xs font-black uppercase tracking-[0.18em] text-zinc-500">

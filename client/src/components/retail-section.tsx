@@ -123,7 +123,7 @@ export default function RetailSection() {
             Shop what is <span className="text-battles-gold">ready now</span>.
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
-            Start with official Battles Budz apparel, then use the quick links below for battery orders, wholesale
+            Start with official Battles Budz apparel, then use the quick links below for dual-cart battery orders, wholesale
             requests, and future cannabis menu updates.
           </p>
         </div>
@@ -146,10 +146,10 @@ export default function RetailSection() {
               </div>
               <div>
                 <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-                  <BatteryCharging className="h-4 w-4" /> Battery accessory
+                  <BatteryCharging className="h-4 w-4" /> Dual-Cart Battery
                 </p>
                 <h3 className="mt-4 text-3xl font-black uppercase leading-none tracking-[-0.05em] text-white">
-                  Dual-cart battery.
+                  Dual-Cart Battery.
                 </h3>
                 <p className="mt-3 leading-7 text-zinc-300">
                   Learn about the $60 Battles Budz dual-cart battery and email us for invoice and payment details.
@@ -159,7 +159,7 @@ export default function RetailSection() {
                     href="/battery"
                     className="inline-flex items-center justify-center gap-2 rounded-lg bg-battles-gold px-5 py-3 text-sm font-black uppercase tracking-[0.12em] text-black transition hover:bg-yellow-300"
                   >
-                    Battery details <ArrowUpRight className="h-4 w-4" />
+                    Dual-Cart Battery details <ArrowUpRight className="h-4 w-4" />
                   </Link>
                   <a
                     href={batteryPurchaseHref}

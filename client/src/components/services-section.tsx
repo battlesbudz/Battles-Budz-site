@@ -9,8 +9,8 @@ export default function ServicesSection() {
     },
     {
       icon: PackageCheck,
-      title: "Accessories",
-      description: "Battery inquiries and wholesale conversations are available directly through the Battles Budz team.",
+      title: "Dual-Cart Battery",
+      description: "Dual-cart battery inquiries and wholesale conversations are available directly through the Battles Budz team.",
     },
     {
       icon: Truck,
@@ -59,7 +59,7 @@ export default function ServicesSection() {
           </h2>
           <p className="mt-5 text-lg leading-8 text-zinc-300">
             Battles Budz is building toward a vertically integrated cannabis microbusiness. Today, customers can shop
-            official apparel, ask about accessories, and follow Buffalo launch updates.
+            official apparel, ask about the dual-cart battery, and follow launch updates.
           </p>
         </div>
 

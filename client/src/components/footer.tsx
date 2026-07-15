@@ -26,7 +26,7 @@ export default function Footer() {
           </a>
           <div className="mt-7 grid gap-3 text-sm text-zinc-400">
             <Link href="/shop" className="hover:text-yellow-300">Current drops</Link>
-            <Link href="/battery" className="hover:text-yellow-300">Dual-cart battery</Link>
+            <Link href="/battery" className="hover:text-yellow-300">Dual-Cart Battery</Link>
             <Link href="/coming-soon" className="hover:text-yellow-300">Coming soon products</Link>
             <Link href="/our-story" className="hover:text-yellow-300">Our story</Link>
             <a href="/our-story#events" className="hover:text-yellow-300">Community events</a>
