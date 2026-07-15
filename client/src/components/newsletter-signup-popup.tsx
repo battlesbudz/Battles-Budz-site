@@ -123,12 +123,18 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
         </div>
 
         <form className="space-y-4 px-6 pb-6" onSubmit={handleSubmit}>
+          <label className="sr-only" htmlFor="newsletter-popup-email">
+            Email address for Battles Budz updates
+          </label>
           <Input
+            id="newsletter-popup-email"
+            name="email"
             type="email"
             placeholder="Enter your email address"
+            autoComplete="email"
             value={email}
             onChange={(event) => setEmail(event.target.value)}
-            className="min-h-12 rounded-none border-white/15 bg-black text-white placeholder:text-zinc-500 focus:border-yellow-300"
+            className="min-h-12 rounded-none border-white/15 bg-black text-white placeholder:text-zinc-400 focus:border-yellow-300"
             required
           />
           <Button
@@ -152,7 +158,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
           >
             Not now
           </button>
-          <p className="text-center text-xs text-zinc-500">Only Battles Budz updates. Unsubscribe anytime.</p>
+          <p className="text-center text-xs text-zinc-400">Only Battles Budz updates. Unsubscribe anytime.</p>
         </form>
       </DialogContent>
     </Dialog>

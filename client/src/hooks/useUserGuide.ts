@@ -8,11 +8,25 @@ interface UserGuideState {
 }
 
 export function useUserGuide() {
-  const [guideState, setGuideState] = useState<UserGuideState>({
-    showAgeVerification: false,
-    showQuickStart: false,
-    showTour: false,
-    isFirstVisit: false,
+  const [guideState, setGuideState] = useState<UserGuideState>(() => {
+    if (typeof window === 'undefined') {
+      return {
+        showAgeVerification: true,
+        showQuickStart: false,
+        showTour: false,
+        isFirstVisit: false,
+      };
+    }
+
+    const isAgeVerificationValid = sessionStorage.getItem('ageVerified') === 'true';
+    const hasVisited = localStorage.getItem('hasVisited');
+
+    return {
+      showAgeVerification: !isAgeVerificationValid,
+      showQuickStart: false,
+      showTour: false,
+      isFirstVisit: !hasVisited,
+    };
   });
 
   useEffect(() => {

@@ -31,9 +31,11 @@ export default function Home() {
         ogType="website"
       />
       <Navigation />
-      <HeroSection />
-      <NewsletterSection />
-      <ShopByCategorySection />
+      <main id="main-content">
+        <HeroSection />
+        <NewsletterSection />
+        <ShopByCategorySection />
+      </main>
       <Footer />
     </div>
   );

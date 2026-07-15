@@ -58,12 +58,18 @@ export default function NewsletterSection() {
         <div className="rounded-lg border border-yellow-300/20 bg-black p-5 sm:p-7">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-col gap-3 sm:flex-row">
+              <label className="sr-only" htmlFor="newsletter-email">
+                Email address for Battles Budz updates
+              </label>
               <Input
+                id="newsletter-email"
+                name="email"
                 type="email"
                 placeholder="Enter your email address"
+                autoComplete="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="min-h-12 flex-1 rounded-none border-white/15 bg-zinc-900 text-white placeholder:text-zinc-500 focus:border-yellow-300"
+                className="min-h-12 flex-1 rounded-none border-white/15 bg-zinc-900 text-white placeholder:text-zinc-400 focus:border-yellow-300"
                 required
               />
               <Button
@@ -81,7 +87,7 @@ export default function NewsletterSection() {
                 )}
               </Button>
             </div>
-            <p className="mt-4 text-sm text-zinc-500">Only Battles Budz updates. Unsubscribe anytime.</p>
+            <p className="mt-4 text-sm text-zinc-400">Only Battles Budz updates. Unsubscribe anytime.</p>
           </form>
 
           <div className="mt-8 border-t border-white/10 pt-6">
@@ -93,8 +99,9 @@ export default function NewsletterSection() {
                 rel="noopener noreferrer"
                 className="text-zinc-400 transition hover:text-yellow-300"
                 title="Follow @battles_budz on Instagram"
+                aria-label="Follow Battles Budz on Instagram"
               >
-                <Instagram className="h-6 w-6" />
+                <Instagram className="h-6 w-6" aria-hidden="true" />
               </a>
               <a
                 href="https://www.facebook.com/profile.php?id=100095028196403"
@@ -102,8 +109,9 @@ export default function NewsletterSection() {
                 rel="noopener noreferrer"
                 className="text-zinc-400 transition hover:text-yellow-300"
                 title="Follow Battles Budz on Facebook"
+                aria-label="Follow Battles Budz on Facebook"
               >
-                <Facebook className="h-6 w-6" />
+                <Facebook className="h-6 w-6" aria-hidden="true" />
               </a>
               <a
                 href="https://twitter.com/BattlesBudz"
@@ -111,8 +119,9 @@ export default function NewsletterSection() {
                 rel="noopener noreferrer"
                 className="text-zinc-400 transition hover:text-yellow-300"
                 title="Follow @BattlesBudz on Twitter"
+                aria-label="Follow Battles Budz on Twitter"
               >
-                <Twitter className="h-6 w-6" />
+                <Twitter className="h-6 w-6" aria-hidden="true" />
               </a>
               <a
                 href="https://www.linkedin.com/in/justin-battles-5548a018a"
@@ -120,8 +129,9 @@ export default function NewsletterSection() {
                 rel="noopener noreferrer"
                 className="text-zinc-400 transition hover:text-yellow-300"
                 title="Connect with Justin Battles on LinkedIn"
+                aria-label="Connect with Justin Battles on LinkedIn"
               >
-                <Linkedin className="h-6 w-6" />
+                <Linkedin className="h-6 w-6" aria-hidden="true" />
               </a>
             </div>
           </div>

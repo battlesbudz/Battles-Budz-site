@@ -20,7 +20,7 @@ export default function OurStoryPage() {
       />
       <Navigation />
 
-      <main className="pt-24">
+      <main id="main-content" className="pt-24">
         <section className="border-b border-yellow-300/20 bg-black px-5 py-14 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-5xl">
             <Link

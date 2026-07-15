@@ -16,7 +16,7 @@ type AvailableProduct = {
 
 function HoodiePreview() {
   return (
-    <div className="relative mx-auto h-52 w-44" aria-label="Battles Budz hoodie preview">
+    <div className="relative mx-auto h-52 w-44" role="img" aria-label="Battles Budz hoodie preview">
       <div className="absolute left-1/2 top-0 h-10 w-24 -translate-x-1/2 rounded-t-full border border-zinc-700 bg-zinc-900" />
       <div className="absolute inset-x-4 top-8 h-24 rounded-t-[44px] border border-zinc-700 bg-zinc-900" />
       <div className="absolute inset-x-2 bottom-0 top-16 rounded-b-xl rounded-t-[34px] border border-zinc-700 bg-zinc-950 shadow-inner shadow-black" />
@@ -30,7 +30,7 @@ function HoodiePreview() {
 
 function LongSleevePreview() {
   return (
-    <div className="relative mx-auto h-52 w-52" aria-label="Battles Budz long sleeve preview">
+    <div className="relative mx-auto h-52 w-52" role="img" aria-label="Battles Budz long sleeve preview">
       <div className="absolute left-1/2 top-4 h-12 w-32 -translate-x-1/2 rounded-t-full border border-zinc-700 bg-zinc-950" />
       <div className="absolute left-1/2 top-14 h-32 w-24 -translate-x-1/2 rounded-b-lg border border-zinc-700 bg-black" />
       <div className="absolute left-8 top-16 h-32 w-7 -rotate-12 rounded-full border border-zinc-700 bg-black" />
@@ -60,7 +60,7 @@ function AvailableCard({ product }: { product: AvailableProduct }) {
       </div>
       <div className="flex flex-1 flex-col p-6">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow-300">{product.price}</p>
-        <h3 className="mt-2 text-2xl font-black uppercase tracking-[-0.04em] text-white">{product.title}</h3>
+        <h2 className="mt-2 text-2xl font-black uppercase tracking-[-0.04em] text-white">{product.title}</h2>
         <p className="mt-3 flex-1 leading-7 text-zinc-400">{product.description}</p>
         <a
           href={product.href}
@@ -113,9 +113,9 @@ export default function RetailSection() {
     <section id="retail" className="bg-black py-20 text-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
+          <h1 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
             Apparel.
-          </h2>
+          </h1>
         </div>
 
         <div id="shop" className="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-4">

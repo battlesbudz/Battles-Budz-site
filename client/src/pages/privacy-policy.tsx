@@ -1,6 +1,7 @@
 
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 
@@ -12,12 +13,10 @@ export default function PrivacyPolicy() {
         description="Learn how Battles Budz handles the information you provide when you subscribe or contact us."
         canonicalUrl={getCanonicalUrl("/privacy-policy")}
       />
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <Link href="/">
-          <button className="flex items-center text-battles-gold hover:text-yellow-400 mb-8 transition-colors">
-            <ArrowLeft className="h-5 w-5 mr-2" />
-            Back to Home
-          </button>
+      <main id="main-content" className="max-w-4xl mx-auto px-4 py-12">
+        <Link href="/" className="mb-8 inline-flex items-center text-battles-gold transition-colors hover:text-yellow-400">
+          <ArrowLeft className="mr-2 h-5 w-5" aria-hidden="true" />
+          Back to Home
         </Link>
 
         <h1 className="text-4xl font-playfair font-bold text-battles-gold mb-8">Privacy Policy</h1>
@@ -80,7 +79,8 @@ export default function PrivacyPolicy() {
             </div>
           </section>
         </div>
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 }

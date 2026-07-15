@@ -24,7 +24,7 @@ export default function AboutSection() {
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-4xl font-black uppercase tracking-[-0.05em] text-battles-black md:text-5xl">
-            Our <span className="text-battles-gold">Story</span>
+            Our <span className="text-yellow-700">Story</span>
           </h2>
 
           <div className="mt-8 space-y-6 text-lg leading-8 text-battles-gray">
@@ -46,7 +46,7 @@ export default function AboutSection() {
             </p>
 
             <div className="rounded-2xl bg-battles-black p-6 text-white">
-              <p className="text-xl font-medium italic text-battles-gold">
+              <p className="text-xl font-medium italic text-yellow-300">
                 "Battles Budz is about quality, trust, and community. We want customers to know who we are before they
                 ever walk through the door."
               </p>
@@ -57,7 +57,7 @@ export default function AboutSection() {
 
         <div className="mt-20">
           <h3 className="text-center text-3xl font-black uppercase tracking-[-0.04em] text-battles-black">
-            Our <span className="text-battles-gold">Values</span>
+            Our <span className="text-yellow-700">Values</span>
           </h3>
 
           <div className="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
