@@ -1,6 +1,7 @@
 import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import NewsletterSection from "@/components/newsletter-section";
+import ShopByCategorySection from "@/components/shop-by-category-section";
 import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import {
@@ -33,6 +34,7 @@ export default function Home() {
       <Navigation />
       <HeroSection />
       <NewsletterSection />
+      <ShopByCategorySection />
       <Footer />
     </div>
   );
