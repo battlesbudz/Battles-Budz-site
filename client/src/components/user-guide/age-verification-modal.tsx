@@ -11,8 +11,7 @@ interface AgeVerificationModalProps {
 
 export function AgeVerificationModal({ isOpen, onVerified, onDenied }: AgeVerificationModalProps) {
   const handleVerify = () => {
-    localStorage.setItem('ageVerified', 'true');
-    localStorage.setItem('ageVerifiedDate', new Date().toISOString());
+    sessionStorage.setItem('ageVerified', 'true');
     onVerified();
   };
 

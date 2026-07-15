@@ -16,13 +16,7 @@ export function useUserGuide() {
   });
 
   useEffect(() => {
-    // Check age verification
-    const ageVerified = localStorage.getItem('ageVerified');
-    const ageVerifiedDate = localStorage.getItem('ageVerifiedDate');
-    
-    // Check if age verification is still valid (24 hours)
-    const isAgeVerificationValid = ageVerified && ageVerifiedDate && 
-      (Date.now() - new Date(ageVerifiedDate).getTime()) < 24 * 60 * 60 * 1000;
+    const isAgeVerificationValid = sessionStorage.getItem('ageVerified') === 'true';
 
     // Check if user has visited before
     const hasVisited = localStorage.getItem('hasVisited');
