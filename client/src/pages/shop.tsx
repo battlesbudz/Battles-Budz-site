@@ -8,8 +8,8 @@ export default function ShopPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-black">
       <SEOHead
-        title="Shop Battles Budz | Merch and Accessories"
-        description="Shop Battles Budz merch and accessories."
+        title="Shop Battles Budz | Merch and Dual-Cart Battery"
+        description="Shop Battles Budz merch and learn how to order the dual-cart battery."
         canonicalUrl={getCanonicalUrl("/shop")}
         ogType="website"
       />

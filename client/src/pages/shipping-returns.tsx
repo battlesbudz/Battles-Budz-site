@@ -11,7 +11,7 @@ export default function ShippingReturns() {
     <div className="min-h-screen bg-black text-white">
       <SEOHead
         title="Shipping, Returns, and Exchanges | Battles Budz"
-        description="Battles Budz shipping, refund, exchange, and product replacement terms for current merch and accessories."
+        description="Battles Budz shipping, refund, exchange, and product replacement terms for current merch and the dual-cart battery."
         canonicalUrl={getCanonicalUrl("/shipping-returns")}
       />
 
@@ -77,11 +77,11 @@ export default function ShippingReturns() {
 
           <article className="rounded-lg border border-yellow-300/20 bg-zinc-950 p-6">
             <BatteryCharging className="h-7 w-7 text-yellow-300" />
-            <h2 className="mt-5 text-2xl font-black uppercase tracking-[-0.03em] text-white">Battery replacements</h2>
+            <h2 className="mt-5 text-2xl font-black uppercase tracking-[-0.03em] text-white">Dual-Cart Battery replacements</h2>
             <ul className="mt-4 space-y-3 text-zinc-300">
-              <li>If a Battles Budz battery arrives defective or stops working, send a photo or video showing the issue.</li>
+              <li>If a Battles Budz dual-cart battery arrives defective or stops working, send a photo or video showing the issue.</li>
               <li>After review, we will arrange a replacement without unnecessary back-and-forth.</li>
-              <li>Battery sales and wholesale requests are coordinated directly through support.</li>
+              <li>Dual-cart battery sales and wholesale requests are coordinated directly through support.</li>
             </ul>
           </article>
         </section>
@@ -89,7 +89,7 @@ export default function ShippingReturns() {
         <section className="mt-8 rounded-lg border border-white/10 bg-white/[0.03] p-6">
           <h2 className="text-xl font-black uppercase tracking-[0.08em] text-yellow-300">Support contact</h2>
           <p className="mt-3 leading-7 text-zinc-300">
-            For shipping, returns, exchanges, battery replacements, or wholesale questions, email{" "}
+            For shipping, returns, exchanges, dual-cart battery replacements, or wholesale questions, email{" "}
             <a href="mailto:battlesbudz@gmail.com" className="font-bold text-yellow-300 hover:text-yellow-100">
               battlesbudz@gmail.com
             </a>
