@@ -1,4 +1,4 @@
-import { ChevronDown, Clock3, Mail, MapPin, ShieldCheck, ShoppingBag } from "lucide-react";
+import { ChevronDown, Mail, MapPin, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
 
 export default function HeroSection() {
@@ -54,23 +54,6 @@ export default function HeroSection() {
             </Link>
           </div>
 
-          <div className="mx-auto mt-9 grid max-w-4xl gap-4 sm:grid-cols-3">
-            <div className="rounded-xl border border-yellow-300/25 bg-zinc-950/80 p-4">
-              <ShieldCheck className="mx-auto h-6 w-6 text-battles-gold" />
-              <p className="mt-3 text-sm font-black uppercase tracking-[0.16em] text-yellow-200">21+</p>
-              <p className="mt-1 text-sm text-zinc-400">Age-gated brand experience.</p>
-            </div>
-            <div className="rounded-xl border border-yellow-300/25 bg-zinc-950/80 p-4">
-              <MapPin className="mx-auto h-6 w-6 text-battles-gold" />
-              <p className="mt-3 text-sm font-black uppercase tracking-[0.16em] text-yellow-200">Buffalo</p>
-              <p className="mt-1 text-sm text-zinc-400">Retail launch updates shared here.</p>
-            </div>
-            <div className="rounded-xl border border-yellow-300/25 bg-zinc-950/80 p-4">
-              <Clock3 className="mx-auto h-6 w-6 text-battles-gold" />
-              <p className="mt-3 text-sm font-black uppercase tracking-[0.16em] text-yellow-200">Now</p>
-              <p className="mt-1 text-sm text-zinc-400">Official apparel and brand updates.</p>
-            </div>
-          </div>
         </div>
       </div>
 
