@@ -1,4 +1,4 @@
-import { pgTable, text, varchar, serial, timestamp, decimal, integer, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, serial, timestamp, decimal, integer, boolean, unique } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { users } from "./core";
@@ -39,6 +39,16 @@ export const newsletterSubscribers = pgTable("newsletter_subscribers", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const productUpdateSubscribers = pgTable("product_update_subscribers", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull(),
+  productSlug: text("product_slug").notNull(),
+  productName: text("product_name").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+}, (table) => ({
+  emailProductUnique: unique("product_update_subscribers_email_product_slug_unique").on(table.email, table.productSlug),
+}));
+
 export const contactSubmissions = pgTable("contact_submissions", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
@@ -76,6 +86,12 @@ export const insertNewsletterSubscriberSchema = createInsertSchema(newsletterSub
   email: true,
 });
 
+export const insertProductUpdateSubscriberSchema = createInsertSchema(productUpdateSubscribers).pick({
+  email: true,
+  productSlug: true,
+  productName: true,
+});
+
 export const insertContactSubmissionSchema = createInsertSchema(contactSubmissions).pick({
   name: true,
   email: true,
@@ -91,5 +107,7 @@ export type InsertOrderItem = z.infer<typeof insertOrderItemSchema>;
 export type OrderItem = typeof orderItems.$inferSelect;
 export type InsertNewsletterSubscriber = z.infer<typeof insertNewsletterSubscriberSchema>;
 export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
+export type InsertProductUpdateSubscriber = z.infer<typeof insertProductUpdateSubscriberSchema>;
+export type ProductUpdateSubscriber = typeof productUpdateSubscribers.$inferSelect;
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;

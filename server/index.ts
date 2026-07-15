@@ -2,7 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { ensureNewsletterSubscribersTable } from "./db";
+import { ensureNewsletterSubscribersTable, ensureProductUpdateSubscribersTable } from "./db";
 
 const app = express();
 app.use(express.json());
@@ -41,13 +41,13 @@ app.use((req, res, next) => {
 
 (async () => {
   await ensureNewsletterSubscribersTable();
+  await ensureProductUpdateSubscribersTable();
 
   const server = await registerRoutes(app);
 
   const publicRedirects = [
     { pattern: /^\/(batteries|dual-cart-battery)\/?$/, destination: "/battery" },
     { pattern: /^\/products\/dual-cart-battery\/?$/, destination: "/battery" },
-    { pattern: /^\/products\/(battle-brew|cosmic-chewz|freedom-fog-vapes|heirloom-flower)\/?$/, destination: "/coming-soon" },
     { pattern: /^\/justin-battles-cannabis\/?$/, destination: "/" },
     { pattern: /^\/location(?:\/.*)?$/, destination: "/" },
     { pattern: /^\/community(?:\/.*)?$/, destination: "/" },
