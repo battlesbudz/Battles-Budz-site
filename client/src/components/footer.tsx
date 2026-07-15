@@ -1,8 +1,6 @@
 import { Mail, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
 
-const shopUrl = "https://shop.battlesbudz.com/";
-
 export default function Footer() {
   return (
     <footer id="contact" className="border-t border-yellow-300/20 bg-black text-white">
@@ -13,12 +11,12 @@ export default function Footer() {
             Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York. Shop official apparel now
             and follow the brand for retail launch updates.
           </p>
-          <a
-            href={shopUrl}
+          <Link
+            href="/shop"
             className="mt-6 inline-flex items-center gap-2 rounded-lg bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-200"
           >
             Shop Battles Budz <ShoppingBag className="h-4 w-4" />
-          </a>
+          </Link>
         </div>
 
         <div>
@@ -27,7 +25,7 @@ export default function Footer() {
             <Mail className="h-5 w-5 text-yellow-300" /> battlesbudz@gmail.com
           </a>
           <div className="mt-7 grid gap-3 text-sm text-zinc-400">
-            <a href="/#retail" className="hover:text-yellow-300">Current drops</a>
+            <Link href="/shop" className="hover:text-yellow-300">Current drops</Link>
             <Link href="/battery" className="hover:text-yellow-300">Dual-cart battery</Link>
             <Link href="/coming-soon" className="hover:text-yellow-300">Coming soon products</Link>
             <Link href="/our-story" className="hover:text-yellow-300">Our story</Link>

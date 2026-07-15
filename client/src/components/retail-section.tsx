@@ -1,7 +1,6 @@
 import { ArrowUpRight, BatteryCharging, LockKeyhole, Mail, ShoppingBag } from "lucide-react";
 import { Link } from "wouter";
 
-const shopUrl = "https://shop.battlesbudz.com/";
 const teeUrl = "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt";
 const hoodieUrl = "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie";
 const longSleeveUrl = "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve";
@@ -127,12 +126,6 @@ export default function RetailSection() {
             Start with official Battles Budz apparel, then use the quick links below for battery orders, wholesale
             requests, and future cannabis menu updates.
           </p>
-          <a
-            href={shopUrl}
-            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-battles-gold px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-300"
-          >
-            Shop the apparel store <ArrowUpRight className="h-5 w-5" />
-          </a>
         </div>
 
         <div id="shop" className="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-4">

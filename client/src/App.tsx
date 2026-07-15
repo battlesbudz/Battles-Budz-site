@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Home from "@/pages/home";
+import ShopPage from "@/pages/shop";
 import BatteryPage from "@/pages/battery";
 import ComingSoonPage from "@/pages/coming-soon";
 import OurStoryPage from "@/pages/our-story";
@@ -17,30 +18,20 @@ import ShippingReturns from "./pages/shipping-returns";
 import { AgeVerificationModal } from "@/components/user-guide/age-verification-modal";
 import { useUserGuide } from "@/hooks/useUserGuide";
 
-const shopUrl = "https://shop.battlesbudz.com/";
+const shopHashes = new Set(["retail", "shop"]);
 const batteryHashes = new Set(["dual-cart-battery"]);
 const ourStoryHashes = new Set(["about", "services", "team", "events"]);
-
-function ExternalRedirect({ to }: { to: string }) {
-  useEffect(() => {
-    window.location.replace(to);
-  }, [to]);
-
-  return (
-    <main className="min-h-screen bg-black px-5 py-24 text-center text-white">
-      <p className="text-sm font-black uppercase tracking-[0.18em] text-yellow-300">Opening the Battles Budz shop</p>
-      <a href={to} className="mt-5 inline-block text-lg font-bold text-white underline decoration-yellow-300 underline-offset-4">
-        Continue to the online store
-      </a>
-    </main>
-  );
-}
 
 function ScrollToRouteTop() {
   const [location, setLocation] = useLocation();
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
+
+    if (hash && window.location.pathname === "/" && shopHashes.has(hash)) {
+      setLocation("/shop");
+      return;
+    }
 
     if (hash && window.location.pathname === "/" && batteryHashes.has(hash)) {
       setLocation("/battery");
@@ -70,6 +61,7 @@ function Router() {
     <>
       <Switch>
         <Route path="/" component={Home} />
+        <Route path="/shop" component={ShopPage} />
         <Route path="/battery" component={BatteryPage} />
         <Route path="/coming-soon" component={ComingSoonPage} />
         <Route path="/our-story" component={OurStoryPage} />
@@ -77,7 +69,6 @@ function Router() {
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/shipping-returns" component={ShippingReturns} />
         <Route path="/age-verification" component={AgeVerification} />
-        <Route path="/shop"><ExternalRedirect to={shopUrl} /></Route>
         <Route path="/batteries"><Redirect to="/battery" /></Route>
         <Route path="/dual-cart-battery"><Redirect to="/battery" /></Route>
         <Route path="/products/dual-cart-battery"><Redirect to="/battery" /></Route>
