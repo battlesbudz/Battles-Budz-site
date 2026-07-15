@@ -9,6 +9,7 @@ import ShopPage from "@/pages/shop";
 import BatteryPage from "@/pages/battery";
 import ComingSoonPage from "@/pages/coming-soon";
 import OurStoryPage from "@/pages/our-story";
+import ProductPreviewPage, { productPreviews } from "@/pages/product-preview";
 
 import NotFound from "./pages/not-found";
 import PrivacyPolicy from "./pages/privacy-policy";
@@ -66,6 +67,30 @@ function Router() {
         <Route path="/battery" component={BatteryPage} />
         <Route path="/coming-soon" component={ComingSoonPage} />
         <Route path="/our-story" component={OurStoryPage} />
+        <Route path="/products/freedom-fog-vapes">
+          <ProductPreviewPage product={productPreviews["freedom-fog-vapes"]} />
+        </Route>
+        <Route path="/products/battles-budz-flower">
+          <ProductPreviewPage product={productPreviews["battles-budz-flower"]} />
+        </Route>
+        <Route path="/products/heirloom-flower">
+          <ProductPreviewPage product={productPreviews["heirloom-flower"]} />
+        </Route>
+        <Route path="/products/pre-rolls">
+          <ProductPreviewPage product={productPreviews["pre-rolls"]} />
+        </Route>
+        <Route path="/products/edibles">
+          <ProductPreviewPage product={productPreviews.edibles} />
+        </Route>
+        <Route path="/products/cosmic-chewz">
+          <ProductPreviewPage product={productPreviews["cosmic-chewz"]} />
+        </Route>
+        <Route path="/products/concentrates">
+          <ProductPreviewPage product={productPreviews.concentrates} />
+        </Route>
+        <Route path="/products/battle-brew">
+          <ProductPreviewPage product={productPreviews["battle-brew"]} />
+        </Route>
         <Route path="/privacy-policy" component={PrivacyPolicy} />
         <Route path="/terms-of-service" component={TermsOfService} />
         <Route path="/shipping-returns" component={ShippingReturns} />

@@ -22,3 +22,16 @@ export async function ensureNewsletterSubscribersTable() {
     )
   `);
 }
+
+export async function ensureProductUpdateSubscribersTable() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS product_update_subscribers (
+      id serial PRIMARY KEY,
+      email text NOT NULL,
+      product_slug text NOT NULL,
+      product_name text NOT NULL,
+      created_at timestamp NOT NULL DEFAULT now(),
+      CONSTRAINT product_update_subscribers_email_product_slug_unique UNIQUE (email, product_slug)
+    )
+  `);
+}

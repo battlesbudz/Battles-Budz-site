@@ -17,23 +17,23 @@ const categories: ShopCategory[] = [
   },
   {
     name: "Vapes",
-    href: "/coming-soon",
+    href: "/products/freedom-fog-vapes",
   },
   {
     name: "Flower",
-    href: "/coming-soon",
+    href: "/products/battles-budz-flower",
   },
   {
     name: "Pre-rolls",
-    href: "/coming-soon",
+    href: "/products/pre-rolls",
   },
   {
     name: "Edibles",
-    href: "/coming-soon",
+    href: "/products/edibles",
   },
   {
     name: "Concentrates",
-    href: "/coming-soon",
+    href: "/products/concentrates",
   },
 ];
 
