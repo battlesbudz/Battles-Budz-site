@@ -16,6 +16,7 @@ import TermsOfService from "./pages/terms-of-service";
 import AgeVerification from "./pages/age-verification";
 import ShippingReturns from "./pages/shipping-returns";
 import { AgeVerificationModal } from "@/components/user-guide/age-verification-modal";
+import NewsletterSignupPopup from "@/components/newsletter-signup-popup";
 import { useUserGuide } from "@/hooks/useUserGuide";
 
 const shopHashes = new Set(["retail", "shop"]);
@@ -105,6 +106,7 @@ function App() {
           onVerified={userGuide.handleAgeVerified}
           onDenied={userGuide.handleAgeDenied}
         />
+        <NewsletterSignupPopup isAgeGateOpen={userGuide.showAgeVerification} />
 
       </TooltipProvider>
     </QueryClientProvider>
