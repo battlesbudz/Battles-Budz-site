@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { ensureNewsletterSubscribersTable } from "./db";
 
 const app = express();
 app.use(express.json());
@@ -39,6 +40,8 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  await ensureNewsletterSubscribersTable();
+
   const server = await registerRoutes(app);
 
   const publicRedirects = [
