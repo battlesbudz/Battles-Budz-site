@@ -19,7 +19,7 @@ export default function NewsletterSection() {
     onSuccess: () => {
       toast({
         title: "You're on the list.",
-        description: "We'll keep you updated on the Buffalo launch and current drops.",
+        description: "We'll send product drops, launch news, and brand updates.",
       });
       setEmail("");
       queryClient.invalidateQueries({ queryKey: ["/api/newsletter/subscribers"] });
@@ -45,10 +45,10 @@ export default function NewsletterSection() {
       <div className="mx-auto grid max-w-7xl gap-10 px-5 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:px-8">
         <div>
           <p className="inline-flex items-center gap-2 border border-yellow-300/40 bg-yellow-300/10 px-3 py-2 text-xs font-black uppercase tracking-[0.18em] text-yellow-200">
-            <Mail className="h-4 w-4" /> Buffalo updates
+            <Mail className="h-4 w-4" /> All updates
           </p>
           <h2 className="mt-5 max-w-2xl text-5xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
-            Join the Buffalo update list.
+            Join the Battles Budz list.
           </h2>
           <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-300">
             Be first to hear about apparel drops, battery availability, community events, and retail launch announcements.
