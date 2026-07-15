@@ -5,7 +5,6 @@ type CategoryStatus = "coming-soon" | "available";
 
 interface ShopCategory {
   name: string;
-  description: string;
   href: string;
   status: CategoryStatus;
   cta: string;
@@ -14,49 +13,42 @@ interface ShopCategory {
 const categories: ShopCategory[] = [
   {
     name: "Pre-rolls",
-    description: "Cannabis pre-rolls will be available after retail launch.",
     href: "/coming-soon",
     status: "coming-soon",
     cta: "Coming soon",
   },
   {
     name: "Edibles",
-    description: "Gummies, infused bites, and edible drops are planned for retail.",
     href: "/coming-soon",
     status: "coming-soon",
     cta: "Coming soon",
   },
   {
     name: "Vapes",
-    description: "Cannabis vape products will launch only after final retail clearance.",
     href: "/coming-soon",
     status: "coming-soon",
     cta: "Coming soon",
   },
   {
     name: "Flower",
-    description: "Flower will be part of the cannabis menu when retail goes live.",
     href: "/coming-soon",
     status: "coming-soon",
     cta: "Coming soon",
   },
   {
     name: "Accessories",
-    description: "Shop the Battles Budz dual-cart battery and accessory updates.",
     href: "/battery",
     status: "available",
     cta: "View accessories",
   },
   {
     name: "Concentrates",
-    description: "Extracts and concentrates are planned for the retail menu.",
     href: "/coming-soon",
     status: "coming-soon",
     cta: "Coming soon",
   },
   {
     name: "Merchandise",
-    description: "Shop Battles Budz apparel and official brand merch.",
     href: "/shop",
     status: "available",
     cta: "Shop merch",
@@ -95,30 +87,29 @@ export default function ShopByCategorySection() {
               <Link
                 key={category.name}
                 href={category.href}
-                className="group flex min-h-72 min-w-[78vw] snap-start flex-col justify-between rounded-2xl border border-yellow-300/20 bg-zinc-950 p-6 transition hover:-translate-y-1 hover:border-yellow-300/60 hover:bg-zinc-900 sm:min-w-[22rem]"
+                className="group flex min-h-44 min-w-[11.25rem] snap-start flex-col justify-between rounded-xl border border-yellow-300/20 bg-zinc-950 p-4 transition hover:-translate-y-1 hover:border-yellow-300/60 hover:bg-zinc-900 sm:min-w-[14rem]"
               >
                 <div>
-                  <div className="flex items-center justify-between gap-4">
+                  <div className="flex items-center justify-between gap-3">
                     <span
-                      className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-[0.65rem] font-black uppercase tracking-[0.16em] ${
+                      className={`inline-flex items-center gap-1.5 rounded-full border px-2 py-1 text-[0.58rem] font-black uppercase tracking-[0.13em] ${
                         isComingSoon
                           ? "border-zinc-600 bg-zinc-900 text-zinc-300"
                           : "border-yellow-300/50 bg-yellow-300/15 text-yellow-200"
                       }`}
                     >
-                      {isComingSoon ? <Clock className="h-3.5 w-3.5" /> : <ShoppingBag className="h-3.5 w-3.5" />}
+                      {isComingSoon ? <Clock className="h-3 w-3" /> : <ShoppingBag className="h-3 w-3" />}
                       {isComingSoon ? "Coming soon" : "Available now"}
                     </span>
-                    <ArrowRight className="h-5 w-5 text-yellow-300 transition group-hover:translate-x-1" />
+                    <ArrowRight className="h-4 w-4 shrink-0 text-yellow-300 transition group-hover:translate-x-1" />
                   </div>
-                  <h3 className="mt-8 text-4xl font-black uppercase leading-none tracking-[-0.06em]">
+                  <h3 className="mt-7 text-2xl font-black uppercase leading-none tracking-[-0.05em] sm:text-3xl">
                     {category.name}
                   </h3>
-                  <p className="mt-5 leading-7 text-zinc-400">{category.description}</p>
                 </div>
 
                 <span
-                  className={`mt-8 inline-flex items-center justify-center rounded-lg px-5 py-3 text-xs font-black uppercase tracking-[0.14em] transition ${
+                  className={`mt-7 inline-flex items-center justify-center rounded-lg px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.12em] transition ${
                     isComingSoon
                       ? "border border-zinc-700 text-zinc-300 group-hover:border-yellow-300/60 group-hover:text-yellow-200"
                       : "bg-battles-gold text-black group-hover:bg-yellow-300"
