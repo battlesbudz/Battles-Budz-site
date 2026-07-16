@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowLeft, Menu, X } from "lucide-react";
 import { Link } from "wouter";
+import OcmComplianceNotice from "@/components/ocm-compliance-notice";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 
@@ -118,6 +119,7 @@ function BatteryNavigation() {
 function BatteryFooter() {
   return (
     <footer id="contact" className="border-t border-[rgba(255,220,18,.28)] bg-black">
+      <OcmComplianceNotice />
       <div className={`${contentWidth} grid gap-[50px] py-14 min-[901px]:grid-cols-2`}>
         <div>
           <img
