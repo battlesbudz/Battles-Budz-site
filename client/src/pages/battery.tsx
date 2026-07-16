@@ -159,6 +159,12 @@ function BatteryFooter() {
             <Link href="/privacy-policy" className="hover:text-[#ffdc12]">
               Privacy Policy
             </Link>
+            <Link href="/terms-of-service" className="hover:text-[#ffdc12]">
+              Terms of service
+            </Link>
+            <Link href="/age-verification" className="hover:text-[#ffdc12]">
+              21+ information
+            </Link>
           </div>
         </div>
       </div>
