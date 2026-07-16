@@ -1,6 +1,10 @@
-import { ocmCompliance, getCurrentCannabisWarning } from "@/data/compliance";
+import { ocmCompliance, getCurrentCannabisWarning, hasOfficialOcmLicenseInfo } from "@/data/compliance";
 
 export default function OcmComplianceNotice() {
+  if (!hasOfficialOcmLicenseInfo()) {
+    return null;
+  }
+
   const currentWarning = getCurrentCannabisWarning();
 
   return (
