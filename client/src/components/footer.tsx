@@ -1,4 +1,4 @@
-import { Mail, ShoppingBag } from "lucide-react";
+import { Mail } from "lucide-react";
 import { Link } from "wouter";
 import OcmComplianceNotice from "@/components/ocm-compliance-notice";
 
@@ -12,12 +12,6 @@ export default function Footer() {
           <p className="mt-5 max-w-lg leading-7 text-zinc-300">
             Battles Budz is a veteran-owned cannabis microbusiness coming to Buffalo, New York.
           </p>
-          <Link
-            href="/shop"
-            className="mt-6 inline-flex items-center gap-2 rounded-lg bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-200"
-          >
-            Apparel <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-          </Link>
         </div>
 
         <div>
