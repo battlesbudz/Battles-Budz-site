@@ -19,7 +19,7 @@ export const shopCategories: ShopCategory[] = [
   {
     name: "Vapes",
     href: "/products/freedom-fog-vapes",
-    imageUrl: "/media/category-vapes.jpg",
+    imageUrl: "/media/category-vapes-510.jpg",
     imagePosition: "center",
   },
   {
