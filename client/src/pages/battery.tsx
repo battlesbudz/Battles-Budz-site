@@ -36,25 +36,25 @@ export default function BatteryPage() {
                 <BatteryCharging className="h-4 w-4" aria-hidden="true" /> Battles Budz Dual-Cart Battery
               </p>
               <h1 className="mt-6 text-5xl font-black uppercase leading-none tracking-[-0.06em] sm:text-7xl">
-                Dual-Cart <span className="text-battles-gold">Battery</span>.
+                Two carts. <span className="text-battles-gold">One device.</span>
               </h1>
               <p className="mt-5 text-3xl font-black text-battles-gold">$60</p>
               <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-300">
-                A branded empty battery built for two compatible 510-thread cartridges. Compact, simple, and designed
-                for customers who want the Battles Budz look. No cannabis products are included.
+                A compact 510-thread battery built to hold two compatible cartridges at once. Clean, simple, and
+                finished with the Battles Budz look.
               </p>
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
                 <a
                   href={purchaseHref}
                   className="inline-flex items-center justify-center gap-2 rounded-lg bg-battles-gold px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-300"
                 >
-                  Email to purchase <Mail className="h-5 w-5" aria-hidden="true" />
+                  Email to Order <Mail className="h-5 w-5" aria-hidden="true" />
                 </a>
                 <a
                   href={wholesaleHref}
                   className="inline-flex items-center justify-center gap-2 rounded-lg border border-yellow-300 px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
                 >
-                  Email for wholesale <Store className="h-5 w-5" aria-hidden="true" />
+                  Wholesale Pricing <Store className="h-5 w-5" aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -103,6 +103,9 @@ export default function BatteryPage() {
               </p>
             </article>
           </div>
+          <p className="mx-auto mt-8 max-w-7xl text-sm leading-6 text-zinc-500">
+            Battery only. Cartridges and cannabis products are not included.
+          </p>
         </section>
 
         <section className="bg-black px-5 py-16 text-center sm:px-6 lg:px-8">
