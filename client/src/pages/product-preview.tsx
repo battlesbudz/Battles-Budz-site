@@ -9,8 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { productUpdateProducts, type ProductUpdateSlug } from "@shared/product-updates";
 import freedomFogImage from "@assets/file_0000000084c86230b8826b578af0fa18_1752398828783.png";
-import flowerImage from "@assets/Screenshot_20250713_025017_Gallery_1752389462073.jpg";
-import ediblesImage from "@assets/20240228_223118_1752399041772.png";
+import cosmicChewzImage from "@assets/20240228_223118_1752399041772.png";
 import battleBrewImage from "@assets/file_00000000a95c61f9a7846b7990b6738f_1752399026270.png";
 
 export type ProductPreview = {
@@ -22,12 +21,12 @@ export type ProductPreview = {
 
 const productImages: Record<ProductUpdateSlug, string> = {
   "freedom-fog-vapes": freedomFogImage,
-  "battles-budz-flower": flowerImage,
-  "heirloom-flower": flowerImage,
-  "pre-rolls": "/media/battles-budz-logo-cropped.png",
-  edibles: ediblesImage,
-  "cosmic-chewz": ediblesImage,
-  concentrates: "/media/battles-budz-logo-cropped.png",
+  "battles-budz-flower": "/media/category-flower.jpg",
+  "heirloom-flower": "/media/category-flower.jpg",
+  "pre-rolls": "/media/category-pre-rolls.jpg",
+  edibles: cosmicChewzImage,
+  "cosmic-chewz": cosmicChewzImage,
+  concentrates: "/media/category-concentrates.jpg",
   "battle-brew": battleBrewImage,
 };
 
