@@ -94,6 +94,100 @@ test("the battery mobile menu preserves the same keyboard contract", async ({ pa
   await expect(menuButton).toBeFocused();
 });
 
+test("the battery hero presents the product as a silent inline background video", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "The media contract is viewport-independent and covered once here.");
+
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/battery");
+
+  const heroMedia = page.getByRole("img", { name: "Battles Budz dual-cart battery", exact: true });
+  await expect(heroMedia).toBeVisible();
+
+  const video = heroMedia.locator("video");
+  await expect(video).toHaveCount(1);
+  expect(
+    await video.evaluate((element: HTMLVideoElement) => ({
+      autoplay: element.autoplay,
+      controls: element.controls,
+      loop: element.loop,
+      muted: element.muted,
+      playsInline: element.playsInline,
+      poster: element.getAttribute("poster"),
+      source: element.querySelector("source")?.getAttribute("src"),
+    })),
+  ).toEqual({
+    autoplay: true,
+    controls: false,
+    loop: true,
+    muted: true,
+    playsInline: true,
+    poster: "/media/battles-budz-dual-cart-battery-poster.jpg",
+    source: "/media/battles-budz-dual-cart-battery-loop.mp4",
+  });
+});
+
+test("the battery hero uses its static poster when reduced motion is requested", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "The media preference is viewport-independent and covered once here.");
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/battery");
+
+  const heroMedia = page.getByRole("img", { name: "Battles Budz dual-cart battery", exact: true });
+  await expect(heroMedia).toBeVisible();
+  await expect(heroMedia.locator("video")).toHaveCount(0);
+  await expect(heroMedia.locator('img[src="/media/battles-budz-dual-cart-battery-poster.jpg"]')).toBeVisible();
+});
+
+test("the battery background video can be paused and resumed from the keyboard", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "The playback control contract is viewport-independent and covered once here.");
+
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/battery");
+
+  const video = page.getByRole("img", { name: "Battles Budz dual-cart battery", exact: true }).locator("video");
+  await expect.poll(() => video.evaluate((element: HTMLVideoElement) => element.paused)).toBe(false);
+
+  const control = page.getByRole("button", { name: /^(Pause|Play) product video$/ });
+  await expect(control).toHaveAccessibleName("Pause product video");
+  await control.focus();
+  await page.keyboard.press("Enter");
+  await expect.poll(() => video.evaluate((element: HTMLVideoElement) => element.paused)).toBe(true);
+  await expect(control).toHaveAccessibleName("Play product video");
+
+  await page.keyboard.press("Enter");
+  await expect.poll(() => video.evaluate((element: HTMLVideoElement) => element.paused)).toBe(false);
+  await expect(control).toHaveAccessibleName("Pause product video");
+});
+
+test("the battery video control remains visible and touch-sized on mobile", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("mobile"), "The responsive control contract is covered in mobile projects.");
+
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/battery");
+
+  const control = page.getByRole("button", { name: /^(Pause|Play) product video$/ });
+  await expect(control).toBeVisible();
+
+  const bounds = await control.boundingBox();
+  expect(bounds).not.toBeNull();
+  expect(bounds!.width).toBeGreaterThanOrEqual(44);
+  expect(bounds!.height).toBeGreaterThanOrEqual(44);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
 test("the skip link moves keyboard focus to the main content", async ({ page }) => {
   await page.addInitScript(() => {
     window.sessionStorage.setItem("ageVerified", "true");

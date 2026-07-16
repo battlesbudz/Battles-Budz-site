@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Menu, X } from "lucide-react";
+import { ArrowLeft, Menu, Pause, Play, X } from "lucide-react";
 import { Link } from "wouter";
 import PublicPageLayout from "@/components/public-page-layout";
 import SEOHead from "@/components/seo/SEOHead";
@@ -28,6 +28,116 @@ const navigationLinks = [
   { label: "Our Story", href: "/our-story" },
   { label: "Contact", href: "#contact", external: true },
 ];
+
+function usePrefersReducedMotion() {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(() =>
+    typeof window === "undefined" ? false : window.matchMedia("(prefers-reduced-motion: reduce)").matches,
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const handleChange = (event: MediaQueryListEvent) => setPrefersReducedMotion(event.matches);
+
+    setPrefersReducedMotion(mediaQuery.matches);
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
+  return prefersReducedMotion;
+}
+
+function BatteryHeroMedia({ prefersReducedMotion }: { prefersReducedMotion: boolean }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const softenedMediaStyle = {
+    WebkitMaskImage: "radial-gradient(ellipse 72% 82% at center, black 48%, transparent 100%)",
+    maskImage: "radial-gradient(ellipse 72% 82% at center, black 48%, transparent 100%)",
+  };
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    if (video.paused) {
+      void video.play().catch(() => setIsPlaying(false));
+    } else {
+      video.pause();
+    }
+  };
+
+  return (
+    <>
+      <div
+        aria-hidden="true"
+        className="absolute -inset-10 z-0 scale-110 bg-cover bg-center opacity-55 [filter:blur(36px)_brightness(.24)_saturate(.72)]"
+        style={{ backgroundImage: "url('/media/battles-budz-dual-cart-battery-poster.jpg')" }}
+      />
+      <div
+        role="img"
+        aria-label="Battles Budz dual-cart battery"
+        className="absolute inset-0 z-10 overflow-hidden"
+      >
+        {prefersReducedMotion ? (
+          <img
+            src="/media/battles-budz-dual-cart-battery-poster.jpg"
+            alt=""
+            className="absolute inset-0 h-full w-full scale-[1.03] object-contain [filter:blur(.6px)_brightness(.76)_contrast(1.04)_saturate(.82)]"
+            style={softenedMediaStyle}
+          />
+        ) : (
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full scale-[1.03] object-contain [filter:blur(.6px)_brightness(.76)_contrast(1.04)_saturate(.82)]"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/media/battles-budz-dual-cart-battery-poster.jpg"
+            aria-hidden="true"
+            onPlay={() => setIsPlaying(true)}
+            onPause={() => setIsPlaying(false)}
+            style={softenedMediaStyle}
+          >
+            <source src="/media/battles-budz-dual-cart-battery-loop.mp4" type="video/mp4" />
+          </video>
+        )}
+      </div>
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(90deg,#050505_0%,transparent_20%,transparent_80%,#050505_100%)] opacity-80"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(180deg,#050505_0%,transparent_13%,transparent_84%,#050505_100%)] opacity-70"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-20 -right-16 z-20 h-48 w-48 rotate-45 border border-white/10 bg-white/[.035]"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-10 right-20 z-20 h-28 w-28 rotate-45 border border-[rgba(255,220,18,.22)] bg-[rgba(255,220,18,.055)]"
+      />
+      <span
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-6 left-5 z-20 h-20 w-1 bg-[#ffdc12] opacity-70"
+      />
+
+      {!prefersReducedMotion ? (
+        <button
+          type="button"
+          onClick={togglePlayback}
+          aria-label={isPlaying ? "Pause product video" : "Play product video"}
+          className="absolute bottom-4 right-4 z-30 grid min-h-11 min-w-11 place-items-center border border-[rgba(255,220,18,.65)] bg-[rgba(0,0,0,.78)] text-[#ffdc12] transition-colors hover:bg-[#ffdc12] hover:text-[#050505]"
+        >
+          {isPlaying ? <Pause className="h-5 w-5" aria-hidden="true" /> : <Play className="h-5 w-5" aria-hidden="true" />}
+        </button>
+      ) : null}
+    </>
+  );
+}
 
 function BatteryNavigation() {
   const [open, setOpen] = useState(false);
@@ -216,6 +326,8 @@ function BatteryFooter() {
 }
 
 export default function BatteryPage() {
+  const prefersReducedMotion = usePrefersReducedMotion();
+
   return (
     <div
       className="min-h-screen bg-[#181818] text-[#f7f7f2]"
@@ -244,6 +356,16 @@ export default function BatteryPage() {
                 backgroundImage:
                   "radial-gradient(circle at 80% 30%, rgba(255,220,18,.20), transparent 30%), radial-gradient(circle at 10% 110%, rgba(255,220,18,.10), transparent 42%)",
               }}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-[190px] -left-[180px] h-[430px] w-[700px] bg-[#ffdc12] opacity-[.045]"
+              style={{ clipPath: "polygon(0 18%, 100% 0, 76% 100%, 0 100%)" }}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-[240px] left-[130px] h-[390px] w-[560px] bg-white opacity-[.018]"
+              style={{ clipPath: "polygon(12% 0, 100% 34%, 75% 100%, 0 75%)" }}
             />
 
             <div
@@ -314,18 +436,27 @@ export default function BatteryPage() {
                   aria-hidden="true"
                   className="absolute h-px w-[360px] rotate-[36deg] bg-gradient-to-r from-transparent via-[#ffdc12] to-transparent opacity-35"
                 />
-                <img
-                  src="/media/battles-budz-dual-cart-battery-poster.jpg"
-                  alt="Battles Budz dual-cart battery"
-                  className="relative z-10 h-[540px] w-[min(78%,390px)] object-cover object-center shadow-[0_20px_80px_rgba(0,0,0,.72)] [filter:contrast(1.08)_saturate(.82)] max-[900px]:h-[460px]"
-                />
+                <BatteryHeroMedia prefersReducedMotion={prefersReducedMotion} />
               </div>
             </div>
           </section>
 
-          <section className="border-b border-[rgba(255,220,18,.16)] bg-[#080808] py-[100px] max-[900px]:py-[72px]">
-            <div className={`${contentWidth} grid items-start gap-[70px] min-[901px]:grid-cols-[.8fr_1.2fr]`}>
-              <div>
+          <section className="relative overflow-hidden border-b border-[rgba(255,220,18,.16)] bg-[#080808] py-[100px] max-[900px]:py-[72px]">
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -left-[90px] top-0 h-full w-[44%] bg-[#ffdc12] opacity-[.045]"
+              style={{ clipPath: "polygon(0 0, 100% 0, 76% 100%, 0 100%)" }}
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-[150px] left-[18%] h-[360px] w-[360px] rotate-45 border border-white/[.04] bg-white/[.018]"
+            />
+            <div className={`${contentWidth} relative z-10 grid items-start gap-[70px] min-[901px]:grid-cols-[.8fr_1.2fr]`}>
+              <div className="relative pl-7">
+                <span
+                  aria-hidden="true"
+                  className="absolute left-0 top-0 h-44 w-[5px] bg-[#ffdc12]"
+                />
                 <span className={eyebrowClass}>
                   <span
                     aria-hidden="true"
@@ -373,6 +504,22 @@ export default function BatteryPage() {
               <div className="relative overflow-hidden border border-[rgba(255,220,18,.28)] bg-[linear-gradient(100deg,rgba(255,220,18,.11),transparent_55%)] bg-[#0d0d0d] p-[54px] max-[900px]:px-[26px] max-[900px]:py-[34px]">
                 <span
                   aria-hidden="true"
+                  className="pointer-events-none absolute bottom-7 left-7 h-14 w-1 bg-[#ffdc12] opacity-90"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-7 left-12 h-10 w-1 bg-[#ffdc12] opacity-65"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute bottom-7 left-[68px] h-6 w-1 bg-[#ffdc12] opacity-40"
+                />
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute -bottom-24 -right-20 h-64 w-64 rotate-45 border border-white/[.045] bg-white/[.018]"
+                />
+                <span
+                  aria-hidden="true"
                   className="pointer-events-none absolute right-[30px] top-[-46px] text-[300px] leading-none text-[rgba(255,220,18,.06)]"
                   style={displayFont}
                 >
@@ -402,6 +549,14 @@ export default function BatteryPage() {
             >
               BB
             </span>
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-28 -right-20 h-72 w-72 rotate-45 border border-black/10 bg-black/[.055]"
+            />
+            <span
+              aria-hidden="true"
+              className="pointer-events-none absolute -bottom-16 right-40 h-44 w-44 rotate-45 border border-black/10 bg-black/[.035]"
+            />
             <div className={`${contentWidth} relative z-10`}>
               <span className="inline-flex items-center gap-[10px] border border-[rgba(0,0,0,.45)] bg-[rgba(0,0,0,.08)] px-[14px] py-[10px] text-xs font-black uppercase tracking-[.16em] text-[#050505]">
                 <span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-[#050505]" />
@@ -413,6 +568,7 @@ export default function BatteryPage() {
               >
                 Give customers a reason to buy two.
               </h2>
+              <span aria-hidden="true" className="mb-8 block h-1 w-24 bg-[#050505]" />
               <p className="mb-[21px] max-w-[840px] text-[21px] leading-[1.7]">
                 Add a veteran-owned cannabis microbusiness brand to your shelves and give customers a reason to buy two
                 carts at once.
