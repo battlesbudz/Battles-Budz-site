@@ -169,7 +169,7 @@ function BatteryFooter() {
         </div>
       </div>
       <div className="border-t border-[#171717] px-[22px] py-[22px] text-center text-xs text-[#777]">
-        © 2026 Battles Budz LLC. Buffalo, New York. Opening soon.
+        © {new Date().getFullYear()} Battles Budz LLC. Buffalo, New York. Opening soon.
       </div>
     </footer>
   );
