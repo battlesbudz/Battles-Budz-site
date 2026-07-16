@@ -1,8 +1,6 @@
 import { ArrowLeft, ArrowUpRight, Bell, Mail, Sparkles } from "lucide-react";
 import { Link } from "wouter";
-import Navigation from "@/components/navigation";
 import NewsletterSection from "@/components/newsletter-section";
-import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 import cosmicChewzImg from "@assets/20240228_223118_1752399041772.png";
@@ -59,7 +57,6 @@ export default function ComingSoonPage() {
         description="Explore the Battles Budz product lineup and join the update list for product drops, events, and launch news."
         canonicalUrl={getCanonicalUrl("/coming-soon")}
       />
-      <Navigation />
 
       <main id="main-content" className="pt-24">
         <section className="border-b border-yellow-300/20 bg-black px-5 py-16 sm:px-6 lg:px-8">
@@ -130,7 +127,6 @@ export default function ComingSoonPage() {
         <NewsletterSection />
       </main>
 
-      <Footer />
     </div>
   );
 }

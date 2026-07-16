@@ -1,21 +1,26 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link } from "wouter";
+import SEOHead from "@/components/seo/SEOHead";
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
-
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
-          </p>
-        </CardContent>
-      </Card>
+    <div className="min-h-screen bg-black text-white">
+      <SEOHead
+        title="Page Not Found | Battles Budz"
+        description="The page you’re looking for isn’t here."
+        noIndex
+      />
+      <main id="main-content" className="mx-auto flex min-h-[70vh] max-w-5xl flex-col justify-center px-5 pb-16 pt-32 lg:px-8">
+        <h1 className="text-5xl font-black uppercase leading-none tracking-[-0.05em] text-white sm:text-7xl">
+          Page not found.
+        </h1>
+        <p className="mt-6 text-lg leading-8 text-zinc-300">The page you’re looking for isn’t here.</p>
+        <Link
+          href="/"
+          className="mt-8 inline-flex min-h-12 w-fit items-center justify-center border border-yellow-300 bg-yellow-300 px-6 text-sm font-black uppercase tracking-[0.14em] text-black transition-colors hover:bg-yellow-200"
+        >
+          Back to home
+        </Link>
+      </main>
     </div>
   );
 }

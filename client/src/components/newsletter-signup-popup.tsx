@@ -22,6 +22,7 @@ interface NewsletterSignupPopupProps {
 
 export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignupPopupProps) {
   const [email, setEmail] = useState("");
+  const [formError, setFormError] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -59,6 +60,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
     onSuccess: () => {
       sessionStorage.setItem(POPUP_SUBSCRIBED_KEY, "true");
       setEmail("");
+      setFormError("");
       setIsOpen(false);
       toast({
         title: "You're on the list.",
@@ -72,6 +74,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
       if (alreadySubscribed) {
         sessionStorage.setItem(POPUP_SUBSCRIBED_KEY, "true");
         setEmail("");
+        setFormError("");
         setIsOpen(false);
         toast({
           title: "You're already on the list.",
@@ -80,22 +83,25 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
         return;
       }
 
-      toast({
-        title: "Subscription error",
-        description: error.message || "Failed to subscribe. Please try again.",
-        variant: "destructive",
-      });
+      setFormError("We couldn’t sign you up. Please try again.");
     },
   });
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!email || newsletterMutation.isPending) {
+    if (newsletterMutation.isPending) {
       return;
     }
 
-    newsletterMutation.mutate(email);
+    const emailAddress = email.trim();
+    if (!/^\S+@\S+\.\S+$/.test(emailAddress)) {
+      setFormError("Enter a valid email address.");
+      return;
+    }
+
+    setFormError("");
+    newsletterMutation.mutate(emailAddress);
   };
 
   return (
@@ -122,7 +128,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
           </DialogHeader>
         </div>
 
-        <form className="space-y-4 px-6 pb-6" onSubmit={handleSubmit}>
+        <form className="space-y-4 px-6 pb-6" onSubmit={handleSubmit} noValidate aria-busy={newsletterMutation.isPending}>
           <label className="sr-only" htmlFor="newsletter-popup-email">
             Email address for Battles Budz updates
           </label>
@@ -133,10 +139,22 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
             placeholder="Enter your email address"
             autoComplete="email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            className="min-h-12 rounded-none border-white/15 bg-black text-white placeholder:text-zinc-400 focus:border-yellow-300"
+            onChange={(event) => {
+              setEmail(event.target.value);
+              if (formError) {
+                setFormError("");
+              }
+            }}
+            aria-invalid={Boolean(formError)}
+            aria-describedby={formError ? "newsletter-popup-email-error newsletter-popup-email-help" : "newsletter-popup-email-help"}
+            className="min-h-12 rounded-none border-[#737373] bg-black text-white placeholder:text-zinc-400 focus:border-yellow-300"
             required
           />
+          {formError ? (
+            <p id="newsletter-popup-email-error" className="text-sm" role="alert">
+              {formError}
+            </p>
+          ) : null}
           <Button
             type="submit"
             disabled={newsletterMutation.isPending}
@@ -144,7 +162,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
           >
             {newsletterMutation.isPending ? (
               <>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
                 Joining...
               </>
             ) : (
@@ -158,7 +176,7 @@ export default function NewsletterSignupPopup({ isAgeGateOpen }: NewsletterSignu
           >
             Not now
           </button>
-          <p className="text-center text-xs text-zinc-400">Only Battles Budz updates. Unsubscribe anytime.</p>
+          <p id="newsletter-popup-email-help" className="text-center text-xs text-zinc-400">Only Battles Budz updates. Unsubscribe anytime.</p>
         </form>
       </DialogContent>
     </Dialog>

@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useRef, useState } from "react";
+import { useForm, type FieldErrors } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { insertJobApplicationSchema } from "@shared/schema";
@@ -16,7 +16,7 @@ import { Upload, X } from "lucide-react";
 const jobApplicationFormSchema = insertJobApplicationSchema.extend({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
-  email: z.string().email("Invalid email address"),
+  email: z.string().email("Enter a valid email address."),
   phone: z.string().min(10, "Phone number must be at least 10 digits"),
   position: z.string().min(1, "Position is required"),
   experience: z.string().min(1, "Experience level is required"),
@@ -33,6 +33,9 @@ export default function JobApplicationForm() {
   const queryClient = useQueryClient();
   const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const applyButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const resumeInputRef = useRef<HTMLInputElement>(null);
 
   const {
     register,
@@ -61,6 +64,17 @@ export default function JobApplicationForm() {
   const experience = watch("experience");
   const availability = watch("availability");
 
+  useEffect(() => {
+    if (isFormOpen) {
+      closeButtonRef.current?.focus();
+    }
+  }, [isFormOpen]);
+
+  const closeForm = () => {
+    setIsFormOpen(false);
+    window.requestAnimationFrame(() => applyButtonRef.current?.focus());
+  };
+
   const mutation = useMutation({
     mutationFn: async (data: JobApplicationFormData) => {
       const response = await apiRequest("POST", "/api/job/apply", data);
@@ -73,7 +87,7 @@ export default function JobApplicationForm() {
       });
       reset();
       setResumeFile(null);
-      setIsFormOpen(false);
+      closeForm();
       queryClient.invalidateQueries({ queryKey: ["/api/job/applications"] });
     },
     onError: (error: any) => {
@@ -130,17 +144,26 @@ export default function JobApplicationForm() {
     setResumeFile(null);
     setValue("resumeFileName", "");
     setValue("resumeFileData", "");
+    window.requestAnimationFrame(() => resumeInputRef.current?.focus());
   };
 
   const onSubmit = (data: JobApplicationFormData) => {
     mutation.mutate(data);
   };
 
+  const onInvalid = (validationErrors: FieldErrors<JobApplicationFormData>) => {
+    const firstInvalidField = Object.keys(validationErrors)[0];
+    document.getElementById(firstInvalidField)?.focus();
+  };
+
   if (!isFormOpen) {
     return (
       <div className="text-center">
         <Button
+          ref={applyButtonRef}
           onClick={() => setIsFormOpen(true)}
+          aria-expanded={false}
+          aria-controls="job-application-form"
           className="bg-battles-gold text-battles-black px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors"
         >
           Apply Now
@@ -150,20 +173,32 @@ export default function JobApplicationForm() {
   }
 
   return (
-    <div className="bg-gray-900 rounded-xl p-8 mt-8">
+    <div
+      id="job-application-form"
+      role="region"
+      aria-labelledby="job-application-heading"
+      className="bg-gray-900 rounded-xl p-8 mt-8"
+    >
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-2xl font-bold text-battles-gold">Join Our Team</h3>
+        <h3 id="job-application-heading" className="text-2xl font-bold text-battles-gold">Join Our Team</h3>
         <Button
-          onClick={() => setIsFormOpen(false)}
+          ref={closeButtonRef}
+          onClick={closeForm}
           variant="ghost"
           size="sm"
+          aria-label="Close application form"
           className="text-gray-400 hover:text-white"
         >
-          <X className="h-4 w-4" />
+          <X className="h-4 w-4" aria-hidden="true" />
         </Button>
       </div>
 
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={handleSubmit(onSubmit, onInvalid)}
+        className="space-y-6"
+        noValidate
+        aria-busy={mutation.isPending}
+      >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <Label htmlFor="firstName" className="text-white">
@@ -172,11 +207,14 @@ export default function JobApplicationForm() {
             <Input
               id="firstName"
               {...register("firstName")}
-              className="bg-gray-800 border-gray-700 text-white mt-1"
+              autoComplete="given-name"
+              aria-invalid={Boolean(errors.firstName)}
+              aria-describedby={errors.firstName ? "firstName-error" : undefined}
+              className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
               placeholder="Enter your first name"
             />
             {errors.firstName && (
-              <p className="text-red-400 text-sm mt-1">{errors.firstName.message}</p>
+              <p id="firstName-error" className="text-red-400 text-sm mt-1" role="alert">{errors.firstName.message}</p>
             )}
           </div>
 
@@ -187,11 +225,14 @@ export default function JobApplicationForm() {
             <Input
               id="lastName"
               {...register("lastName")}
-              className="bg-gray-800 border-gray-700 text-white mt-1"
+              autoComplete="family-name"
+              aria-invalid={Boolean(errors.lastName)}
+              aria-describedby={errors.lastName ? "lastName-error" : undefined}
+              className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
               placeholder="Enter your last name"
             />
             {errors.lastName && (
-              <p className="text-red-400 text-sm mt-1">{errors.lastName.message}</p>
+              <p id="lastName-error" className="text-red-400 text-sm mt-1" role="alert">{errors.lastName.message}</p>
             )}
           </div>
         </div>
@@ -205,11 +246,14 @@ export default function JobApplicationForm() {
               id="email"
               type="email"
               {...register("email")}
-              className="bg-gray-800 border-gray-700 text-white mt-1"
+              autoComplete="email"
+              aria-invalid={Boolean(errors.email)}
+              aria-describedby={errors.email ? "email-error" : undefined}
+              className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
               placeholder="Enter your email"
             />
             {errors.email && (
-              <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+              <p id="email-error" className="text-red-400 text-sm mt-1" role="alert">{errors.email.message}</p>
             )}
           </div>
 
@@ -221,11 +265,14 @@ export default function JobApplicationForm() {
               id="phone"
               type="tel"
               {...register("phone")}
-              className="bg-gray-800 border-gray-700 text-white mt-1"
+              autoComplete="tel"
+              aria-invalid={Boolean(errors.phone)}
+              aria-describedby={errors.phone ? "phone-error" : undefined}
+              className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
               placeholder="Enter your phone number"
             />
             {errors.phone && (
-              <p className="text-red-400 text-sm mt-1">{errors.phone.message}</p>
+              <p id="phone-error" className="text-red-400 text-sm mt-1" role="alert">{errors.phone.message}</p>
             )}
           </div>
         </div>
@@ -234,8 +281,16 @@ export default function JobApplicationForm() {
           <Label htmlFor="position" className="text-white">
             Position of Interest *
           </Label>
-          <Select value={position} onValueChange={(value) => setValue("position", value)}>
-            <SelectTrigger className="bg-gray-800 border-gray-700 text-white mt-1">
+          <Select
+            value={position}
+            onValueChange={(value) => setValue("position", value, { shouldDirty: true, shouldValidate: true })}
+          >
+            <SelectTrigger
+              id="position"
+              aria-invalid={Boolean(errors.position)}
+              aria-describedby={errors.position ? "position-error" : undefined}
+              className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
+            >
               <SelectValue placeholder="Select a position" />
             </SelectTrigger>
             <SelectContent className="bg-gray-800 border-gray-700">
@@ -251,7 +306,7 @@ export default function JobApplicationForm() {
             </SelectContent>
           </Select>
           {errors.position && (
-            <p className="text-red-400 text-sm mt-1">{errors.position.message}</p>
+            <p id="position-error" className="text-red-400 text-sm mt-1" role="alert">{errors.position.message}</p>
           )}
         </div>
 
@@ -260,8 +315,16 @@ export default function JobApplicationForm() {
             <Label htmlFor="experience" className="text-white">
               Cannabis Industry Experience *
             </Label>
-            <Select value={experience} onValueChange={(value) => setValue("experience", value)}>
-              <SelectTrigger className="bg-gray-800 border-gray-700 text-white mt-1">
+            <Select
+              value={experience}
+              onValueChange={(value) => setValue("experience", value, { shouldDirty: true, shouldValidate: true })}
+            >
+              <SelectTrigger
+                id="experience"
+                aria-invalid={Boolean(errors.experience)}
+                aria-describedby={errors.experience ? "experience-error" : undefined}
+                className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
+              >
                 <SelectValue placeholder="Select experience level" />
               </SelectTrigger>
               <SelectContent className="bg-gray-800 border-gray-700">
@@ -273,7 +336,7 @@ export default function JobApplicationForm() {
               </SelectContent>
             </Select>
             {errors.experience && (
-              <p className="text-red-400 text-sm mt-1">{errors.experience.message}</p>
+              <p id="experience-error" className="text-red-400 text-sm mt-1" role="alert">{errors.experience.message}</p>
             )}
           </div>
 
@@ -281,8 +344,16 @@ export default function JobApplicationForm() {
             <Label htmlFor="availability" className="text-white">
               Availability *
             </Label>
-            <Select value={availability} onValueChange={(value) => setValue("availability", value)}>
-              <SelectTrigger className="bg-gray-800 border-gray-700 text-white mt-1">
+            <Select
+              value={availability}
+              onValueChange={(value) => setValue("availability", value, { shouldDirty: true, shouldValidate: true })}
+            >
+              <SelectTrigger
+                id="availability"
+                aria-invalid={Boolean(errors.availability)}
+                aria-describedby={errors.availability ? "availability-error" : undefined}
+                className="bg-gray-800 border-[#737373] text-white mt-1 focus:border-yellow-300"
+              >
                 <SelectValue placeholder="Select availability" />
               </SelectTrigger>
               <SelectContent className="bg-gray-800 border-gray-700">
@@ -293,7 +364,7 @@ export default function JobApplicationForm() {
               </SelectContent>
             </Select>
             {errors.availability && (
-              <p className="text-red-400 text-sm mt-1">{errors.availability.message}</p>
+              <p id="availability-error" className="text-red-400 text-sm mt-1" role="alert">{errors.availability.message}</p>
             )}
           </div>
         </div>
@@ -305,22 +376,24 @@ export default function JobApplicationForm() {
           <Textarea
             id="coverLetter"
             {...register("coverLetter")}
-            className="bg-gray-800 border-gray-700 text-white mt-1 min-h-[100px]"
+            aria-invalid={Boolean(errors.coverLetter)}
+            aria-describedby={errors.coverLetter ? "coverLetter-error" : undefined}
+            className="bg-gray-800 border-[#737373] text-white mt-1 min-h-[100px] focus:border-yellow-300"
             placeholder="Tell us about yourself and why you'd be a great fit for our team..."
           />
           {errors.coverLetter && (
-            <p className="text-red-400 text-sm mt-1">{errors.coverLetter.message}</p>
+            <p id="coverLetter-error" className="text-red-400 text-sm mt-1" role="alert">{errors.coverLetter.message}</p>
           )}
         </div>
 
         <div>
-          <Label className="text-white">Resume Upload</Label>
+          <p className="text-white">Resume Upload</p>
           <div className="mt-2">
             {resumeFile ? (
               <div className="bg-gray-800 border border-gray-700 rounded-lg p-4">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <Upload className="h-5 w-5 text-battles-gold mr-2" />
+                    <Upload className="h-5 w-5 text-battles-gold mr-2" aria-hidden="true" />
                     <span className="text-white text-sm">{resumeFile.name}</span>
                   </div>
                   <Button
@@ -328,27 +401,30 @@ export default function JobApplicationForm() {
                     variant="ghost"
                     size="sm"
                     onClick={removeFile}
+                    aria-label="Remove uploaded resume"
                     className="text-red-400 hover:text-red-300"
                   >
-                    <X className="h-4 w-4" />
+                    <X className="h-4 w-4" aria-hidden="true" />
                   </Button>
                 </div>
               </div>
             ) : (
               <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 text-center">
-                <Upload className="h-12 w-12 text-battles-gold mx-auto mb-4" />
+                <Upload className="h-12 w-12 text-battles-gold mx-auto mb-4" aria-hidden="true" />
                 <p className="text-white mb-2">Upload your resume</p>
-                <p className="text-gray-400 text-sm mb-4">PDF or Word documents, max 5MB</p>
-                <Input
+                <p id="resume-upload-help" className="text-gray-400 text-sm mb-4">PDF or Word documents, max 5MB</p>
+                <input
+                  ref={resumeInputRef}
                   type="file"
                   accept=".pdf,.doc,.docx"
                   onChange={handleFileUpload}
-                  className="hidden"
+                  className="peer sr-only"
                   id="resume-upload"
+                  aria-describedby="resume-upload-help"
                 />
                 <Label
                   htmlFor="resume-upload"
-                  className="bg-battles-gold text-battles-black px-4 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors cursor-pointer"
+                  className="cursor-pointer rounded-lg bg-battles-gold px-4 py-2 font-semibold text-battles-black transition-colors hover:bg-yellow-400 peer-focus-visible:outline peer-focus-visible:outline-2 peer-focus-visible:outline-offset-4 peer-focus-visible:outline-yellow-300"
                 >
                   Choose File
                 </Label>
@@ -357,10 +433,10 @@ export default function JobApplicationForm() {
           </div>
         </div>
 
-        <div className="flex justify-end space-x-4">
+        <div className="flex flex-col gap-4 sm:flex-row sm:justify-end">
           <Button
             type="button"
-            onClick={() => setIsFormOpen(false)}
+            onClick={closeForm}
             className="bg-gray-700 text-white border border-gray-600 px-6 py-2 rounded-lg font-semibold hover:bg-gray-600 transition-colors"
           >
             Cancel

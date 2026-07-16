@@ -1,7 +1,6 @@
-import React from 'react';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
-import { Shield, Leaf } from 'lucide-react';
+import { Leaf } from 'lucide-react';
 
 interface AgeVerificationModalProps {
   isOpen: boolean;
@@ -20,6 +19,9 @@ export function AgeVerificationModal({ isOpen, onVerified, onDenied }: AgeVerifi
       <DialogContent
         className="max-w-md border-battles-gold/30 bg-battles-black text-white opacity-100 !duration-0 !animate-none data-[state=open]:!animate-none data-[state=open]:!opacity-100 data-[state=closed]:!animate-none"
         hideClose
+        onEscapeKeyDown={(event) => event.preventDefault()}
+        onPointerDownOutside={(event) => event.preventDefault()}
+        onInteractOutside={(event) => event.preventDefault()}
       >
         <DialogHeader className="text-center">
           <DialogTitle className="text-3xl font-bold text-battles-gold">Welcome to Battles Budz</DialogTitle>
@@ -46,6 +48,7 @@ export function AgeVerificationModal({ isOpen, onVerified, onDenied }: AgeVerifi
           {/* Action Buttons */}
           <div className="flex gap-4 pt-4">
             <Button
+              type="button"
               onClick={onDenied}
               variant="outline"
               className="flex-1 border-red-300 bg-black font-semibold text-red-100 hover:border-red-200 hover:bg-red-950 hover:text-white"
@@ -54,6 +57,7 @@ export function AgeVerificationModal({ isOpen, onVerified, onDenied }: AgeVerifi
             </Button>
             
             <Button
+              type="button"
               onClick={handleVerify}
               className="flex-1 bg-yellow-300 font-semibold text-black hover:bg-yellow-200"
             >
