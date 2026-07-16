@@ -4,6 +4,12 @@ const teeUrl = "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt";
 const hoodieUrl = "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie";
 const longSleeveUrl = "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve";
 const tankUrl = "https://shop.battlesbudz.com/products/mens-tank-top";
+const hoodieImageUrl =
+  "https://cdn.shopify.com/s/files/1/0808/6719/7155/files/unisex-heavy-blend-hoodie-black-front-6a55be2f35bdb.jpg?v=1784004153";
+const longSleeveImageUrl =
+  "https://cdn.shopify.com/s/files/1/0808/6719/7155/files/unisex-long-sleeve-shirt-black-front-6a55bca332418.png?v=1784003758";
+const tankImageUrl =
+  "https://cdn.shopify.com/s/files/1/0808/6719/7155/files/mens-staple-tank-top-black-front-6a55c0ec687d2.jpg?v=1784004860";
 
 type AvailableProduct = {
   title: string;
@@ -11,52 +17,19 @@ type AvailableProduct = {
   description: string;
   href: string;
   cta: string;
-  visual: "tee" | "hoodie" | "long-sleeve";
+  imageSrc: string;
+  imageAlt: string;
 };
 
-function HoodiePreview() {
-  return (
-    <div className="relative mx-auto h-52 w-44" role="img" aria-label="Battles Budz hoodie preview">
-      <div className="absolute left-1/2 top-0 h-10 w-24 -translate-x-1/2 rounded-t-full border border-zinc-700 bg-zinc-900" />
-      <div className="absolute inset-x-4 top-8 h-24 rounded-t-[44px] border border-zinc-700 bg-zinc-900" />
-      <div className="absolute inset-x-2 bottom-0 top-16 rounded-b-xl rounded-t-[34px] border border-zinc-700 bg-zinc-950 shadow-inner shadow-black" />
-      <div className="absolute left-2 top-14 h-28 w-7 -rotate-12 rounded-full border border-zinc-700 bg-zinc-950" />
-      <div className="absolute right-2 top-14 h-28 w-7 rotate-12 rounded-full border border-zinc-700 bg-zinc-950" />
-      <img src="/media/battles-budz-logo-cropped.png" alt="" className="absolute left-[4.6rem] top-[5.2rem] w-14" />
-      <div className="absolute bottom-8 left-1/2 h-12 w-28 -translate-x-1/2 rounded-t-lg border border-zinc-800 bg-black/70" />
-    </div>
-  );
-}
-
-function LongSleevePreview() {
-  return (
-    <div className="relative mx-auto h-52 w-52" role="img" aria-label="Battles Budz long sleeve preview">
-      <div className="absolute left-1/2 top-4 h-12 w-32 -translate-x-1/2 rounded-t-full border border-zinc-700 bg-zinc-950" />
-      <div className="absolute left-1/2 top-14 h-32 w-24 -translate-x-1/2 rounded-b-lg border border-zinc-700 bg-black" />
-      <div className="absolute left-8 top-16 h-32 w-7 -rotate-12 rounded-full border border-zinc-700 bg-black" />
-      <div className="absolute right-8 top-16 h-32 w-7 rotate-12 rounded-full border border-zinc-700 bg-black" />
-      <img src="/media/battles-budz-logo-cropped.png" alt="" className="absolute left-1/2 top-[6.5rem] w-20 -translate-x-1/2" />
-    </div>
-  );
-}
-
-function ProductVisual({ type }: { type: AvailableProduct["visual"] }) {
-  if (type === "tee") {
-    return <img src="/media/battles-budz-full-chest-tee.jpg" alt="" className="h-full w-full object-contain" />;
-  }
-
-  if (type === "hoodie") {
-    return <HoodiePreview />;
-  }
-
-  return <LongSleevePreview />;
+function ProductVisual({ product }: { product: AvailableProduct }) {
+  return <img src={product.imageSrc} alt={product.imageAlt} className="h-full w-full object-contain" />;
 }
 
 function AvailableCard({ product }: { product: AvailableProduct }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-yellow-300/25 bg-zinc-950 shadow-xl shadow-black transition hover:-translate-y-1 hover:border-yellow-300/70">
       <div className="flex h-72 items-center justify-center border-b border-white/10 bg-black p-5">
-        <ProductVisual type={product.visual} />
+        <ProductVisual product={product} />
       </div>
       <div className="flex flex-1 flex-col p-6">
         <p className="text-xs font-black uppercase tracking-[0.18em] text-yellow-300">{product.price}</p>
@@ -81,7 +54,8 @@ export default function RetailSection() {
       description: "Signature black tee with the oversized yellow Battles Budz USA logo across the chest.",
       href: teeUrl,
       cta: "Shop T-shirts",
-      visual: "tee",
+      imageSrc: "/media/battles-budz-full-chest-tee.jpg",
+      imageAlt: "Battles Budz full-chest tee",
     },
     {
       title: "Heavy Blend Hoodie",
@@ -89,7 +63,8 @@ export default function RetailSection() {
       description: "Heavy blend black hoodie with the yellow Battles Budz crest on the upper-left chest. U.S. shipping included.",
       href: hoodieUrl,
       cta: "Shop hoodies",
-      visual: "hoodie",
+      imageSrc: hoodieImageUrl,
+      imageAlt: "Battles Budz heavy blend hoodie",
     },
     {
       title: "Long Sleeve",
@@ -97,7 +72,8 @@ export default function RetailSection() {
       description: "Black long sleeve with clean Battles Budz branding and an easy everyday fit.",
       href: longSleeveUrl,
       cta: "Shop long sleeves",
-      visual: "long-sleeve",
+      imageSrc: longSleeveImageUrl,
+      imageAlt: "Battles Budz crest long sleeve",
     },
     {
       title: "Tank Top",
@@ -105,7 +81,8 @@ export default function RetailSection() {
       description: "Sleeveless black logo tank made for warm weather, workouts, and summer events.",
       href: tankUrl,
       cta: "Shop tank tops",
-      visual: "tee",
+      imageSrc: tankImageUrl,
+      imageAlt: "Battles Budz tank top",
     },
   ];
 
