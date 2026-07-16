@@ -79,13 +79,6 @@ export default function Navigation() {
               </Link>
             ),
           )}
-          <Link
-            href="/shop"
-            onClick={() => setOpen(false)}
-            className="mt-4 inline-flex w-full items-center justify-center gap-2 bg-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.16em] text-black"
-          >
-            Apparel <ShoppingBag className="h-4 w-4" />
-          </Link>
         </div>
       ) : null}
     </nav>
