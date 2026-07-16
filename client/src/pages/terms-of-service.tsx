@@ -1,7 +1,6 @@
 
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
-import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 
@@ -13,7 +12,7 @@ export default function TermsOfService() {
         description="Review the terms for using the Battles Budz website and receiving product and opening updates."
         canonicalUrl={getCanonicalUrl("/terms-of-service")}
       />
-      <main id="main-content" className="max-w-4xl mx-auto px-4 py-12">
+      <main id="main-content" className="mx-auto max-w-4xl px-4 pb-12 pt-32">
         <Link href="/" className="mb-8 inline-flex items-center text-battles-gold transition-colors hover:text-yellow-400">
           <ArrowLeft className="mr-2 h-5 w-5" aria-hidden="true" />
           Back to Home
@@ -85,7 +84,6 @@ export default function TermsOfService() {
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

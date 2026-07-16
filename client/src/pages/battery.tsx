@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Menu, X } from "lucide-react";
 import { Link } from "wouter";
-import OcmComplianceNotice from "@/components/ocm-compliance-notice";
+import PublicPageLayout from "@/components/public-page-layout";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 
@@ -31,14 +31,66 @@ const navigationLinks = [
 
 function BatteryNavigation() {
   const [open, setOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileMenuRef = useRef<HTMLElement>(null);
+  const homeLinkRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    const desktopBreakpoint = window.matchMedia("(min-width: 901px)");
+    const handleBreakpointChange = (event: MediaQueryListEvent) => {
+      if (event.matches && open) {
+        setOpen(false);
+        window.requestAnimationFrame(() => homeLinkRef.current?.focus());
+      }
+    };
+
+    desktopBreakpoint.addEventListener("change", handleBreakpointChange);
+    return () => desktopBreakpoint.removeEventListener("change", handleBreakpointChange);
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+
+    mobileMenuRef.current?.querySelector<HTMLElement>("a[href]")?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setOpen(false);
+        menuButtonRef.current?.focus();
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const focusable = [
+        menuButtonRef.current,
+        ...Array.from(mobileMenuRef.current?.querySelectorAll<HTMLElement>("a[href]") ?? []),
+      ].filter((element): element is HTMLElement => Boolean(element));
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [open]);
 
   return (
     <header className="relative flex h-[82px] items-center border-b border-[rgba(255,220,18,.28)] bg-[rgba(0,0,0,.94)]">
       <div className={`${contentWidth} flex items-center justify-between`}>
-        <a href="/" aria-label="Battles Budz home">
+        <a ref={homeLinkRef} href="/" aria-label="Battles Budz home">
           <img
             src="/media/battles-budz-logo-cropped.png"
-            alt="Battles Budz USA"
+            alt=""
             className="block h-auto w-[142px]"
           />
         </a>
@@ -69,6 +121,7 @@ function BatteryNavigation() {
         </nav>
 
         <button
+          ref={menuButtonRef}
           type="button"
           onClick={() => setOpen((current) => !current)}
           className="border border-[rgba(255,220,18,.45)] p-2 text-[#ffdc12] min-[901px]:hidden"
@@ -76,14 +129,15 @@ function BatteryNavigation() {
           aria-expanded={open}
           aria-controls="battery-mobile-navigation"
         >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {open ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
         </button>
       </div>
 
       {open ? (
         <nav
+          ref={mobileMenuRef}
           id="battery-mobile-navigation"
-          className="absolute left-1/2 top-[82px] z-50 w-full max-w-[1440px] -translate-x-1/2 border-b border-[rgba(255,220,18,.28)] bg-black px-[18px] py-4 min-[901px]:hidden"
+          className="absolute left-1/2 top-[82px] z-50 max-h-[calc(100dvh-82px)] w-full max-w-[1440px] -translate-x-1/2 overflow-y-auto border-b border-[rgba(255,220,18,.28)] bg-black px-[18px] py-4 min-[901px]:hidden"
           aria-label="Mobile navigation"
         >
           {navigationLinks.map((link) =>
@@ -119,7 +173,6 @@ function BatteryNavigation() {
 function BatteryFooter() {
   return (
     <footer id="contact" className="border-t border-[rgba(255,220,18,.28)] bg-black">
-      <OcmComplianceNotice />
       <div className={`${contentWidth} grid gap-[50px] py-14 min-[901px]:grid-cols-2`}>
         <div>
           <img
@@ -140,32 +193,19 @@ function BatteryFooter() {
           >
             battlesbudz@gmail.com
           </a>
-          <div className="mt-5 grid grid-cols-2 gap-x-[30px] gap-y-3 text-[13px] text-[#aaa]">
-            <Link href="/shop" className="hover:text-[#ffdc12]">
-              Apparel
-            </Link>
-            <Link href="/battery" className="hover:text-[#ffdc12]">
-              Dual-Cart Battery
-            </Link>
-            <Link href="/coming-soon" className="hover:text-[#ffdc12]">
-              Coming Soon Products
-            </Link>
-            <Link href="/our-story" className="hover:text-[#ffdc12]">
-              Our Story
-            </Link>
-            <Link href="/shipping-returns" className="hover:text-[#ffdc12]">
-              Shipping and Returns
-            </Link>
-            <Link href="/privacy-policy" className="hover:text-[#ffdc12]">
-              Privacy Policy
-            </Link>
-            <Link href="/terms-of-service" className="hover:text-[#ffdc12]">
-              Terms of service
-            </Link>
-            <Link href="/age-verification" className="hover:text-[#ffdc12]">
-              21+ information
-            </Link>
-          </div>
+          <nav className="mt-5 text-[13px] text-[#aaa]" aria-label="Footer navigation">
+            <ul className="grid grid-cols-2 gap-x-[30px] gap-y-3">
+              <li><Link href="/shop" className="hover:text-[#ffdc12]">Apparel</Link></li>
+              <li><Link href="/battery" className="hover:text-[#ffdc12]">Dual-Cart Battery</Link></li>
+              <li><Link href="/coming-soon" className="hover:text-[#ffdc12]">Coming Soon Products</Link></li>
+              <li><Link href="/our-story" className="hover:text-[#ffdc12]">Our Story</Link></li>
+              <li><Link href="/shipping-returns" className="hover:text-[#ffdc12]">Shipping and Returns</Link></li>
+              <li><Link href="/privacy-policy" className="hover:text-[#ffdc12]">Privacy Policy</Link></li>
+              <li><Link href="/terms-of-service" className="hover:text-[#ffdc12]">Terms of service</Link></li>
+              <li><Link href="/age-verification" className="hover:text-[#ffdc12]">21+ information</Link></li>
+              <li><Link href="/accessibility" className="hover:text-[#ffdc12]">Accessibility</Link></li>
+            </ul>
+          </nav>
         </div>
       </div>
       <div className="border-t border-[#171717] px-[22px] py-[22px] text-center text-xs text-[#777]">
@@ -194,10 +234,8 @@ export default function BatteryPage() {
           backgroundSize: "64px 64px",
         }}
       >
-        <BatteryNavigation />
-        <main
-          id="main-content"
-        >
+        <PublicPageLayout header={<BatteryNavigation />} footer={<BatteryFooter />}>
+        <main id="main-content">
           <section className="relative overflow-hidden border-b border-[rgba(255,220,18,.28)] pb-24 pt-[88px] max-[900px]:pt-[54px]">
             <div
               aria-hidden="true"
@@ -423,8 +461,7 @@ export default function BatteryPage() {
             </div>
           </section>
         </main>
-
-        <BatteryFooter />
+        </PublicPageLayout>
       </div>
     </div>
   );

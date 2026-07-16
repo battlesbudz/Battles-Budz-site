@@ -9,6 +9,7 @@ import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 
 export default function NewsletterSection() {
   const [email, setEmail] = useState("");
+  const [formError, setFormError] = useState("");
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
@@ -22,22 +23,35 @@ export default function NewsletterSection() {
         description: "We'll send product drops, launch news, and brand updates.",
       });
       setEmail("");
+      setFormError("");
       queryClient.invalidateQueries({ queryKey: ["/api/newsletter/subscribers"] });
     },
-    onError: (error: any) => {
-      toast({
-        title: "Subscription error",
-        description: error.message || "Failed to subscribe. Please try again.",
-        variant: "destructive",
-      });
+    onError: (error: Error) => {
+      if (error.message.toLowerCase().includes("already subscribed")) {
+        toast({
+          title: "You're on the list.",
+          description: "We'll send product drops, launch news, and brand updates.",
+        });
+        setEmail("");
+        setFormError("");
+        return;
+      }
+
+      setFormError("We couldn’t sign you up. Please try again.");
     },
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
-      newsletterMutation.mutate(email);
+
+    const emailAddress = email.trim();
+    if (!/^\S+@\S+\.\S+$/.test(emailAddress)) {
+      setFormError("Enter a valid email address.");
+      return;
     }
+
+    setFormError("");
+    newsletterMutation.mutate(emailAddress);
   };
 
   return (
@@ -56,7 +70,7 @@ export default function NewsletterSection() {
         </div>
 
         <div className="rounded-lg border border-yellow-300/20 bg-black p-5 sm:p-7">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} noValidate aria-busy={newsletterMutation.isPending}>
             <div className="flex flex-col gap-3 sm:flex-row">
               <label className="sr-only" htmlFor="newsletter-email">
                 Email address for Battles Budz updates
@@ -68,8 +82,15 @@ export default function NewsletterSection() {
                 placeholder="Enter your email address"
                 autoComplete="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="min-h-12 flex-1 rounded-none border-white/15 bg-zinc-900 text-white placeholder:text-zinc-400 focus:border-yellow-300"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                  if (formError) {
+                    setFormError("");
+                  }
+                }}
+                aria-invalid={Boolean(formError)}
+                aria-describedby={formError ? "newsletter-email-error newsletter-email-help" : "newsletter-email-help"}
+                className="min-h-12 flex-1 rounded-none border-[#737373] bg-zinc-900 text-white placeholder:text-zinc-400 focus:border-yellow-300"
                 required
               />
               <Button
@@ -79,7 +100,7 @@ export default function NewsletterSection() {
               >
                 {newsletterMutation.isPending ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" aria-hidden="true" />
                     Joining...
                   </>
                 ) : (
@@ -87,7 +108,12 @@ export default function NewsletterSection() {
                 )}
               </Button>
             </div>
-            <p className="mt-4 text-sm text-zinc-400">Only Battles Budz updates. Unsubscribe anytime.</p>
+            {formError ? (
+              <p id="newsletter-email-error" className="mt-3 text-sm" role="alert">
+                {formError}
+              </p>
+            ) : null}
+            <p id="newsletter-email-help" className="mt-4 text-sm text-zinc-400">Only Battles Budz updates. Unsubscribe anytime.</p>
           </form>
 
           <div className="mt-8 border-t border-white/10 pt-6">

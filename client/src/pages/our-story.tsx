@@ -1,12 +1,10 @@
 import { ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
-import Navigation from "@/components/navigation";
 import ServicesSection from "@/components/services-section";
 import AboutSection from "@/components/about-section";
 import TeamSection from "@/components/team-section";
 import EventsSection from "@/components/events-section";
 import NewsletterSection from "@/components/newsletter-section";
-import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
 
@@ -18,7 +16,6 @@ export default function OurStoryPage() {
         description="Meet Battles Budz, the veteran-owned cannabis microbusiness coming to Buffalo, New York."
         canonicalUrl={getCanonicalUrl("/our-story")}
       />
-      <Navigation />
 
       <main id="main-content" className="pt-24">
         <section className="border-b border-yellow-300/20 bg-black px-5 py-14 sm:px-6 lg:px-8">
@@ -48,7 +45,6 @@ export default function OurStoryPage() {
         <NewsletterSection />
       </main>
 
-      <Footer />
     </div>
   );
 }

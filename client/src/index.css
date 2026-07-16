@@ -65,6 +65,22 @@
     @apply font-sans antialiased bg-background text-foreground;
   }
 
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  a,
+  label {
+    overflow-wrap: anywhere;
+  }
+
   a:focus-visible,
   button:focus-visible,
   input:focus-visible,
@@ -73,6 +89,11 @@
   [tabindex]:focus-visible {
     outline: 3px solid hsl(51, 100%, 50%);
     outline-offset: 3px;
+  }
+
+  .ocm-compliance-link:focus-visible {
+    outline-color: #000;
+    box-shadow: 0 0 0 2px #ffff00;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -87,6 +108,17 @@
       animation-iteration-count: 1 !important;
       scroll-behavior: auto !important;
       transition-duration: 0.01ms !important;
+    }
+  }
+
+  @media (forced-colors: active) {
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid Highlight;
     }
   }
 }

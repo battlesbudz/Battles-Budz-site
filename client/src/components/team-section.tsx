@@ -28,7 +28,11 @@ export default function TeamSection() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {teamMembers.map((member) => (
             <div key={member.name} className="overflow-hidden rounded-xl bg-gray-50 text-center shadow-lg">
-              <img src={member.image} alt={member.name} className="h-64 w-full object-cover" />
+              <img
+                src={member.image}
+                alt="Justin and Andrea Battles, Battles Budz founding team"
+                className="h-64 w-full object-cover"
+              />
               <div className="p-6">
                 <h3 className="mb-2 text-2xl font-bold text-battles-black">{member.name}</h3>
                 <p className="mb-4 font-semibold text-yellow-700">{member.role}</p>

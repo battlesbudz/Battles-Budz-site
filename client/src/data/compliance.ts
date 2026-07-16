@@ -11,9 +11,9 @@ export const ocmCompliance = {
     "Cannabis is not recommended for use by persons who are pregnant or nursing.",
   ],
   hopeline: {
-    phone: "1-877-8-HOPENY (467369)",
+    phone: "1-877-8-HOPENY",
     phoneHref: "tel:+18778467369",
-    text: "HOPENY (467369)",
+    text: "HOPENY to 467369",
     url: "https://oasas.ny.gov/hopeline",
   },
 };
@@ -24,8 +24,12 @@ export function hasOfficialOcmLicenseInfo() {
 
 export function getCurrentCannabisWarning(date = new Date()) {
   const dayStartUtc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
-  const yearStartUtc = Date.UTC(date.getUTCFullYear(), 0, 1);
-  const dayOfYear = Math.floor((dayStartUtc - yearStartUtc) / 86_400_000);
+  const epochDay = Math.floor(dayStartUtc / 86_400_000);
+  const rotationAnchorDay = Math.floor(Date.UTC(2026, 0, 1) / 86_400_000);
+  const warningOffset = epochDay - rotationAnchorDay;
+  const warningIndex =
+    ((warningOffset % ocmCompliance.rotatingWarnings.length) + ocmCompliance.rotatingWarnings.length) %
+    ocmCompliance.rotatingWarnings.length;
 
-  return ocmCompliance.rotatingWarnings[dayOfYear % ocmCompliance.rotatingWarnings.length];
+  return ocmCompliance.rotatingWarnings[warningIndex];
 }

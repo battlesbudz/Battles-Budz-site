@@ -1,8 +1,6 @@
-import Navigation from "@/components/navigation";
 import HeroSection from "@/components/hero-section";
 import NewsletterSection from "@/components/newsletter-section";
 import ShopByCategorySection from "@/components/shop-by-category-section";
-import Footer from "@/components/footer";
 import SEOHead from "@/components/seo/SEOHead";
 import {
   CANNABIS_KEYWORDS,
@@ -30,13 +28,11 @@ export default function Home() {
         structuredData={structuredData}
         ogType="website"
       />
-      <Navigation />
       <main id="main-content">
         <HeroSection />
         <NewsletterSection />
         <ShopByCategorySection />
       </main>
-      <Footer />
     </div>
   );
 }
