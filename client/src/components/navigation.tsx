@@ -33,6 +33,7 @@ export default function Navigation() {
 
   useEffect(() => {
     setOpen(false);
+    setCurrentHash(window.location.hash);
   }, [location]);
 
   useEffect(() => {

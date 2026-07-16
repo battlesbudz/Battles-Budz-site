@@ -144,6 +144,13 @@ test("desktop navigation updates aria-current for same-page destinations", async
   await expect(page).toHaveURL(/#contact$/);
   await expect(contactLink).toHaveAttribute("aria-current", "location");
   await expect(updatesLink).not.toHaveAttribute("aria-current");
+
+  await navigation.getByRole("link", { name: "Our Story", exact: true }).click();
+  await expect(page).toHaveURL(/\/our-story$/);
+  await page.getByRole("link", { name: "Back to home", exact: true }).click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(updatesLink).not.toHaveAttribute("aria-current");
+  await expect(contactLink).not.toHaveAttribute("aria-current");
 });
 
 test("the public site remains usable with reduced motion requested", async ({ page }, testInfo) => {
