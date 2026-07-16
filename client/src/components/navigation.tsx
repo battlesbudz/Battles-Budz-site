@@ -15,16 +15,17 @@ const mobileLinks = links.filter((link) => link.label !== "Updates");
 
 export default function Navigation() {
   const [open, setOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState(() => window.location.hash);
   const [location] = useLocation();
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const homeLinkRef = useRef<HTMLAnchorElement>(null);
 
   const isCurrent = (href: string) => {
-    const [pathname, hash] = href.split("#");
+    const [pathname, targetHash] = href.split("#");
 
-    if (hash) {
-      return location === (pathname || "/") && window.location.hash === `#${hash}`;
+    if (targetHash) {
+      return location === (pathname || "/") && currentHash === `#${targetHash}`;
     }
 
     return location === href;
@@ -33,6 +34,12 @@ export default function Navigation() {
   useEffect(() => {
     setOpen(false);
   }, [location]);
+
+  useEffect(() => {
+    const handleHashChange = () => setCurrentHash(window.location.hash);
+    window.addEventListener("hashchange", handleHashChange);
+    return () => window.removeEventListener("hashchange", handleHashChange);
+  }, []);
 
   useEffect(() => {
     const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");

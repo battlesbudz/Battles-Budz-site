@@ -122,6 +122,30 @@ test("client-side route changes move focus to the destination main content", asy
   await expect(page.locator("main")).toBeFocused();
 });
 
+test("desktop navigation updates aria-current for same-page destinations", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "Desktop-only same-page links are covered once here.");
+
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/");
+
+  const navigation = page.getByRole("navigation", { name: "Primary navigation" });
+  const updatesLink = navigation.getByRole("link", { name: "Updates", exact: true });
+  const contactLink = navigation.getByRole("link", { name: "Contact", exact: true });
+
+  await updatesLink.click();
+  await expect(page).toHaveURL(/#newsletter$/);
+  await expect(updatesLink).toHaveAttribute("aria-current", "location");
+  await expect(contactLink).not.toHaveAttribute("aria-current");
+
+  await contactLink.click();
+  await expect(page).toHaveURL(/#contact$/);
+  await expect(contactLink).toHaveAttribute("aria-current", "location");
+  await expect(updatesLink).not.toHaveAttribute("aria-current");
+});
+
 test("the public site remains usable with reduced motion requested", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name.startsWith("mobile"), "Media preference behavior is viewport-independent and covered once here.");
 
