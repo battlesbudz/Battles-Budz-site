@@ -1,7 +1,7 @@
 export const ocmCompliance = {
-  licenseeName: "Battles Budz LLC",
-  licenseNumber: "OCMMICR-2023-000258",
-  licenseType: "Adult-use cannabis microbusiness",
+  licenseeName: "",
+  licenseNumber: "",
+  licenseType: "",
   primaryWarning:
     "For use only by persons 21 years of age and older. Keep out of reach of children and pets. If someone accidentally consumes cannabis, contact the Poison Center. Consume responsibly.",
   rotatingWarnings: [
@@ -17,6 +17,10 @@ export const ocmCompliance = {
     url: "https://oasas.ny.gov/hopeline",
   },
 };
+
+export function hasOfficialOcmLicenseInfo() {
+  return Boolean(ocmCompliance.licenseeName && ocmCompliance.licenseNumber && ocmCompliance.licenseType);
+}
 
 export function getCurrentCannabisWarning(date = new Date()) {
   const dayStartUtc = Date.UTC(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
