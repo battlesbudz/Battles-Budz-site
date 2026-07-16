@@ -11,6 +11,8 @@ const links = [
   { label: "Contact", href: "/#contact", external: true },
 ];
 
+const mobileLinks = links.filter((link) => link.label !== "Updates");
+
 export default function Navigation() {
   const [open, setOpen] = useState(false);
 
@@ -56,7 +58,7 @@ export default function Navigation() {
 
       {open ? (
         <div className="border-t border-white/10 bg-black px-5 py-4 lg:hidden">
-          {links.map((link) =>
+          {mobileLinks.map((link) =>
             link.external ? (
               <a
                 key={link.href}
