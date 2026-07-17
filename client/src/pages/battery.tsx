@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Menu, Pause, Play, X } from "lucide-react";
 import { Link } from "wouter";
+import { TrifoldSoldierFlag, TrifoldStarRow } from "@/components/battery-trifold-motifs";
 import PublicPageLayout from "@/components/public-page-layout";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
@@ -112,19 +113,6 @@ function BatteryHeroMedia({ prefersReducedMotion }: { prefersReducedMotion: bool
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-20 bg-[linear-gradient(180deg,#050505_0%,transparent_13%,transparent_84%,#050505_100%)] opacity-70"
       />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-20 -right-16 z-20 h-48 w-48 rotate-45 border border-white/10 bg-white/[.035]"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -bottom-10 right-20 z-20 h-28 w-28 rotate-45 border border-[rgba(255,220,18,.22)] bg-[rgba(255,220,18,.055)]"
-      />
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-6 left-5 z-20 h-20 w-1 bg-[#ffdc12] opacity-70"
-      />
-
       {!prefersReducedMotion ? (
         <button
           type="button"
@@ -357,17 +345,6 @@ export default function BatteryPage() {
                   "radial-gradient(circle at 80% 30%, rgba(255,220,18,.20), transparent 30%), radial-gradient(circle at 10% 110%, rgba(255,220,18,.10), transparent 42%)",
               }}
             />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-[190px] -left-[180px] h-[430px] w-[700px] bg-[#ffdc12] opacity-[.045]"
-              style={{ clipPath: "polygon(0 18%, 100% 0, 76% 100%, 0 100%)" }}
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-[240px] left-[130px] h-[390px] w-[560px] bg-white opacity-[.018]"
-              style={{ clipPath: "polygon(12% 0, 100% 34%, 75% 100%, 0 75%)" }}
-            />
-
             <div
               className={`${contentWidth} relative grid items-center gap-16 min-[901px]:grid-cols-[1.05fr_.95fr]`}
             >
@@ -428,35 +405,14 @@ export default function BatteryPage() {
                   aria-hidden="true"
                   className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,220,18,.14),transparent_48%)]"
                 />
-                <span
-                  aria-hidden="true"
-                  className="absolute h-px w-[360px] -rotate-[36deg] bg-gradient-to-r from-transparent via-[#ffdc12] to-transparent opacity-35"
-                />
-                <span
-                  aria-hidden="true"
-                  className="absolute h-px w-[360px] rotate-[36deg] bg-gradient-to-r from-transparent via-[#ffdc12] to-transparent opacity-35"
-                />
                 <BatteryHeroMedia prefersReducedMotion={prefersReducedMotion} />
               </div>
             </div>
           </section>
 
           <section className="relative overflow-hidden border-b border-[rgba(255,220,18,.16)] bg-[#080808] py-[100px] max-[900px]:py-[72px]">
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-[90px] top-0 h-full w-[44%] bg-[#ffdc12] opacity-[.045]"
-              style={{ clipPath: "polygon(0 0, 100% 0, 76% 100%, 0 100%)" }}
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-[150px] left-[18%] h-[360px] w-[360px] rotate-45 border border-white/[.04] bg-white/[.018]"
-            />
             <div className={`${contentWidth} relative z-10 grid items-start gap-[70px] min-[901px]:grid-cols-[.8fr_1.2fr]`}>
-              <div className="relative pl-7">
-                <span
-                  aria-hidden="true"
-                  className="absolute left-0 top-0 h-44 w-[5px] bg-[#ffdc12]"
-                />
+              <div>
                 <span className={eyebrowClass}>
                   <span
                     aria-hidden="true"
@@ -502,29 +458,6 @@ export default function BatteryPage() {
           <section className="border-b border-[rgba(255,220,18,.16)] bg-[#050505] py-[100px] max-[900px]:py-[72px]">
             <div className={contentWidth}>
               <div className="relative overflow-hidden border border-[rgba(255,220,18,.28)] bg-[linear-gradient(100deg,rgba(255,220,18,.11),transparent_55%)] bg-[#0d0d0d] p-[54px] max-[900px]:px-[26px] max-[900px]:py-[34px]">
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute bottom-7 left-7 h-14 w-1 bg-[#ffdc12] opacity-90"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute bottom-7 left-12 h-10 w-1 bg-[#ffdc12] opacity-65"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute bottom-7 left-[68px] h-6 w-1 bg-[#ffdc12] opacity-40"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute -bottom-24 -right-20 h-64 w-64 rotate-45 border border-white/[.045] bg-white/[.018]"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute right-[30px] top-[-46px] text-[300px] leading-none text-[rgba(255,220,18,.06)]"
-                  style={displayFont}
-                >
-                  3
-                </span>
                 <h2
                   className="relative z-10 mb-[26px] mt-6 max-w-[800px] text-[clamp(48px,5.3vw,78px)] font-black uppercase leading-[.97] tracking-[-.025em]"
                   style={displayFont}
@@ -542,47 +475,42 @@ export default function BatteryPage() {
           </section>
 
           <section className="relative overflow-hidden border-b border-[rgba(255,220,18,.16)] bg-[#ffdc12] py-[100px] text-[#050505] max-[900px]:py-[72px]">
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-[120px] -right-[30px] text-[420px] leading-none text-[rgba(0,0,0,.055)]"
-              style={displayFont}
-            >
-              BB
-            </span>
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-28 -right-20 h-72 w-72 rotate-45 border border-black/10 bg-black/[.055]"
-            />
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-16 right-40 h-44 w-44 rotate-45 border border-black/10 bg-black/[.035]"
-            />
-            <div className={`${contentWidth} relative z-10`}>
-              <span className="inline-flex items-center gap-[10px] border border-[rgba(0,0,0,.45)] bg-[rgba(0,0,0,.08)] px-[14px] py-[10px] text-xs font-black uppercase tracking-[.16em] text-[#050505]">
-                <span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-[#050505]" />
-                For Dispensaries
-              </span>
-              <h2
-                className="mb-[26px] mt-6 max-w-[850px] text-[clamp(48px,5.3vw,78px)] font-black uppercase leading-[.97] tracking-[-.025em]"
-                style={displayFont}
+            <div className={`${contentWidth} relative z-10 grid items-center gap-14 min-[901px]:grid-cols-[minmax(0,1.25fr)_minmax(300px,.75fr)]`}>
+              <div>
+                <span className="inline-flex items-center gap-[10px] border border-[rgba(0,0,0,.45)] bg-[rgba(0,0,0,.08)] px-[14px] py-[10px] text-xs font-black uppercase tracking-[.16em] text-[#050505]">
+                  <span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-[#050505]" />
+                  For Dispensaries
+                </span>
+                <h2
+                  className="mb-[26px] mt-6 max-w-[850px] text-[clamp(48px,5.3vw,78px)] font-black uppercase leading-[.97] tracking-[-.025em]"
+                  style={displayFont}
+                >
+                  Give customers a reason to buy two.
+                </h2>
+                <p className="mb-[21px] max-w-[840px] text-[21px] leading-[1.7]">
+                  Add a veteran-owned cannabis microbusiness brand to your shelves and give customers a reason to buy two
+                  carts at once.
+                </p>
+                <p className="mb-[21px] max-w-[840px] text-[21px] leading-[1.7]">
+                  Offer a complete package: two compatible carts plus one Battles Budz Dual-Cart Battery, sold together as
+                  one bundle. Customers can enjoy either cart individually—or both together—from the same device.
+                </p>
+                <a
+                  href={wholesaleHref}
+                  className={`${buttonClass} relative z-10 mt-4 border-[#050505] bg-[#050505] text-[#ffdc12] hover:bg-white hover:text-[#050505] focus-visible:outline-[#050505]`}
+                >
+                  Email for Wholesale Pricing
+                </a>
+              </div>
+
+              <div
+                aria-hidden="true"
+                className="relative min-h-[500px] overflow-hidden border border-black/30 bg-[#050505] max-[900px]:min-h-[390px]"
               >
-                Give customers a reason to buy two.
-              </h2>
-              <span aria-hidden="true" className="mb-8 block h-1 w-24 bg-[#050505]" />
-              <p className="mb-[21px] max-w-[840px] text-[21px] leading-[1.7]">
-                Add a veteran-owned cannabis microbusiness brand to your shelves and give customers a reason to buy two
-                carts at once.
-              </p>
-              <p className="mb-[21px] max-w-[840px] text-[21px] leading-[1.7]">
-                Offer a complete package: two compatible carts plus one Battles Budz Dual-Cart Battery, sold together as
-                one bundle. Customers can enjoy either cart individually—or both together—from the same device.
-              </p>
-              <a
-                href={wholesaleHref}
-                className={`${buttonClass} relative z-10 mt-4 border-[#050505] bg-[#050505] text-[#ffdc12] hover:bg-white hover:text-[#050505] focus-visible:outline-[#050505]`}
-              >
-                Email for Wholesale Pricing
-              </a>
+                <TrifoldSoldierFlag className="absolute bottom-[76px] left-1/2 h-[420px] w-[340px] -translate-x-1/2 max-[900px]:bottom-[72px] max-[900px]:h-[310px] max-[900px]:w-[250px]" />
+                <div className="absolute inset-x-0 bottom-0 h-3 bg-[#ffdc12]" />
+                <TrifoldStarRow className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2" />
+              </div>
             </div>
           </section>
 
