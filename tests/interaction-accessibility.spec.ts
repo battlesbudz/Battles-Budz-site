@@ -188,6 +188,36 @@ test("the battery video control remains visible and touch-sized on mobile", asyn
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
+test("the battery page carries the trifold five-star motif", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/battery");
+
+  const motif = page.locator('[data-trifold-motif="five-stars"]');
+  await expect(motif).toBeVisible();
+  await expect(motif.locator("[data-trifold-star]")).toHaveCount(5);
+});
+
+test("the battery page carries the trifold soldier-and-flag motif", async ({ page }) => {
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+  await page.goto("/battery");
+
+  const motif = page.locator('[data-trifold-motif="soldier-flag"]');
+  const art = motif.locator("[data-trifold-art]");
+
+  await expect(motif).toBeVisible();
+  await art.scrollIntoViewIfNeeded();
+  await art.evaluate((image: HTMLImageElement) => image.decode());
+  await expect(art).toBeVisible();
+  expect(await art.evaluate((image: HTMLImageElement) => image.naturalWidth)).toBeGreaterThan(0);
+  expect(await art.evaluate((image: HTMLImageElement) => image.naturalHeight)).toBeGreaterThan(0);
+});
+
 test("the skip link moves keyboard focus to the main content", async ({ page }) => {
   await page.addInitScript(() => {
     window.sessionStorage.setItem("ageVerified", "true");
