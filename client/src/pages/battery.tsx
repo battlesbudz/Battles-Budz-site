@@ -262,6 +262,13 @@ function BatteryNavigation() {
               </Link>
             ),
           )}
+          <Link
+            href="/admin/login"
+            onClick={() => setOpen(false)}
+            className="block py-4 text-sm font-black uppercase tracking-[.13em] text-[#ddd] hover:text-[#ffdc12]"
+          >
+            Login
+          </Link>
         </nav>
       ) : null}
     </header>

@@ -59,6 +59,9 @@ test("the mobile menu exposes state, contains focus, and returns focus on Escape
   const firstLink = menu.getByRole("link").first();
   await expect(firstLink).toBeFocused();
   await expect(firstLink).toHaveAttribute("aria-current", "page");
+  const loginLink = menu.getByRole("link").last();
+  await expect(loginLink).toHaveText("Login");
+  await expect(loginLink).toHaveAttribute("href", "/admin/login");
 
   await page.keyboard.press("Escape");
   await expect(menu).toBeHidden();
@@ -87,6 +90,9 @@ test("the battery mobile menu preserves the same keyboard contract", async ({ pa
     "aria-current",
     "page",
   );
+  const loginLink = menu.getByRole("link").last();
+  await expect(loginLink).toHaveText("Login");
+  await expect(loginLink).toHaveAttribute("href", "/admin/login");
 
   await page.keyboard.press("Escape");
   await expect(menu).toBeHidden();
