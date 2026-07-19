@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/navigation";
+import AdminAccountPanel from "@/components/admin/AdminAccountPanel";
 import { 
   Users, 
   Mail, 
@@ -12,42 +13,36 @@ import {
   FileText, 
   Download,
   RefreshCw,
-  Briefcase
+  LogOut,
+  Settings
 } from "lucide-react";
 
 export default function AdminDashboard() {
-  const { user, isAuthenticated, isAdmin } = useAuth();
+  const { user, isAuthenticated, isAdmin, logout } = useAuth();
   const [activeTab, setActiveTab] = useState("subscribers");
 
-  console.log('Admin Dashboard - Auth State:', { user, isAuthenticated, isAdmin });
-
-  const { data: subscribers, isLoading: subscribersLoading, refetch: refetchSubscribers, error: subscribersError } = useQuery({
+  const { data: subscribers, isLoading: subscribersLoading, refetch: refetchSubscribers } = useQuery<any[]>({
     queryKey: ["/api/newsletter/subscribers"],
     enabled: isAuthenticated && isAdmin,
     retry: 1,
   });
 
-  const { data: contacts, isLoading: contactsLoading, refetch: refetchContacts, error: contactsError } = useQuery({
+  const { data: contacts, isLoading: contactsLoading, refetch: refetchContacts } = useQuery<any[]>({
     queryKey: ["/api/contact/submissions"],
     enabled: isAuthenticated && isAdmin,
     retry: 1,
   });
 
-  const { data: events, isLoading: eventsLoading, refetch: refetchEvents, error: eventsError } = useQuery({
+  const { data: events, isLoading: eventsLoading, refetch: refetchEvents } = useQuery<any[]>({
     queryKey: ["/api/event/bookings"],
     enabled: isAuthenticated && isAdmin,
     retry: 1,
   });
 
-  const { data: applications, isLoading: applicationsLoading, refetch: refetchApplications, error: applicationsError } = useQuery({
+  const { data: applications, isLoading: applicationsLoading, refetch: refetchApplications } = useQuery<any[]>({
     queryKey: ["/api/job/applications"],
     enabled: isAuthenticated && isAdmin,
     retry: 1,
-  });
-
-  console.log('Admin Dashboard - Data State:', { 
-    subscribers, subscribersError, subscribersLoading,
-    applications, applicationsError, applicationsLoading
   });
 
   const downloadCSV = (filename: string) => {
@@ -420,6 +415,9 @@ export default function AdminDashboard() {
           </Card>
         );
 
+      case "account":
+        return <AdminAccountPanel />;
+
       default:
         return null;
     }
@@ -428,15 +426,23 @@ export default function AdminDashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
-      <div className="pt-16 p-6">
+      <main id="main-content" className="pt-16 p-6">
         <div className="max-w-7xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-4xl font-playfair font-bold text-battles-black mb-2">
-              Battles Budz <span className="text-battles-gold">Admin Portal</span>
-            </h1>
-            <p className="text-battles-gray">
-              Manage newsletter subscribers, contacts, events, and applications
-            </p>
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div>
+              <h1 className="text-4xl font-playfair font-bold text-battles-black mb-2">
+                Battles Budz <span className="text-battles-gold">Admin Portal</span>
+              </h1>
+              <p className="text-battles-gray">Signed in as {user?.email}</p>
+            </div>
+            <Button
+              variant="outline"
+              disabled={logout.isPending}
+              onClick={() => logout.mutate(undefined, { onSuccess: () => window.location.assign("/admin/login") })}
+            >
+              <LogOut className="mr-2 h-4 w-4" aria-hidden="true" />
+              {logout.isPending ? "Signing out…" : "Sign out"}
+            </Button>
           </div>
 
           {/* Stats Cards */}
@@ -522,6 +528,14 @@ export default function AdminDashboard() {
                 >
                   Job Applications
                 </Button>
+                <Button
+                  variant={activeTab === "account" ? "default" : "ghost"}
+                  onClick={() => setActiveTab("account")}
+                  className={`${activeTab === "account" ? "bg-battles-gold text-black hover:bg-battles-gold/90" : ""} text-xs sm:text-sm flex-shrink-0`}
+                >
+                  <Settings className="mr-2 h-4 w-4" aria-hidden="true" />
+                  Account
+                </Button>
               </div>
             </CardHeader>
             <CardContent className="p-6">
@@ -529,7 +543,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
         </div>
-      </div>
+      </main>
     </div>
   );
 }

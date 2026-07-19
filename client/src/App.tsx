@@ -1,5 +1,5 @@
 import { Redirect, Switch, Route, useLocation } from "wouter";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { lazy, Suspense, useEffect, useRef, useState, type ReactNode } from "react";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -21,6 +21,10 @@ import PublicPageLayout from "@/components/public-page-layout";
 import { AgeVerificationModal } from "@/components/user-guide/age-verification-modal";
 import NewsletterSignupPopup from "@/components/newsletter-signup-popup";
 import { useUserGuide } from "@/hooks/useUserGuide";
+import { useAuth } from "@/hooks/useAuth";
+
+const AdminDashboard = lazy(() => import("@/pages/admin"));
+const LoginPage = lazy(() => import("@/pages/login"));
 
 const shopHashes = new Set(["retail", "shop"]);
 const batteryHashes = new Set(["dual-cart-battery"]);
@@ -124,6 +128,25 @@ function StandardPublicPage({ children }: { children: ReactNode }) {
   return <PublicPageLayout>{children}</PublicPageLayout>;
 }
 
+function AdminRoute({ children }: { children: ReactNode }) {
+  const { isAuthenticated, isAdmin, isLoading } = useAuth();
+  const [, setLocation] = useLocation();
+
+  useEffect(() => {
+    if (!isLoading && (!isAuthenticated || !isAdmin)) setLocation("/admin/login");
+  }, [isAdmin, isAuthenticated, isLoading, setLocation]);
+
+  if (isLoading) {
+    return <main id="main-content" className="grid min-h-screen place-items-center bg-black text-yellow-300">Checking admin access…</main>;
+  }
+
+  return isAuthenticated && isAdmin ? <>{children}</> : null;
+}
+
+function AdminLoading() {
+  return <main id="main-content" className="grid min-h-screen place-items-center bg-black text-yellow-300">Loading admin system…</main>;
+}
+
 function Router() {
   return (
     <>
@@ -162,6 +185,8 @@ function Router() {
         <Route path="/shipping-returns"><StandardPublicPage><ShippingReturns /></StandardPublicPage></Route>
         <Route path="/age-verification"><StandardPublicPage><AgeVerification /></StandardPublicPage></Route>
         <Route path="/accessibility"><StandardPublicPage><Accessibility /></StandardPublicPage></Route>
+        <Route path="/admin/login"><Suspense fallback={<AdminLoading />}><LoginPage /></Suspense></Route>
+        <Route path="/admin"><AdminRoute><Suspense fallback={<AdminLoading />}><AdminDashboard /></Suspense></AdminRoute></Route>
         <Route path="/batteries"><Redirect to="/battery" /></Route>
         <Route path="/dual-cart-battery"><Redirect to="/battery" /></Route>
         <Route path="/products/dual-cart-battery"><Redirect to="/battery" /></Route>
@@ -173,8 +198,8 @@ function Router() {
         <Route path="/enhanced-community"><Redirect to="/" /></Route>
         <Route path="/investors"><Redirect to="/" /></Route>
         <Route path="/investor-portal"><Redirect to="/" /></Route>
-        <Route path="/login"><Redirect to="/" /></Route>
-        <Route path="/dashboard"><Redirect to="/" /></Route>
+        <Route path="/login"><Redirect to="/admin/login" /></Route>
+        <Route path="/dashboard"><Redirect to="/admin" /></Route>
         <Route path="/investor-admin"><Redirect to="/" /></Route>
         <Route><StandardPublicPage><NotFound /></StandardPublicPage></Route>
       </Switch>
@@ -184,6 +209,8 @@ function Router() {
 
 function App() {
   const userGuide = useUserGuide();
+  const [location] = useLocation();
+  const isAdminRoute = location.startsWith("/admin");
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -194,13 +221,16 @@ function App() {
         <RouteAccessibility />
         <Router />
 
-        {/* User Guide System */}
-        <AgeVerificationModal
-          isOpen={userGuide.showAgeVerification}
-          onVerified={userGuide.handleAgeVerified}
-          onDenied={userGuide.handleAgeDenied}
-        />
-        <NewsletterSignupPopup isAgeGateOpen={userGuide.showAgeVerification} />
+        {!isAdminRoute && (
+          <>
+            <AgeVerificationModal
+              isOpen={userGuide.showAgeVerification}
+              onVerified={userGuide.handleAgeVerified}
+              onDenied={userGuide.handleAgeDenied}
+            />
+            <NewsletterSignupPopup isAgeGateOpen={userGuide.showAgeVerification} />
+          </>
+        )}
 
       </TooltipProvider>
     </QueryClientProvider>
