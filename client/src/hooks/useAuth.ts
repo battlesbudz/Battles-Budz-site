@@ -16,12 +16,40 @@ export function useAuth() {
   });
 
   const login = useMutation({
-    mutationFn: async (credentials: { username: string; password: string }) => {
-      return await apiRequest("POST", "/api/auth/login", credentials);
+    mutationFn: async (credentials: { email?: string; username?: string; password: string }) => {
+      const response = await apiRequest("POST", "/api/admin/auth/login", {
+        email: credentials.email || credentials.username,
+        password: credentials.password,
+      });
+      return response.json() as Promise<{ user: User }>;
     },
+    onSuccess: ({ user }) => {
+      queryClient.setQueryData(["/api/auth/user"], user);
+    },
+  });
+
+  const setup = useMutation({
+    mutationFn: async (details: { email: string; password: string; setupToken: string }) => {
+      const response = await apiRequest("POST", "/api/admin/auth/setup", details);
+      return response.json() as Promise<{ user: User }>;
+    },
+    onSuccess: ({ user }) => {
+      queryClient.setQueryData(["/api/auth/user"], user);
+      queryClient.invalidateQueries({ queryKey: ["/api/admin/auth/status"] });
+    },
+  });
+
+  const logout = useMutation({
+    mutationFn: () => apiRequest("POST", "/api/admin/auth/logout"),
     onSuccess: () => {
-      // Invalidate and refetch user data after successful login
-      queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
+      queryClient.setQueryData(["/api/auth/user"], null);
+      queryClient.clear();
+    },
+  });
+
+  const register = useMutation<never, Error, unknown>({
+    mutationFn: async (_details: unknown): Promise<never> => {
+      throw new Error("Public account registration is disabled");
     },
   });
 
@@ -31,5 +59,8 @@ export function useAuth() {
     isAuthenticated: !!user,
     isAdmin: !!(user && user.role === 'admin'),
     login,
+    register,
+    setup,
+    logout,
   };
 }

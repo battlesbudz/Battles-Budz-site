@@ -1,11 +1,21 @@
 
 import type { Express } from "express";
-import { isAuthenticated } from "../auth";
+import { isAdmin } from "../auth";
 import { storage } from "../storage";
+
+function csvCell(value: unknown) {
+  let normalized = value == null ? "" : String(value);
+  if (/^[=+\-@\t\r]/.test(normalized)) normalized = `'${normalized}`;
+  return `"${normalized.replace(/"/g, '""')}"`;
+}
+
+function safeDownloadFilename(filename: string | null | undefined) {
+  return (filename || "download").replace(/[\r\n"\\/]/g, "_").slice(0, 180) || "download";
+}
 
 export function registerAdminRoutes(app: Express) {
   // Download CSV endpoint (admin only)
-  app.get("/api/admin/download/:type", isAuthenticated, async (req: any, res) => {
+  app.get("/api/admin/download/:type", isAdmin, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
@@ -49,10 +59,7 @@ export function registerAdminRoutes(app: Express) {
       const headers = Object.keys(data[0]);
       const csvContent = [
         headers.join(','),
-        ...data.map(row => headers.map(header => {
-          const value = row[header] || '';
-          return `"${String(value).replace(/"/g, '""')}"`;
-        }).join(','))
+        ...data.map(row => headers.map(header => csvCell(row[header])).join(','))
       ].join('\n');
 
       // Set headers for file download
@@ -68,7 +75,7 @@ export function registerAdminRoutes(app: Express) {
   });
 
   // Download resume endpoint (admin only)
-  app.get("/api/admin/resume/:id", isAuthenticated, async (req: any, res) => {
+  app.get("/api/admin/resume/:id", isAdmin, async (req: any, res) => {
     try {
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
@@ -93,7 +100,7 @@ export function registerAdminRoutes(app: Express) {
 
       // Set headers for file download
       res.setHeader('Content-Type', mimeType);
-      res.setHeader('Content-Disposition', `attachment; filename="${application.resumeFileName}"`);
+      res.setHeader('Content-Disposition', `attachment; filename="${safeDownloadFilename(application.resumeFileName)}"`);
       res.send(buffer);
 
     } catch (error) {

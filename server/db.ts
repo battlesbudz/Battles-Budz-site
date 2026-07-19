@@ -35,3 +35,29 @@ export async function ensureProductUpdateSubscribersTable() {
     )
   `);
 }
+
+export async function ensureAdminAuthTables() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS admin_credentials (
+      user_id varchar PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+      password_hash text NOT NULL,
+      password_set_at timestamp NOT NULL DEFAULT now(),
+      last_login_at timestamp
+    )
+  `);
+
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS admin_audit_logs (
+      id serial PRIMARY KEY,
+      user_id varchar REFERENCES users(id) ON DELETE SET NULL,
+      action varchar(80) NOT NULL,
+      metadata jsonb,
+      created_at timestamp NOT NULL DEFAULT now()
+    )
+  `);
+
+  await pool.query(`
+    CREATE INDEX IF NOT EXISTS admin_audit_logs_created_at_idx
+      ON admin_audit_logs (created_at)
+  `);
+}
