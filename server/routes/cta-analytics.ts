@@ -19,7 +19,7 @@ const CLICK_WINDOW_MS = 60_000;
 
 function isSameOrigin(req: Request) {
   const origin = req.get("origin");
-  if (!origin) return true;
+  if (!origin) return false;
 
   try {
     return new URL(origin).host === req.get("host");
