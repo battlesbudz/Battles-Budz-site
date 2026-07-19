@@ -38,6 +38,19 @@ export async function ensureProductUpdateSubscribersTable() {
 
 export async function ensureAdminAuthTables() {
   await pool.query(`
+    CREATE TABLE IF NOT EXISTS users (
+      id varchar PRIMARY KEY NOT NULL,
+      email varchar UNIQUE,
+      first_name varchar,
+      last_name varchar,
+      profile_image_url varchar,
+      role varchar(50) NOT NULL DEFAULT 'customer',
+      created_at timestamp DEFAULT now(),
+      updated_at timestamp DEFAULT now()
+    )
+  `);
+
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS admin_credentials (
       user_id varchar PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
       password_hash text NOT NULL,
