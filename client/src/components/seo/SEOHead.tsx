@@ -65,7 +65,11 @@ export default function SEOHead({
     // Add structured data
     if (structuredData) {
       addStructuredData(structuredData);
+    } else {
+      removeStructuredData();
     }
+
+    return removeStructuredData;
   }, [title, description, keywords, ogImage, ogType, canonicalUrl, structuredData, noIndex]);
 
   return <>{children}</>;
@@ -104,14 +108,16 @@ function updateCanonicalUrl(url: string) {
 
 function addStructuredData(data: object) {
   // Remove existing structured data
-  const existing = document.querySelector('script[type="application/ld+json"]');
-  if (existing) {
-    existing.remove();
-  }
+  removeStructuredData();
   
   // Add new structured data
   const script = document.createElement('script');
   script.type = 'application/ld+json';
+  script.dataset.seoHead = 'true';
   script.textContent = JSON.stringify(data);
   document.head.appendChild(script);
+}
+
+function removeStructuredData() {
+  document.querySelectorAll('script[data-seo-head="true"]').forEach((element) => element.remove());
 }

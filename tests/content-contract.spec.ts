@@ -44,6 +44,19 @@ test.beforeEach(async ({ page }) => {
   await bypassOverlays(page);
 });
 
+test("client navigation removes structured data when the destination does not provide it", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "Structured-data cleanup is viewport-independent and covered once here.");
+
+  await page.goto("/");
+
+  const structuredData = page.locator('script[data-seo-head="true"]');
+  await expect(structuredData).toHaveCount(1);
+
+  await page.locator('a[href="/shop"]:visible').first().click();
+  await expect(page).toHaveURL(/\/shop$/);
+  await expect(structuredData).toHaveCount(0);
+});
+
 test("the sitewide OCM notice uses the approved warning and HOPEline copy", async ({ page }, testInfo) => {
   test.skip(testInfo.project.name.startsWith("mobile"), "Copy is identical across breakpoints and covered once here.");
   await page.goto("/");
