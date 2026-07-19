@@ -1,25 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowLeft, Menu, Pause, Play, X } from "lucide-react";
 import { Link } from "wouter";
-import { BatteryInquiryForm } from "@/components/battery-inquiry-form";
 import { TrifoldSoldierFlag, TrifoldStarRow } from "@/components/battery-trifold-motifs";
 import PublicPageLayout from "@/components/public-page-layout";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
-import { BATTERY_PRICE_USD, batteryProductStructuredData } from "@shared/battery-product";
 
-const batteryHighlights = [
-  "Holds two compatible 510-thread cartridges",
-  "Use either cartridge individually or both together",
-  "Three temperature modes",
-  "Manual button draw or inhale activation",
-  "Preheat function",
-  "Pass-through charging",
-];
-
-function focusInquiryForm(id: string) {
-  window.setTimeout(() => document.getElementById(`${id}-title`)?.focus(), 0);
-}
+const purchaseHref =
+  "mailto:battlesbudz@gmail.com?subject=I%20want%20to%20order%20a%20Battles%20Budz%20Dual-Cart%20Battery";
+const wholesaleHref =
+  "mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Dual-Cart%20Battery%20Wholesale%20Inquiry";
 
 const displayFont = {
   fontFamily: 'Impact, "Arial Black", Arial, sans-serif',
@@ -333,11 +323,8 @@ export default function BatteryPage() {
     >
       <SEOHead
         title="Dual-Cart Battery | Battles Budz"
-        description="Explore the $60 Battles Budz dual-cart 510-thread battery and request personal-purchase availability or wholesale details."
+        description="Order the Battles Budz dual-cart battery or contact Battles Budz for wholesale pricing."
         canonicalUrl={getCanonicalUrl("/battery")}
-        ogImage={getCanonicalUrl("/media/battles-budz-dual-cart-battery-open.jpg")}
-        ogType="product"
-        structuredData={batteryProductStructuredData}
       />
       <div
         className="mx-auto w-full max-w-[1440px] overflow-hidden bg-[#050505] shadow-[0_0_70px_rgba(0,0,0,.7)]"
@@ -399,18 +386,16 @@ export default function BatteryPage() {
 
                 <div className="mt-8 flex flex-wrap gap-[14px]">
                   <a
-                    href="#battery-order-request"
-                    onClick={() => focusInquiryForm("battery-order-request")}
+                    href={purchaseHref}
                     className={`${buttonClass} bg-[#ffdc12] text-[#070707] hover:bg-[#fff080]`}
                   >
-                    Request Availability
+                    Email to Order
                   </a>
                   <a
-                    href="#battery-wholesale-request"
-                    onClick={() => focusInquiryForm("battery-wholesale-request")}
+                    href={wholesaleHref}
                     className={`${buttonClass} bg-transparent text-[#fff080] hover:bg-[#ffdc12] hover:text-[#070707]`}
                   >
-                    Wholesale Inquiry
+                    Wholesale Pricing
                   </a>
                 </div>
               </div>
@@ -485,47 +470,13 @@ export default function BatteryPage() {
                   manual draw, or simply inhale and let the battery activate on its own. Preheat gets it ready before you
                   pull, and pass-through charging means you can keep using it while it is plugged in.
                 </p>
-                <ul className="relative z-10 mt-9 grid gap-3 text-base font-bold text-white sm:grid-cols-2" aria-label="Dual-cart battery features">
-                  {batteryHighlights.map((highlight) => (
-                    <li key={highlight} className="border-l-4 border-[#ffdc12] bg-black/45 px-4 py-3">
-                      {highlight}
-                    </li>
-                  ))}
-                </ul>
-                <p className="relative z-10 mt-6 max-w-[900px] text-sm leading-6 text-zinc-400">
-                  Cartridge fit can vary by dimensions. Include your cartridge details in the request below and we’ll help confirm compatibility before purchase.
-                </p>
               </div>
-            </div>
-          </section>
-
-          <section className="border-b border-[rgba(255,220,18,.16)] bg-[#080808] py-[100px] max-[900px]:py-[72px]">
-            <div className={`${contentWidth} grid items-start gap-10 min-[1000px]:grid-cols-[.72fr_1.28fr]`}>
-              <div>
-                <span className={eyebrowClass}>
-                  <span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-[#ffdc12] shadow-[0_0_14px_#ffdc12]" />
-                  Personal Purchase
-                </span>
-                <h2 className="mb-[22px] mt-6 text-[clamp(46px,5vw,70px)] font-black uppercase leading-[.97] tracking-[-.025em]" style={displayFont}>
-                  Tell us <span className="text-[#ffdc12]">what you need.</span>
-                </h2>
-                <p className="text-lg leading-8 text-zinc-300">
-                  Submit a request and Battles Budz will confirm current availability, cartridge fit questions, and the purchase or fulfillment options available for your location.
-                </p>
-                <ol className="mt-7 space-y-4 text-sm font-bold uppercase tracking-[0.08em] text-zinc-300">
-                  <li><span className="mr-3 text-[#ffdc12]">01</span>Send your location and quantity</li>
-                  <li><span className="mr-3 text-[#ffdc12]">02</span>We confirm availability and fit</li>
-                  <li><span className="mr-3 text-[#ffdc12]">03</span>Receive purchase next steps directly</li>
-                </ol>
-              </div>
-              <BatteryInquiryForm id="battery-order-request" kind="personal" />
             </div>
           </section>
 
           <section className="relative overflow-hidden border-b border-[rgba(255,220,18,.16)] bg-[#ffdc12] py-[100px] text-[#050505] max-[900px]:py-[72px]">
-            <div className={`${contentWidth} relative z-10`}>
-              <div className="grid items-center gap-14 min-[901px]:grid-cols-[minmax(0,1.25fr)_minmax(300px,.75fr)]">
-                <div>
+            <div className={`${contentWidth} relative z-10 grid items-center gap-14 min-[901px]:grid-cols-[minmax(0,1.25fr)_minmax(300px,.75fr)]`}>
+              <div>
                 <span className="inline-flex items-center gap-[10px] border border-[rgba(0,0,0,.45)] bg-[rgba(0,0,0,.08)] px-[14px] py-[10px] text-xs font-black uppercase tracking-[.16em] text-[#050505]">
                   <span aria-hidden="true" className="h-[7px] w-[7px] rounded-full bg-[#050505]" />
                   For Dispensaries
@@ -545,25 +496,20 @@ export default function BatteryPage() {
                   one bundle. Customers can enjoy either cart individually—or both together—from the same device.
                 </p>
                 <a
-                  href="#battery-wholesale-request"
-                  onClick={() => focusInquiryForm("battery-wholesale-request")}
+                  href={wholesaleHref}
                   className={`${buttonClass} relative z-10 mt-4 border-[#050505] bg-[#050505] text-[#ffdc12] hover:bg-white hover:text-[#050505] focus-visible:outline-[#050505]`}
                 >
-                  Start Wholesale Inquiry
+                  Email for Wholesale Pricing
                 </a>
-                </div>
-
-                <div
-                  aria-hidden="true"
-                  className="relative min-h-[500px] overflow-hidden border border-black/30 bg-[#050505] max-[900px]:min-h-[390px]"
-                >
-                  <TrifoldSoldierFlag className="absolute bottom-[76px] left-1/2 h-[420px] w-[340px] -translate-x-1/2 max-[900px]:bottom-[72px] max-[900px]:h-[310px] max-[900px]:w-[250px]" />
-                  <div className="absolute inset-x-0 bottom-0 h-3 bg-[#ffdc12]" />
-                  <TrifoldStarRow className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2" />
-                </div>
               </div>
-              <div className="mt-14">
-                <BatteryInquiryForm id="battery-wholesale-request" kind="wholesale" />
+
+              <div
+                aria-hidden="true"
+                className="relative min-h-[500px] overflow-hidden border border-black/30 bg-[#050505] max-[900px]:min-h-[390px]"
+              >
+                <TrifoldSoldierFlag className="absolute bottom-[76px] left-1/2 h-[420px] w-[340px] -translate-x-1/2 max-[900px]:bottom-[72px] max-[900px]:h-[310px] max-[900px]:w-[250px]" />
+                <div className="absolute inset-x-0 bottom-0 h-3 bg-[#ffdc12]" />
+                <TrifoldStarRow className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2" />
               </div>
             </div>
           </section>
@@ -585,23 +531,16 @@ export default function BatteryPage() {
                   Stop choosing <span className="text-[#ffdc12]">between carts.</span>
                 </h2>
                 <p className="mb-[6px] text-lg text-[#d4d4d4]">Battles Budz Dual-Cart Battery</p>
-                <p className="mb-6 text-4xl font-black text-[#ffdc12]">${BATTERY_PRICE_USD}</p>
+                <p className="mb-6 text-4xl font-black text-[#ffdc12]">$60</p>
                 <a
-                  href="#battery-order-request"
-                  onClick={() => focusInquiryForm("battery-order-request")}
+                  href={purchaseHref}
                   className={`${buttonClass} bg-[#ffdc12] text-[#070707] hover:bg-[#fff080]`}
                 >
-                  Request Availability
+                  Email to Order
                 </a>
                 <p className="mt-[22px] text-xs font-black uppercase tracking-[.16em] text-[#fff080]">
                   30-Day Money-Back or Replacement Guarantee
                 </p>
-                <Link
-                  href="/shipping-returns"
-                  className="mt-3 inline-block text-sm font-bold text-zinc-300 underline decoration-[#ffdc12] underline-offset-4 transition-colors hover:text-white"
-                >
-                  View shipping and returns terms
-                </Link>
               </div>
             </div>
           </section>

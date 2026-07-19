@@ -106,7 +106,6 @@ export default function ProductPreviewPage({ product }: { product: ProductPrevie
     <div className="min-h-screen bg-black text-white">
       <SEOHead
         title={`${product.name} | Battles Budz`}
-        description={product.heading}
         canonicalUrl={getCanonicalUrl(`/products/${product.slug}`)}
       />
       <main id="main-content" className="border-b border-yellow-300/20 pt-24">

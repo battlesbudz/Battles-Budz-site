@@ -5,9 +5,13 @@ import SEOHead from "@/components/seo/SEOHead";
 import {
   CANNABIS_KEYWORDS,
   getCanonicalUrl,
+  getLocalBusinessSchema,
+  getOrganizationSchema,
 } from "@/utils/seo";
 
 export default function Home() {
+  const structuredData = [getOrganizationSchema(), getLocalBusinessSchema()];
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-black">
       <SEOHead
@@ -21,6 +25,7 @@ export default function Home() {
           "dual cart battery",
         ]}
         canonicalUrl={getCanonicalUrl("/")}
+        structuredData={structuredData}
         ogType="website"
       />
       <main id="main-content">
