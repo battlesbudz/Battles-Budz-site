@@ -16,13 +16,28 @@ const clickSchema = z.object({
 const clickWindows = new Map<string, { count: number; resetAt: number }>();
 const CLICK_LIMIT = 60;
 const CLICK_WINDOW_MS = 60_000;
+const allowedProductionOrigins = new Set(["https://battlesbudz.com", "https://www.battlesbudz.com"]);
+
+if (process.env.APP_BASE_URL) {
+  try {
+    allowedProductionOrigins.add(new URL(process.env.APP_BASE_URL).origin);
+  } catch {
+    console.warn("APP_BASE_URL is not a valid URL; using the default CTA origin allowlist.");
+  }
+}
 
 function isSameOrigin(req: Request) {
   const origin = req.get("origin");
   if (!origin) return false;
 
   try {
-    return new URL(origin).host === req.get("host");
+    const requestOrigin = new URL(origin);
+    if (allowedProductionOrigins.has(requestOrigin.origin)) return true;
+
+    return (
+      process.env.NODE_ENV !== "production" &&
+      ["localhost", "127.0.0.1"].includes(requestOrigin.hostname)
+    );
   } catch {
     return false;
   }
