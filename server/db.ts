@@ -74,3 +74,24 @@ export async function ensureAdminAuthTables() {
       ON admin_audit_logs (created_at)
   `);
 }
+
+export async function ensureCtaClickEventsTable() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS cta_click_events (
+      id serial PRIMARY KEY,
+      event_type varchar(40) NOT NULL,
+      placement varchar(40) NOT NULL,
+      page_path varchar(200) NOT NULL,
+      referrer varchar(500),
+      utm_source varchar(100),
+      utm_medium varchar(100),
+      utm_campaign varchar(100),
+      created_at timestamp NOT NULL DEFAULT now()
+    )
+  `);
+
+  await pool.query(`
+    CREATE INDEX IF NOT EXISTS cta_click_events_created_at_idx
+      ON cta_click_events (created_at)
+  `);
+}

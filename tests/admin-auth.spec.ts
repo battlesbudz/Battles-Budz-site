@@ -63,6 +63,16 @@ test("authenticated administrator can open the restored dashboard", async ({ pag
   ]) {
     await page.route(path, (route) => route.fulfill({ contentType: "application/json", body: "[]" }));
   }
+  await page.route("**/api/admin/cta-analytics", (route) =>
+    route.fulfill({
+      contentType: "application/json",
+      body: JSON.stringify({
+        summary: { totalClicks: 9, instagramClicks: 6, wholesaleClicks: 3, last7Days: 4 },
+        byPlacement: [{ eventType: "instagram_order", placement: "hero", clicks: 6 }],
+        recentEvents: [],
+      }),
+    }),
+  );
 
   await page.goto("/admin");
 
@@ -70,6 +80,10 @@ test("authenticated administrator can open the restored dashboard", async ({ pag
   await expect(page.getByText("Signed in as battlesbudz@gmail.com")).toBeVisible();
   await expect(page.getByRole("button", { name: "Newsletter Subscribers" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Account" })).toBeVisible();
+  await page.getByRole("button", { name: "CTA Analytics" }).click();
+  await expect(page.getByRole("heading", { name: "Battery CTA Analytics" })).toBeVisible();
+  await expect(page.getByText("Instagram orders")).toBeVisible();
+  await expect(page.getByText("6", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("button", { name: "Sign out" })).toBeVisible();
   await expect(page.locator("main#main-content")).toHaveCount(1);
 });
