@@ -179,6 +179,13 @@ export default function Navigation() {
               </Link>
             ),
           )}
+          <Link
+            href="/admin/login"
+            onClick={() => setOpen(false)}
+            className="block py-4 text-sm font-black uppercase tracking-[0.16em] text-zinc-200 hover:text-yellow-300"
+          >
+            Login
+          </Link>
         </div>
       ) : null}
     </nav>
