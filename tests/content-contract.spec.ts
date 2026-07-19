@@ -49,8 +49,10 @@ test("client navigation removes structured data when the destination does not pr
 
   await page.goto("/");
 
-  const structuredData = page.locator('script[data-seo-head="true"]');
+  const structuredData = page.locator('script[type="application/ld+json"]');
+  const managedStructuredData = page.locator('script[data-seo-head="true"]');
   await expect(structuredData).toHaveCount(1);
+  await expect(managedStructuredData).toHaveCount(1);
 
   await page.locator('a[href="/shop"]:visible').first().click();
   await expect(page).toHaveURL(/\/shop$/);
