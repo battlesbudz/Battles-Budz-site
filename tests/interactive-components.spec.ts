@@ -144,3 +144,133 @@ test("the open job form reflows without hiding controls at 320 CSS pixels", asyn
   }));
   expect(widths.scrollWidth).toBeLessThanOrEqual(widths.clientWidth + 1);
 });
+
+test("the personal battery inquiry validates, attributes, and submits a structured lead", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "Form behavior is breakpoint-independent and covered once here.");
+  let requestBody: Record<string, unknown> | undefined;
+  let requestMethod: string | undefined;
+  let requestCount = 0;
+
+  await page.route("**/api/battery-inquiries", async (route) => {
+    requestCount += 1;
+    requestMethod = route.request().method();
+    requestBody = route.request().postDataJSON();
+    await route.fulfill({
+      status: 201,
+      contentType: "application/json",
+      body: JSON.stringify({ id: 17, message: "Battery inquiry received." }),
+    });
+  });
+  await page.goto("/?utm_source=instagram&utm_medium=organic&utm_campaign=battery_launch&utm_content=profile");
+  await page.getByRole("link", { name: "Dual-Cart Battery", exact: true }).first().click();
+  await expect(page).toHaveURL(/\/battery$/);
+
+  const form = page.locator('[data-battery-inquiry="personal"]');
+  await form.getByRole("button", { name: "Request availability", exact: true }).click();
+
+  const name = form.getByRole("textbox", { name: "Name", exact: true });
+  await expect(name).toBeFocused();
+  await expect(name).toHaveAttribute("aria-invalid", "true");
+  await expect(name).toHaveAttribute("aria-describedby", "battery-order-request-name-error");
+
+  await name.fill("Jordan Customer");
+  await form.getByRole("textbox", { name: "Email", exact: true }).fill("Jordan@Example.com");
+  await form.getByRole("textbox", { name: "Phone" }).fill("716-555-0100");
+  await form.getByRole("textbox", { name: "City and state or ZIP code" }).fill("Buffalo, NY 14201");
+  await form.getByRole("spinbutton", { name: "Quantity", exact: true }).fill("2");
+  await form.getByRole("textbox", { name: "Cartridge details or questions" }).fill("Please confirm fit before purchase.");
+  await form.getByRole("button", { name: "Request availability", exact: true }).click();
+
+  const successHeading = form.getByRole("heading", { name: "Request received." });
+  await expect(successHeading).toBeVisible();
+  await expect(successHeading).toBeFocused();
+  await expect(form).toContainText("No order was placed, no payment was collected, and inventory is not reserved.");
+  expect(requestMethod).toBe("POST");
+  expect(requestCount).toBe(1);
+  expect(requestBody).toEqual(expect.objectContaining({
+    inquiryType: "consumer",
+    name: "Jordan Customer",
+    email: "Jordan@Example.com",
+    phone: "716-555-0100",
+    location: "Buffalo, NY 14201",
+    quantity: 2,
+    notes: "Please confirm fit before purchase.",
+    website: "",
+    source: expect.objectContaining({
+      utmSource: "instagram",
+      utmMedium: "organic",
+      utmCampaign: "battery_launch",
+      utmContent: "profile",
+    }),
+  }));
+  expect(requestBody).not.toHaveProperty("businessName");
+  expect(requestBody).not.toHaveProperty("price");
+  expect(requestBody).not.toHaveProperty("status");
+  expect(requestBody?.idempotencyKey).toMatch(/^[A-Za-z0-9_-]{16,64}$/);
+
+  await form.getByRole("button", { name: "Send another request" }).click();
+  await expect(form.getByRole("textbox", { name: "Name", exact: true })).toBeFocused();
+});
+
+test("the wholesale battery inquiry requires business context and preserves data on failure", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "Form behavior is breakpoint-independent and covered once here.");
+  let responseStatus = 500;
+  const requestBodies: Record<string, unknown>[] = [];
+
+  await page.route("**/api/battery-inquiries", async (route) => {
+    requestBodies.push(route.request().postDataJSON());
+    await route.fulfill({
+      status: responseStatus,
+      contentType: "application/json",
+      body: JSON.stringify({ message: responseStatus === 201 ? "Battery inquiry received." : "failure" }),
+    });
+  });
+  await page.goto("/battery");
+
+  const form = page.locator('[data-battery-inquiry="wholesale"]');
+  await form.getByRole("textbox", { name: "Name", exact: true }).fill("Casey Buyer");
+  await form.getByRole("textbox", { name: "Email", exact: true }).fill("buyer@example.com");
+  await form.getByRole("textbox", { name: "City and state or ZIP code" }).fill("Rochester, NY");
+  await form.getByRole("spinbutton", { name: "Estimated opening quantity" }).fill("24");
+  await form.getByRole("button", { name: "Send wholesale request", exact: true }).click();
+
+  const businessName = form.getByRole("textbox", { name: "Business name", exact: true });
+  await expect(businessName).toBeFocused();
+  await expect(businessName).toHaveAttribute("aria-invalid", "true");
+  expect(requestBodies).toHaveLength(0);
+
+  await businessName.fill("Example Retail LLC");
+  await form.getByRole("textbox", { name: "Store count, timing, or questions" }).fill("One licensed location; fall reset.");
+  await form.getByRole("button", { name: "Send wholesale request", exact: true }).click();
+  await expect(form.getByText("We couldn’t save your request. Please try again or email battlesbudz@gmail.com.")).toBeVisible();
+  await expect(businessName).toHaveValue("Example Retail LLC");
+
+  responseStatus = 201;
+  await form.getByRole("button", { name: "Send wholesale request", exact: true }).click();
+  await expect(form.getByRole("heading", { name: "Request received." })).toBeVisible();
+  expect(requestBodies).toHaveLength(2);
+  expect(requestBodies[1]).toEqual(expect.objectContaining({
+    inquiryType: "wholesale",
+    businessName: "Example Retail LLC",
+    email: "buyer@example.com",
+    location: "Rochester, NY",
+    quantity: 24,
+  }));
+  expect(requestBodies[1].idempotencyKey).toBe(requestBodies[0].idempotencyKey);
+});
+
+test("battery inquiry forms reflow at 320 CSS pixels", async ({ page }, testInfo) => {
+  test.skip(!testInfo.project.name.startsWith("mobile"), "Narrow reflow is covered in the mobile project.");
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto("/battery");
+
+  const form = page.locator('[data-battery-inquiry="personal"]');
+  await form.scrollIntoViewIfNeeded();
+  await expect(form.getByRole("button", { name: "Request availability", exact: true })).toBeVisible();
+
+  const dimensions = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+  }));
+  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1);
+});

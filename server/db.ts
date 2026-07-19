@@ -35,3 +35,44 @@ export async function ensureProductUpdateSubscribersTable() {
     )
   `);
 }
+
+export async function ensureBatteryInquiriesTable() {
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS battery_inquiries (
+      id serial PRIMARY KEY,
+      inquiry_type text NOT NULL,
+      product_slug text NOT NULL DEFAULT 'dual-cart-battery',
+      name text NOT NULL,
+      email text NOT NULL,
+      phone text,
+      location text NOT NULL,
+      quantity integer NOT NULL,
+      business_name text,
+      notes text,
+      source_path text NOT NULL DEFAULT '/battery',
+      cta_placement text NOT NULL,
+      utm_source text,
+      utm_medium text,
+      utm_campaign text,
+      utm_content text,
+      referrer text,
+      idempotency_key varchar(64) NOT NULL UNIQUE,
+      request_fingerprint varchar(64) NOT NULL,
+      status text NOT NULL DEFAULT 'new',
+      notification_status text NOT NULL DEFAULT 'pending',
+      notification_attempts integer NOT NULL DEFAULT 0,
+      notification_last_attempt_at timestamp,
+      owner_notified_at timestamp,
+      created_at timestamp NOT NULL DEFAULT now(),
+      CONSTRAINT battery_inquiries_type_check CHECK (inquiry_type IN ('consumer', 'wholesale')),
+      CONSTRAINT battery_inquiries_quantity_check CHECK (quantity BETWEEN 1 AND 10000),
+      CONSTRAINT battery_inquiries_notification_status_check
+        CHECK (notification_status IN ('pending', 'sending', 'sent', 'failed', 'not_configured'))
+    )
+  `);
+
+  await pool.query(`
+    CREATE INDEX IF NOT EXISTS battery_inquiries_email_created_at_idx
+      ON battery_inquiries (email, created_at)
+  `);
+}

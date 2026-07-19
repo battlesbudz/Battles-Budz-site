@@ -79,7 +79,8 @@ export default function ShippingReturns() {
             <ul className="mt-4 space-y-3 text-zinc-300">
               <li>If a Battles Budz dual-cart battery arrives defective or stops working, send a photo or video showing the issue.</li>
               <li>After review, we will arrange a replacement without unnecessary back-and-forth.</li>
-              <li>Dual-cart battery sales and wholesale requests are coordinated directly through support.</li>
+              <li>Money-back requests follow the 30-day refund terms listed above.</li>
+              <li>Dual-cart battery purchase and wholesale inquiries are confirmed directly; submitting an inquiry does not place an order, collect payment, or reserve inventory.</li>
             </ul>
           </article>
         </section>
