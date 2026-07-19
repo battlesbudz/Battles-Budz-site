@@ -1,9 +1,21 @@
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, PackageCheck, ShieldCheck, Truck } from "lucide-react";
+import { Link } from "wouter";
 
-const teeUrl = "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt";
-const hoodieUrl = "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie";
-const longSleeveUrl = "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve";
-const tankUrl = "https://shop.battlesbudz.com/products/mens-tank-top";
+function storefrontUrl(path: string, content: string) {
+  const params = new URLSearchParams({
+    utm_source: "battlesbudz.com",
+    utm_medium: "referral",
+    utm_campaign: "apparel",
+    utm_content: content,
+  });
+  return `https://shop.battlesbudz.com${path}?${params.toString()}`;
+}
+
+const shopAllUrl = storefrontUrl("/", "shop_all");
+const teeUrl = storefrontUrl("/products/battles-budz-usa-t-shirt", "full_chest_tee");
+const hoodieUrl = storefrontUrl("/products/battles-budz-heavy-blend-hoodie", "heavy_blend_hoodie");
+const longSleeveUrl = storefrontUrl("/products/battles-budz-crest-long-sleeve", "crest_long_sleeve");
+const tankUrl = storefrontUrl("/products/mens-tank-top", "mens_tank_top");
 const hoodieImageUrl =
   "https://cdn.shopify.com/s/files/1/0808/6719/7155/files/unisex-heavy-blend-hoodie-black-front-6a55be2f35bdb.jpg?v=1784004153";
 const longSleeveImageUrl =
@@ -22,7 +34,7 @@ type AvailableProduct = {
 };
 
 function ProductVisual({ product }: { product: AvailableProduct }) {
-  return <img src={product.imageSrc} alt={product.imageAlt} className="h-full w-full object-contain" />;
+  return <img src={product.imageSrc} alt={product.imageAlt} className="h-full w-full object-contain" loading="lazy" decoding="async" />;
 }
 
 function AvailableCard({ product }: { product: AvailableProduct }) {
@@ -39,7 +51,7 @@ function AvailableCard({ product }: { product: AvailableProduct }) {
           href={product.href}
           className="mt-6 inline-flex items-center justify-center gap-2 rounded-lg border border-yellow-300 px-5 py-3 text-sm font-black uppercase tracking-[0.14em] text-yellow-200 transition hover:bg-yellow-300 hover:text-black"
         >
-          {product.cta} <ArrowUpRight className="h-4 w-4" />
+          {product.cta} <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </a>
       </div>
     </article>
@@ -90,9 +102,45 @@ export default function RetailSection() {
     <section id="retail" className="bg-black py-20 text-white">
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-4xl text-center">
+          <p className="text-xs font-black uppercase tracking-[0.2em] text-yellow-300">Wear the mission</p>
           <h1 className="mt-5 text-4xl font-black uppercase leading-none tracking-[-0.06em] sm:text-6xl">
-            Apparel.
+            Battles Budz apparel.
           </h1>
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-zinc-300">
+            Back a veteran-owned Buffalo brand before the dispensary opens. Every piece ships through the Battles Budz apparel store.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            <a
+              href={shopAllUrl}
+              className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-yellow-300 px-6 text-sm font-black uppercase tracking-[0.14em] text-black transition hover:bg-yellow-200"
+            >
+              Shop all apparel <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+            </a>
+            <Link
+              href="/shipping-returns"
+              className="inline-flex min-h-12 items-center justify-center rounded-lg border border-white/25 px-6 text-sm font-black uppercase tracking-[0.14em] text-white transition hover:border-yellow-300 hover:text-yellow-200"
+            >
+              Shipping and returns
+            </Link>
+          </div>
+        </div>
+
+        <div className="mt-12 grid overflow-hidden rounded-2xl border border-yellow-300/25 bg-zinc-950 md:grid-cols-3">
+          <div className="p-6 md:border-r md:border-white/10">
+            <Truck className="h-6 w-6 text-yellow-300" aria-hidden="true" />
+            <p className="mt-3 font-black uppercase tracking-[0.08em]">Free U.S. shipping at $50+</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">Choose any two pieces shown here and your order reaches the free-shipping threshold.</p>
+          </div>
+          <div className="border-t border-white/10 p-6 md:border-r md:border-t-0">
+            <PackageCheck className="h-6 w-6 text-yellow-300" aria-hidden="true" />
+            <p className="mt-3 font-black uppercase tracking-[0.08em]">30-day refund requests</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">Contact Battles Budz within the published policy window if the purchase is not the right fit.</p>
+          </div>
+          <div className="border-t border-white/10 p-6 md:border-t-0">
+            <ShieldCheck className="h-6 w-6 text-yellow-300" aria-hidden="true" />
+            <p className="mt-3 font-black uppercase tracking-[0.08em]">30-day size exchanges</p>
+            <p className="mt-2 text-sm leading-6 text-zinc-400">The current policy covers apparel size exchanges, including return postage for the original item.</p>
+          </div>
         </div>
 
         <div id="shop" className="mt-14 grid gap-7 md:grid-cols-2 xl:grid-cols-4">

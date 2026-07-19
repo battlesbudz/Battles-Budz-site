@@ -22,7 +22,7 @@ export default function PrivacyPolicy() {
         
         <div className="prose prose-invert max-w-none space-y-6">
           <p className="text-gray-300 text-lg">
-            Last updated: {new Date().toLocaleDateString()}
+            Last updated: July 18, 2026
           </p>
 
           <section className="space-y-4">
@@ -34,9 +34,16 @@ export default function PrivacyPolicy() {
               <li>Subscribe to our newsletter</li>
               <li>Submit a job application</li>
               <li>Contact us through our website</li>
+              <li>Request personal-purchase availability or wholesale information for the dual-cart battery</li>
               <li>Request event or launch updates</li>
               <li>Create an investor account</li>
             </ul>
+            <p className="text-gray-300">
+              Battery inquiry information may include your name, email, optional phone number, general location, requested
+              quantity, business name for wholesale requests, notes you choose to provide, and limited referral or campaign
+              information associated with the inquiry page. Do not submit payment-card details, identification documents, or
+              other sensitive information through an inquiry form.
+            </p>
           </section>
 
           <section className="space-y-4">
@@ -49,6 +56,7 @@ export default function PrivacyPolicy() {
               <li>Send you newsletters and updates about our business</li>
               <li>Process job applications and communicate with candidates</li>
               <li>Respond to your inquiries and requests</li>
+              <li>Prevent duplicate or abusive inquiry submissions</li>
               <li>Comply with legal obligations</li>
             </ul>
           </section>
@@ -56,7 +64,17 @@ export default function PrivacyPolicy() {
           <section className="space-y-4">
             <h2 className="text-2xl font-semibold text-battles-gold">Information Sharing</h2>
             <p className="text-gray-300">
-              We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy or as required by law.
+              We do not sell or trade your personal information. We may share information with service providers that help us
+              operate the website, store inquiry records, and deliver transactional email, or when disclosure is required by law.
+            </p>
+          </section>
+
+          <section className="space-y-4">
+            <h2 className="text-2xl font-semibold text-battles-gold">Retention and Choices</h2>
+            <p className="text-gray-300">
+              We retain inquiry information only as long as reasonably needed to respond, manage the business relationship,
+              prevent abuse, and meet legal obligations. To ask about, correct, or request deletion of information you submitted,
+              email battlesbudz@gmail.com.
             </p>
           </section>
 

@@ -2,7 +2,12 @@ import express, { type Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
-import { ensureNewsletterSubscribersTable, ensureProductUpdateSubscribersTable } from "./db";
+import {
+  ensureBatteryInquiriesTable,
+  ensureNewsletterSubscribersTable,
+  ensureProductUpdateSubscribersTable,
+} from "./db";
+import { startBatteryInquiryNotificationWorker } from "./routes/battery-inquiries";
 
 const app = express();
 app.use(express.json());
@@ -42,6 +47,8 @@ app.use((req, res, next) => {
 (async () => {
   await ensureNewsletterSubscribersTable();
   await ensureProductUpdateSubscribersTable();
+  await ensureBatteryInquiriesTable();
+  startBatteryInquiryNotificationWorker();
 
   const server = await registerRoutes(app);
 

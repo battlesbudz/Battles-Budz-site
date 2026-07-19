@@ -189,10 +189,10 @@ test("each apparel card links directly to its matching Shopify product", async (
   await page.goto("/shop");
 
   const products = [
-    ["Full-Chest Tee", "Shop T-shirts", "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt"],
-    ["Heavy Blend Hoodie", "Shop hoodies", "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie"],
-    ["Long Sleeve", "Shop long sleeves", "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve"],
-    ["Tank Top", "Shop tank tops", "https://shop.battlesbudz.com/products/mens-tank-top"],
+    ["Full-Chest Tee", "Shop T-shirts", "https://shop.battlesbudz.com/products/battles-budz-usa-t-shirt?utm_source=battlesbudz.com&utm_medium=referral&utm_campaign=apparel&utm_content=full_chest_tee"],
+    ["Heavy Blend Hoodie", "Shop hoodies", "https://shop.battlesbudz.com/products/battles-budz-heavy-blend-hoodie?utm_source=battlesbudz.com&utm_medium=referral&utm_campaign=apparel&utm_content=heavy_blend_hoodie"],
+    ["Long Sleeve", "Shop long sleeves", "https://shop.battlesbudz.com/products/battles-budz-crest-long-sleeve?utm_source=battlesbudz.com&utm_medium=referral&utm_campaign=apparel&utm_content=crest_long_sleeve"],
+    ["Tank Top", "Shop tank tops", "https://shop.battlesbudz.com/products/mens-tank-top?utm_source=battlesbudz.com&utm_medium=referral&utm_campaign=apparel&utm_content=mens_tank_top"],
   ] as const;
 
   for (const [heading, cta, href] of products) {
@@ -200,4 +200,88 @@ test("each apparel card links directly to its matching Shopify product", async (
     await expect(card).toHaveCount(1);
     await expect(card.getByRole("link", { name: new RegExp(`^${cta}`, "i") })).toHaveAttribute("href", href);
   }
+
+  await expect(page.getByRole("link", { name: "Shop all apparel", exact: false })).toHaveAttribute(
+    "href",
+    "https://shop.battlesbudz.com/?utm_source=battlesbudz.com&utm_medium=referral&utm_campaign=apparel&utm_content=shop_all",
+  );
+  await expect(page.getByText("Free U.S. shipping at $50+", { exact: true })).toBeVisible();
+  await expect(page.getByText("30-day refund requests", { exact: true })).toBeVisible();
+  await expect(page.getByText("30-day size exchanges", { exact: true })).toBeVisible();
+});
+
+test("the battery page uses inquiry flows, verified feature copy, and product structured data", async ({ page }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "Content contracts are breakpoint-independent and covered once here.");
+  await page.goto("/battery");
+
+  await expect(page.locator('main a[href^="mailto:"]')).toHaveCount(0);
+  await expect(page.locator('[data-battery-inquiry="personal"]')).toHaveCount(1);
+  await expect(page.locator('[data-battery-inquiry="wholesale"]')).toHaveCount(1);
+  const personalRequestLink = page.locator('a[href="#battery-order-request"]').first();
+  await personalRequestLink.focus();
+  await page.keyboard.press("Enter");
+  await expect(page.getByRole("heading", { name: "Request battery availability" })).toBeFocused();
+  const featureList = page.getByRole("list", { name: "Dual-cart battery features" });
+  for (const feature of [
+    "Holds two compatible 510-thread cartridges",
+    "Three temperature modes",
+    "Manual button draw or inhale activation",
+    "Pass-through charging",
+  ]) {
+    await expect(featureList).toContainText(feature);
+  }
+  await expect(page.getByText(/This is an inquiry, not an order\./)).toHaveCount(2);
+  await expect(page.getByRole("link", { name: "View shipping and returns terms" })).toHaveAttribute("href", "/shipping-returns");
+
+  const structuredData = page.locator('script[data-seo-head="true"]');
+  await expect(structuredData).toHaveCount(1);
+  const product = JSON.parse((await structuredData.textContent()) || "{}");
+  expect(product).toEqual(expect.objectContaining({
+    "@type": "Product",
+    name: "Battles Budz Dual-Cart Battery",
+    offers: expect.objectContaining({ price: "60.00", priceCurrency: "USD" }),
+  }));
+
+  await page.getByRole("link", { name: "Apparel", exact: true }).first().click();
+  await expect(page).toHaveURL(/\/shop$/);
+  await expect(page.locator('script[data-seo-head="true"]')).toHaveCount(0);
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
+
+  await page.getByRole("link", { name: "Battles Budz home", exact: true }).first().click();
+  await expect(page).toHaveURL(/\/$/);
+  await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
+});
+
+test("the sitemap lists every canonical revenue and public content route", async ({ request }, testInfo) => {
+  test.skip(testInfo.project.name.startsWith("mobile"), "Static sitemap content is covered once here.");
+  const response = await request.get("/sitemap.xml");
+  expect(response.ok()).toBe(true);
+  const sitemap = await response.text();
+
+  const expectedPaths = [
+    "/",
+    "/battery",
+    "/shop",
+    "/our-story",
+    "/coming-soon",
+    "/shipping-returns",
+    "/products/freedom-fog-vapes",
+    "/products/battles-budz-flower",
+    "/products/heirloom-flower",
+    "/products/pre-rolls",
+    "/products/edibles",
+    "/products/cosmic-chewz",
+    "/products/concentrates",
+    "/products/battle-brew",
+    "/privacy-policy",
+    "/terms-of-service",
+    "/accessibility",
+  ];
+  const sitemapPaths = Array.from(sitemap.matchAll(/<loc>https:\/\/battlesbudz\.com(\/[^<]*)<\/loc>/g), (match) => match[1]);
+
+  expect(new Set(sitemapPaths).size).toBe(sitemapPaths.length);
+  expect([...sitemapPaths].sort()).toEqual([...expectedPaths].sort());
+
+  expect(sitemap).not.toContain("/location/");
+  expect(sitemap).not.toContain("/age-verification");
 });
