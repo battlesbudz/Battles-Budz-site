@@ -83,7 +83,7 @@ test("authenticated administrator can open the restored dashboard", async ({ pag
   await page.getByRole("button", { name: "CTA Analytics" }).click();
   await expect(page.getByRole("heading", { name: "Battery CTA Analytics" })).toBeVisible();
   await expect(page.getByText("Instagram orders")).toBeVisible();
-  await expect(page.getByText("6", { exact: true })).toBeVisible();
+  await expect(page.getByText("6", { exact: true }).first()).toBeVisible();
   await expect(page.getByRole("button", { name: "Sign out" })).toBeVisible();
   await expect(page.locator("main#main-content")).toHaveCount(1);
 });

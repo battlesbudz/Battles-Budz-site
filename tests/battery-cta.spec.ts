@@ -1,5 +1,12 @@
 import { expect, test } from "@playwright/test";
 
+test.beforeEach(async ({ page }) => {
+  await page.addInitScript(() => {
+    window.sessionStorage.setItem("ageVerified", "true");
+    window.sessionStorage.setItem("battlesBudzUpdatesPopupDismissed", "true");
+  });
+});
+
 test("battery retail CTAs open Instagram and record anonymous campaign context", async ({ page }) => {
   const events: Array<Record<string, unknown>> = [];
   await page.route("**/api/analytics/cta-click", async (route) => {
