@@ -247,7 +247,7 @@ test("the battery page uses inquiry flows, verified feature copy, and product st
   await expect(page.locator('script[data-seo-head="true"]')).toHaveCount(0);
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
 
-  await page.getByRole("link", { name: "Home", exact: true }).first().click();
+  await page.getByRole("link", { name: "Battles Budz home", exact: true }).first().click();
   await expect(page).toHaveURL(/\/$/);
   await expect(page.locator('script[type="application/ld+json"]')).toHaveCount(1);
 });
