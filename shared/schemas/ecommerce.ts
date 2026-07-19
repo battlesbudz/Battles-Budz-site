@@ -1,5 +1,4 @@
-import { sql } from "drizzle-orm";
-import { check, index, pgTable, text, varchar, serial, timestamp, decimal, integer, boolean, unique } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, serial, timestamp, decimal, integer, boolean, unique } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 import { users } from "./core";
@@ -58,48 +57,6 @@ export const contactSubmissions = pgTable("contact_submissions", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const batteryInquiries = pgTable("battery_inquiries", {
-  id: serial("id").primaryKey(),
-  inquiryType: text("inquiry_type").notNull(),
-  productSlug: text("product_slug").notNull().default("dual-cart-battery"),
-  name: text("name").notNull(),
-  email: text("email").notNull(),
-  phone: text("phone"),
-  location: text("location").notNull(),
-  quantity: integer("quantity").notNull(),
-  businessName: text("business_name"),
-  notes: text("notes"),
-  sourcePath: text("source_path").notNull().default("/battery"),
-  ctaPlacement: text("cta_placement").notNull(),
-  utmSource: text("utm_source"),
-  utmMedium: text("utm_medium"),
-  utmCampaign: text("utm_campaign"),
-  utmContent: text("utm_content"),
-  referrer: text("referrer"),
-  idempotencyKey: varchar("idempotency_key", { length: 64 }).notNull().unique(),
-  requestFingerprint: varchar("request_fingerprint", { length: 64 }).notNull(),
-  status: text("status").notNull().default("new"),
-  notificationStatus: text("notification_status").notNull().default("pending"),
-  notificationAttempts: integer("notification_attempts").notNull().default(0),
-  notificationLastAttemptAt: timestamp("notification_last_attempt_at"),
-  ownerNotifiedAt: timestamp("owner_notified_at"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-}, (table) => ({
-  emailCreatedAtIndex: index("battery_inquiries_email_created_at_idx").on(table.email, table.createdAt),
-  inquiryTypeCheck: check(
-    "battery_inquiries_type_check",
-    sql`${table.inquiryType} IN ('consumer', 'wholesale')`,
-  ),
-  quantityCheck: check(
-    "battery_inquiries_quantity_check",
-    sql`${table.quantity} BETWEEN 1 AND 10000`,
-  ),
-  notificationStatusCheck: check(
-    "battery_inquiries_notification_status_check",
-    sql`${table.notificationStatus} IN ('pending', 'sending', 'sent', 'failed', 'not_configured')`,
-  ),
-}));
-
 // Insert schemas
 export const insertProductSchema = createInsertSchema(products).pick({
   name: true,
@@ -154,4 +111,3 @@ export type InsertProductUpdateSubscriber = z.infer<typeof insertProductUpdateSu
 export type ProductUpdateSubscriber = typeof productUpdateSubscribers.$inferSelect;
 export type InsertContactSubmission = z.infer<typeof insertContactSubmissionSchema>;
 export type ContactSubmission = typeof contactSubmissions.$inferSelect;
-export type BatteryInquiry = typeof batteryInquiries.$inferSelect;

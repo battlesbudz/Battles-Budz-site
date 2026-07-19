@@ -1,74 +1,12 @@
 
 import { MailService } from '@sendgrid/mail';
-import type { BatteryInquiry, MeetingRequest, InvestorMessage, InvestorAccessRequest } from '@shared/schema';
+import type { MeetingRequest, InvestorMessage, InvestorAccessRequest } from '@shared/schema';
 
 // Initialize SendGrid (only if API key is available)
 let mailService: MailService | null = null;
 if (process.env.SENDGRID_API_KEY) {
   mailService = new MailService();
   mailService.setApiKey(process.env.SENDGRID_API_KEY);
-}
-
-function escapeHtml(value: string) {
-  const entities: Record<string, string> = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    "'": "&#39;",
-    '"': "&quot;",
-  };
-
-  return value.replace(/[&<>'"]/g, (character) => entities[character] ?? character);
-}
-
-export function isBatteryInquiryEmailConfigured() {
-  return Boolean(mailService);
-}
-
-export async function sendBatteryInquiryNotification(inquiry: BatteryInquiry) {
-  if (!mailService) {
-    return "not_configured" as const;
-  }
-
-  const inquiryLabel = inquiry.inquiryType === "wholesale" ? "Wholesale / retail partner" : "Personal purchase";
-  const adminLines = [
-    `Inquiry ID: ${inquiry.id}`,
-    `Type: ${inquiryLabel}`,
-    `Name: ${inquiry.name}`,
-    `Email: ${inquiry.email}`,
-    `Phone: ${inquiry.phone || "Not provided"}`,
-    inquiry.businessName ? `Business: ${inquiry.businessName}` : null,
-    `Location: ${inquiry.location}`,
-    `Quantity: ${inquiry.quantity}`,
-    `Notes: ${inquiry.notes || "None provided"}`,
-    `Source: ${inquiry.sourcePath}`,
-  ].filter((line): line is string => Boolean(line));
-
-  const adminHtml = adminLines
-    .map((line) => {
-      const separator = line.indexOf(":");
-      const label = separator === -1 ? "Detail" : line.slice(0, separator);
-      const value = separator === -1 ? line : line.slice(separator + 1).trim();
-      return `<li><strong>${escapeHtml(label)}:</strong> ${escapeHtml(value)}</li>`;
-    })
-    .join("");
-
-  await mailService.send({
-    to: "battlesbudz@gmail.com",
-    from: "battlesbudz@gmail.com",
-    replyTo: inquiry.email,
-    subject: `New dual-cart battery ${inquiry.inquiryType} inquiry`,
-    text: `A new dual-cart battery inquiry was saved.\n\n${adminLines.join("\n")}`,
-    html: `
-      <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto">
-        <h1 style="background:#000;color:#ffdc12;padding:20px">New dual-cart battery inquiry</h1>
-        <ul style="line-height:1.7">${adminHtml}</ul>
-        <p>Follow up directly after confirming current availability and eligible fulfillment options.</p>
-      </div>
-    `,
-  });
-
-  return "sent" as const;
 }
 
 // Email notification function

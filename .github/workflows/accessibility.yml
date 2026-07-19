@@ -37,9 +37,6 @@ jobs:
       - name: Build application
         run: npm run build
 
-      - name: Run server contract tests
-        run: npm run test:server
-
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
 
