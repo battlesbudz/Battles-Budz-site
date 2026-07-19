@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/navigation";
 import AdminAccountPanel from "@/components/admin/AdminAccountPanel";
+import CtaAnalyticsPanel from "@/components/admin/CtaAnalyticsPanel";
 import { 
   Users, 
   Mail, 
@@ -14,7 +15,8 @@ import {
   Download,
   RefreshCw,
   LogOut,
-  Settings
+  Settings,
+  MousePointerClick
 } from "lucide-react";
 
 export default function AdminDashboard() {
@@ -418,6 +420,9 @@ export default function AdminDashboard() {
       case "account":
         return <AdminAccountPanel />;
 
+      case "cta-analytics":
+        return <CtaAnalyticsPanel />;
+
       default:
         return null;
     }
@@ -527,6 +532,14 @@ export default function AdminDashboard() {
                   className={`${activeTab === "applications" ? "bg-battles-gold text-black hover:bg-battles-gold/90" : ""} text-xs sm:text-sm flex-shrink-0`}
                 >
                   Job Applications
+                </Button>
+                <Button
+                  variant={activeTab === "cta-analytics" ? "default" : "ghost"}
+                  onClick={() => setActiveTab("cta-analytics")}
+                  className={`${activeTab === "cta-analytics" ? "bg-battles-gold text-black hover:bg-battles-gold/90" : ""} text-xs sm:text-sm flex-shrink-0`}
+                >
+                  <MousePointerClick className="mr-2 h-4 w-4" aria-hidden="true" />
+                  CTA Analytics
                 </Button>
                 <Button
                   variant={activeTab === "account" ? "default" : "ghost"}

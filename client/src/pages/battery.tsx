@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowLeft, Menu, Pause, Play, X } from "lucide-react";
+import { ArrowLeft, Instagram, Menu, Pause, Play, X } from "lucide-react";
 import { Link } from "wouter";
 import { TrifoldSoldierFlag, TrifoldStarRow } from "@/components/battery-trifold-motifs";
 import PublicPageLayout from "@/components/public-page-layout";
 import SEOHead from "@/components/seo/SEOHead";
 import { getCanonicalUrl } from "@/utils/seo";
+import { trackCtaClick } from "@/lib/ctaAnalytics";
 
-const purchaseHref =
-  "mailto:battlesbudz@gmail.com?subject=I%20want%20to%20order%20a%20Battles%20Budz%20Dual-Cart%20Battery";
+const instagramOrderHref = "https://ig.me/m/battles_budz";
 const wholesaleHref =
   "mailto:battlesbudz@gmail.com?subject=Battles%20Budz%20Dual-Cart%20Battery%20Wholesale%20Inquiry";
 
@@ -383,16 +383,25 @@ export default function BatteryPage() {
                   Load two compatible 510-thread cartridges into one compact battery. Choose either cart individually,
                   switch whenever you want, or draw from both together for a completely different flavor and experience.
                 </p>
+                <p className="mt-5 max-w-[680px] text-base leading-[1.65] text-[#f1f1ed]">
+                  Message us on Instagram to order your Battles Budz Dual-Cart Battery. We’ll confirm payment, shipping,
+                  and availability directly.
+                </p>
 
                 <div className="mt-8 flex flex-wrap gap-[14px]">
                   <a
-                    href={purchaseHref}
+                    href={instagramOrderHref}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={() => trackCtaClick("instagram_order", "hero")}
                     className={`${buttonClass} bg-[#ffdc12] text-[#070707] hover:bg-[#fff080]`}
                   >
-                    Email to Order
+                    <Instagram className="mr-2 h-5 w-5" aria-hidden="true" />
+                    Message Us on Instagram
                   </a>
                   <a
                     href={wholesaleHref}
+                    onClick={() => trackCtaClick("wholesale_email", "hero")}
                     className={`${buttonClass} bg-transparent text-[#fff080] hover:bg-[#ffdc12] hover:text-[#070707]`}
                   >
                     Wholesale Pricing
@@ -497,6 +506,7 @@ export default function BatteryPage() {
                 </p>
                 <a
                   href={wholesaleHref}
+                  onClick={() => trackCtaClick("wholesale_email", "wholesale_section")}
                   className={`${buttonClass} relative z-10 mt-4 border-[#050505] bg-[#050505] text-[#ffdc12] hover:bg-white hover:text-[#050505] focus-visible:outline-[#050505]`}
                 >
                   Email for Wholesale Pricing
@@ -532,11 +542,18 @@ export default function BatteryPage() {
                 </h2>
                 <p className="mb-[6px] text-lg text-[#d4d4d4]">Battles Budz Dual-Cart Battery</p>
                 <p className="mb-6 text-4xl font-black text-[#ffdc12]">$60</p>
+                <p className="mx-auto mb-7 max-w-[680px] text-base leading-[1.65] text-[#d4d4d4]">
+                  Message us on Instagram to order. We’ll confirm payment, shipping, and availability directly.
+                </p>
                 <a
-                  href={purchaseHref}
+                  href={instagramOrderHref}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => trackCtaClick("instagram_order", "closing")}
                   className={`${buttonClass} bg-[#ffdc12] text-[#070707] hover:bg-[#fff080]`}
                 >
-                  Email to Order
+                  <Instagram className="mr-2 h-5 w-5" aria-hidden="true" />
+                  Message Us on Instagram
                 </a>
                 <p className="mt-[22px] text-xs font-black uppercase tracking-[.16em] text-[#fff080]">
                   30-Day Money-Back or Replacement Guarantee
