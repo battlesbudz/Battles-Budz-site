@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowLeft, LockKeyhole } from "lucide-react";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/hooks/useAuth";
@@ -110,7 +110,7 @@ export default function LoginPage() {
             <div className="mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-yellow-300 text-black">
               <LockKeyhole className="h-6 w-6" aria-hidden="true" />
             </div>
-            <CardTitle className="text-3xl font-black uppercase tracking-[-0.03em] text-yellow-300">{title}</CardTitle>
+            <h1 className="text-3xl font-black uppercase tracking-[-0.03em] text-yellow-300">{title}</h1>
             <p className="text-sm leading-6 text-zinc-300">{description}</p>
           </CardHeader>
           <CardContent>
